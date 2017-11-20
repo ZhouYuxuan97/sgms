@@ -1,0 +1,366 @@
+﻿@{
+    Layout = null;
+}
+@using hubu.sgms.BLL;
+@using hubu.sgms.BLL.Impl;
+@using hubu.sgms.Model;
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/style.default.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="css/pageGroup.css" />
+    <script type="text/javascript" src="js/jquery-1.7.min.js"></script>
+    <script type="text/javascript" src="js/pageGroup.js"></script>
+    <link href="~/Content/bootstrap3.3.7.min.css" rel="stylesheet" />
+    <script src="~/Scripts/Course/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="~/Content/Admin/example.css">
+    <script src="^/Course/sweet-alert.js"></script>
+    <link rel="stylesheet" href="~/Content/admin/sweet-alert.css">
+    <title>学校管理员查询排课信息</title>
+    <style type="text/css">
+        .container-fluid {
+            padding: 0;
+        }
+
+            .container-fluid nav {
+                padding-left: 10%;
+            }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <form id="formid" class="navbar-form navbar-left" role="search" method="post" action="/Arrange/CASelArrangeInfo">
+                    <label>选择要查询的班级和开课时间:</label>
+                    <span class="field" style="width:400px;">
+                        <select name="collegelist" id="collegelist" class="btn-info">
+                            @if (@Html.Encode(ViewData["college"]) != "")
+                            {
+                                <option value=@Html.Encode(ViewData["college"]) style="display: none;" disabled selected>@Html.Encode(ViewData["college"])</option>
+
+                            }
+                            else
+                            {
+                                <option value="" style="display: none;" disabled selected>开课学院</option>}
+                            <option value="1">文学院</option>
+                            <option value="2">新闻传播学院</option>
+                            <option value="3">商学院</option>
+                            <option value="4">政法与公共管理学院</option>
+                            <option value="5">外国语学院</option>
+                            <option value="6">历史文化学院</option>
+                            <option value="7">教育学院</option>
+                            <option value="8">哲学学院</option>
+                            <option value="9">马克思主义学院</option>
+                            <option value="10">数学与统计学学院</option>
+                            <option value="11">物理与电子科学学院</option>
+                            <option value="12">化学化工学院</option>
+                            <option value="13">生命科学学院</option>
+                            <option value="14">资源环境学院</option>
+                            <option value="15">计算机与信息工程学院</option>
+                            <option value="16">材料科学与工程学院</option>
+                            <option value="17">艺术学院</option>
+                            <option value="18">体育学院</option>
+                            <option value="19">通识教育学院</option>
+                            <option value="20">楚才学院</option>
+                            <option value="21">国际教育学院</option>
+                        </select>
+                    </span> &nbsp;
+
+
+                    <span class="field" style="width:400px;">
+                        @if (ViewBag.majorList != null)
+                        {
+                            @Html.DropDownList("majorlist", ViewBag.majorList as IEnumerable<SelectListItem>, new { @class = "btn btn-success dropdown-toggle form-control" })
+                        }
+                        else {<select name="majorlist" id="majorlist" class="btn-info" style="width: 150px">
+
+                        <option value="" style="display: none;" disabled selected>选 择 专 业</option>
+
+                    </select>}
+                    </span> &nbsp;
+
+                    <span class="field" style="width:400px;">
+                        @if (ViewBag.classList != null)
+                        {
+                            @Html.DropDownList("classlist", ViewBag.classList as IEnumerable<SelectListItem>, new { @class = "btn btn-success dropdown-toggle form-control" })
+                        }
+                        else {
+                            <select name="classlist" id="classlist" class="btn-info" style="width: 150px">
+                                <option value="" style="display: none;" disabled selected>选 择 班 级</option>
+
+                            </select>}
+                    </span> &nbsp;
+
+                    <span class="field" style="width:400px;">
+                        <select name="courseopentimelist" id="courseopentimelist" class="btn-info">
+                            <option value="" style="display: none;" disabled selected>开课时间</option>
+
+                            <option value="1702">1702</option>
+                            <option value="1701">1701</option>
+                        </select>
+                    </span> &nbsp;
+                    <span class="field" style="width:400px;">
+                        <button id="btnSel" type="button" class="btn btn-info">查询</button>
+                    </span> &nbsp;
+                </form>
+            </div>
+        </nav>
+    </div>
+
+
+    <div id="body">
+        <div class="container">
+            <!--展示管理员信息的表格-->
+            <table class="table table-hover table-bordered" id="displaycourseInfo" align="center">
+                <colgroup>
+                    <col class="con0" style="width: 4%" />
+                    <col class="con1" style="width: 2%" />
+                    <col class="con0" style="width: 2%" />
+                    <col class="con0" style="width: 2%" />
+                    <col class="con0" style="width: 4%" />
+                    <col class="con0" style="width: 3%" />
+                    <col class="con0" style="width: 4%" />
+                </colgroup>
+                <thead>
+                    <tr class="warning">
+                        <th>课程名</th>
+                        <th>课时</th>
+                        <th>学分</th>
+                        <th>教师</th>
+                        <th>教室(教学楼+教室)</th>
+                        <th>时间(星期+时间)</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <div id="pageid">
+                <button id="btnperpage" type="button" class="btn btn-info">&larr;上一页</button>
+                <button id="btnnextpage" type="button" class="btn btn-info">上一页&rarr;</button>
+                <center>第<label id="indexpage">1</label>页，共<label id="totalpage">1</label>页</center>
+            </div>
+            <!--分页按钮  pagination  pager-->
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/bootstrap3.3.7.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#btnSel").click(function () {
+                $("#indexpage").html("1");
+                $("#totalpage").html("1");
+                var indexlabel = document.getElementById("indexpage");
+                var indexpage = indexlabel.innerText;
+                
+                var courseopentime = $("#courseopentimelist").val();
+                var class1 = $("#classlist").val();
+                var college = $("#collegelist").val();
+                var major = $("#majorlist").val();
+                if (college == "") {
+                    alert("请选定学院！");
+                    return false;
+                } else if (major == "") {
+                    alert("请选定专业！");
+                    return false;
+                }
+                else if (class1 == "") {
+                    alert("请选定班级！");
+                    return false;
+                }
+                else if (courseopentime == "") {
+                    alert("请选定时间！");
+                    return false;
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Arrange/CASelArrangeInfo",
+                    data: "class1=" + class1 + "&&courseopentime=" + courseopentime + "&&page=" + indexpage,
+                    success: function (data) {
+                        $("#displaycourseInfo tbody").html("");
+                        if (data) {
+                            $.each(data, function (i, val) {
+                                if (val["item9"] == "专业必修课" || val["item9"] == "专业选修课") { $("#displaycourseInfo").append("<tr><td align=\"center\">" + val["item1"] + "</td><td align=\"center\">" + val["item2"] + "</td><td align=\"center\">" + val["item3"] + "</td><td align=\"center\">" + val["item4"] + "</td><td align=\"center\">" + val["item5"] + "</td><td align=\"center\">" + val["item6"] + "</td><td align=\"center\"> 没有修改此类课程的权限 </td></tr>") }
+                                else {
+                                    $("#displaycourseInfo").append("<tr><td align=\"center\">" + val["item1"] + "</td><td align=\"center\">" + val["item2"] + "</td><td align=\"center\">" + val["item3"] + "</td><td align=\"center\">" + val["item4"] + "</td><td align=\"center\">" + val["item5"] + "</td><td align=\"center\">" + val["item6"] + "</td><td align=\"center\"><a href=\"CAArrangeCourse?id=" + val["item7"] + "\"  class=\"edit\">修改</a> &nbsp; <a href=\"DelArrangeCourse?id=" + val["item7"] + "\"  class=\"Delete\">删除</a>  </td></tr>")
+                                }
+                            })
+                        }
+                        filltotalpage(class1, courseopentime);
+                    }
+                });
+            });
+        });
+
+        //查询成功后刷新总页数
+        function filltotalpage(class1, courseopentime) {
+            $.ajax({
+                type: "POST",
+                url: "/Arrange/CAFillTotalPage",
+                data: "class1=" + class1 + "&&courseopentime=" + courseopentime,
+                success: function (data) {
+                    $("#totalpage").html(data);
+                   
+                }
+            });
+        };
+
+        //前一页按钮点击事件
+        $(document).ready(function () {
+            $("#btnperpage").click(function () {
+                var courseopentime = $("#courseopentimelist").val();
+                var class1 = $("#classlist").val();
+                var college = $("#collegelist").val();
+                var major = $("#majorlist").val();
+                var indexlabel = document.getElementById("indexpage");
+                var indexpage = indexlabel.innerText;
+                var totallabel = document.getElementById("totalpage");
+                var totalpage = totallabel.innerText;
+                if (indexpage == "1" || indexpage == 1) {
+                    return false;
+                }
+                else if (college == "") {
+                    alert("请选定学院！");
+                    return false;
+                } else if (major == "") {
+                    alert("请选定专业！");
+                    return false;
+                }
+                else if (class1 == "") {
+                    alert("请选定班级！");
+                    return false;
+                }
+                else if (courseopentime == "") {
+                    alert("请选定时间！");
+                    return false;
+                }
+                indexpage--;
+                $.ajax({
+                    type: "POST",
+                    url: "/Arrange/CASelArrangeInfo",
+                    data: "class1=" + class1 + "&&courseopentime=" + courseopentime + "&&page=" + indexpage,
+                    success: function (data) {
+                        $("#displaycourseInfo tbody").html("");
+                        $("#indexpage").html(indexpage);
+                        if (data) {
+                            $.each(data, function (i, val) {
+                                if (val["item9"] == "公共必修课" || val["item9"] == "公共选修课") { $("#displaycourseInfo").append("<tr><td align=\"center\">" + val["item1"] + "</td><td align=\"center\">" + val["item2"] + "</td><td align=\"center\">" + val["item3"] + "</td><td align=\"center\">" + val["item4"] + "</td><td align=\"center\">" + val["item5"] + "</td><td align=\"center\">" + val["item6"] + "</td><td align=\"center\"> 没有修改此类课程的权限 </td></tr>") }
+                                else {
+                                    $("#displaycourseInfo").append("<tr><td align=\"center\">" + val["item1"] + "</td><td align=\"center\">" + val["item2"] + "</td><td align=\"center\">" + val["item3"] + "</td><td align=\"center\">" + val["item4"] + "</td><td align=\"center\">" + val["item5"] + "</td><td align=\"center\">" + val["item6"] + "</td><td align=\"center\"><a href=\"CAArrangeCourse?id=" + val["item7"] + "\"  class=\"edit\">修改</a> &nbsp; <a href=\"DelArrangeCourse?id=" + val["item7"] + "\"  class=\"Delete\">删除</a>  </td></tr>")
+                                }
+                            })
+                        }
+                    }
+                });
+            });
+        });
+
+        //后一页按钮点击事件
+        $(document).ready(function () {
+            $("#btnnextpage").click(function () {
+                var courseopentime = $("#courseopentimelist").val();
+                var class1 = $("#classlist").val();
+                var college = $("#collegelist").val();
+                var major = $("#majorlist").val();
+                var indexlabel = document.getElementById("indexpage");
+                var indexpage = indexlabel.innerText;
+                var totallabel = document.getElementById("totalpage");
+                var totalpage = totallabel.innerText;
+                if (indexpage == totalpage) {
+
+                    return false;
+                }
+                else if (college == "") {
+                    alert("请选定学院！");
+                    return false;
+                } else if (major == "") {
+                    alert("请选定专业！");
+                    return false;
+                }
+                else if (class1 == "") {
+                    alert("请选定班级！");
+                    return false;
+                }
+                else if (courseopentime == "") {
+                    alert("请选定时间！");
+                    return false;
+                }
+                indexpage++;
+                $.ajax({
+                    type: "POST",
+                    url: "/Arrange/CASelArrangeInfo",
+                    data: "class1=" + class1 + "&&courseopentime=" + courseopentime + "&&page=" + indexpage,
+                    success: function (data) {
+                        $("#displaycourseInfo tbody").html("");
+                        $("#indexpage").html(indexpage);
+                        if (data) {
+                            $.each(data, function (i, val) {
+                                if (val["item9"] == "公共必修课" || val["item9"] == "公共选修课") { $("#displaycourseInfo").append("<tr><td align=\"center\">" + val["item1"] + "</td><td align=\"center\">" + val["item2"] + "</td><td align=\"center\">" + val["item3"] + "</td><td align=\"center\">" + val["item4"] + "</td><td align=\"center\">" + val["item5"] + "</td><td align=\"center\">" + val["item6"] + "</td><td align=\"center\"> 没有修改此类课程的权限 </td></tr>") }
+                                else {
+                                    $("#displaycourseInfo").append("<tr><td align=\"center\">" + val["item1"] + "</td><td align=\"center\">" + val["item2"] + "</td><td align=\"center\">" + val["item3"] + "</td><td align=\"center\">" + val["item4"] + "</td><td align=\"center\">" + val["item5"] + "</td><td align=\"center\">" + val["item6"] + "</td><td align=\"center\"><a href=\"CAArrangeCourse?id=" + val["item7"] + "\"  class=\"edit\">修改</a> &nbsp; <a href=\"DelArrangeCourse?id=" + val["item7"] + "\"  class=\"Delete\">删除</a>  </td></tr>")
+                                }
+                            })
+                        }
+                    }
+                });
+            });
+        });
+
+        //选完学院后填充majorlist
+        $(document).ready(function () {
+            $("select[name='collegelist']").change(function () {
+                var college = $("#collegelist").val();
+                $.ajax({
+                    type: "POST",
+                    url: "/Arrange/CAFillMajor",
+                    data: "college=" + college,
+                    success: function (data) {
+                        $("#majorlist").empty();
+                        if (data.length != 0) {
+                            $.each(data, function (i, item) {
+                                $("<option></option>")
+                                .val(item["Value"])
+                                .text(item["Text"])
+                                .appendTo($("#majorlist"));
+                            });
+                        }
+
+                    }
+                });
+            });
+        });
+
+        //选完专业后填充classlist
+        $(document).ready(function () {
+            $("select[name='majorlist']").change(function () {
+                var major = $("#majorlist").val();
+                $.ajax({
+                    type: "POST",
+                    url: "/Arrange/CAFillClass",
+                    data: "major=" + major,
+                    success: function (data) {
+                        $("#classlist").empty();
+                        if (data.length != 0) {
+                            $.each(data, function (i, item) {
+                                $("<option></option>")
+                                .val(item["Value"])
+                                .text(item["Text"])
+                                .appendTo($("#classlist"));
+                            });
+                        }
+                    }
+
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,326 @@
+/*全局样式*/
+* {
+    font-family: "微软雅黑";
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+body {
+    /*background: #EEF3FA;*/
+}
+/*头部logo*/
+.container-fluid {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.z_top {
+    width: 100%;
+    height: 65px;
+    background: aliceblue;
+}
+
+.top_r li {
+    margin-top: 20px;
+    list-style: none;
+    float: right;
+    padding-right: 6px;
+}
+
+    .top_r li a {
+        font-size: 12px;
+        color: rgb(70, 70, 70);
+    }
+/*头部导航*/
+.z_nav {
+    height: 37px;
+    background-color: #44698F;
+    border: 1px solid #3F5D8A;
+}
+
+.nav_cent ul li {
+    width: 16%;
+    height: 36px;
+    background-color: #4A6F93;
+    float: left;
+}
+
+    .nav_cent ul li:hover {
+        width: 16%;
+        height: 36px;
+        background-color: cornflowerblue;
+        float: left;
+    }
+
+    .nav_cent ul li a {
+        font-weight: blod;
+        font-size: 14px;
+        line-height: 36px;
+        color: white;
+        text-align: center !important;
+    }
+/*新闻轮播图*/
+.carousel-caption {
+    background: #000;
+    opacity: 0.7;
+    width: 100%;
+    position: absolute;
+    bottom: 0px !important;
+    left: 0px !important;
+    height: 100px;
+}
+    /*.item{
+	height: 400px;
+}*/
+    .carousel-caption p {
+        text-align: left;
+    }
+
+    .carousel-caption h3 {
+        margin: 0px;
+    }
+
+.z_lbt {
+    /*width: 90%;*/
+    margin: 0 auto;
+}
+
+.carousel-caption p {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+/*友情提示*/
+.buttombaxkground {
+    margin-top: 30px;
+    height: 90px;
+    background-color: black;
+    opacity: 0.70;
+    border-top: 1px solid #CADAE7;
+}
+
+.buttom_1 {
+    height: 30px;
+    padding-top: 15px;
+}
+
+    .buttom_1 ul {
+        width: 25%;
+        margin: 0 auto;
+    }
+
+    .buttom_1 li {
+        float: left;
+        height: 30px;
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+        .buttom_1 li a {
+            color: white;
+        }
+
+        .buttom_1 li span {
+            /*color: #949588;*/
+            color: white;
+        }
+
+.buttom_2_sixe {
+    width: 990px;
+    margin: 0 auto;
+    height: 32px;
+}
+
+.buttom_2 {
+    color: white;
+    margin-bottom: 10px;
+}
+/*课程部分*/
+.z_class {
+    height: 690px;
+}
+
+.z_class_nav {
+    width: 100%;
+    height: 50px;
+    border-left: 5px solid #009688;
+    background: #f2f2f2;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+    .z_class_nav h4 {
+        line-height: 50px;
+        padding-left: 20px;
+    }
+
+        .z_class_nav h4 a {
+            float: right;
+            font-weight: normal;
+            color: #888888;
+            font-size: 14px;
+            padding-right: 15px;
+        }
+
+.z_class_detail {
+    width: 31%;
+    height: 300px;
+    margin-left: 1%;
+    margin-right: 1%;
+    /*background: yellow;*/
+    border: 1px solid #ADADAD;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+    .z_class_detail img {
+        width: 100%;
+        height: 70%;
+    }
+
+    .z_class_detail p {
+        text-align: center;
+        padding-top: 5px;
+        font-size: 16px;
+    }
+
+        .z_class_detail p a {
+            color: black;
+        }
+
+    .z_class_detail label {
+        margin-left: 10px;
+    }
+
+    .z_class_detail font {
+        float: right;
+        font-size: 14px;
+        color: #ADADAD;
+        padding-right: 20px;
+    }
+/*动态新闻图片*/
+.rollpic .prev, .rollpic .next {
+    display: block;
+    height: 38px;
+    width: 38px;
+    cursor: pointer;
+    float: left;
+    background: url(../img/unslider-arrow.png) no-repeat 0 0;
+    margin-top: 70px
+}
+
+.rollpic .prev {
+    background-position: 0 0;
+    margin-right: 5px; /*margin-left: 5%;*/
+}
+
+    .rollpic .prev:hover {
+        background-position: 0 -38px
+    }
+
+.rollpic .next {
+    background-position: 0 -76px;
+    margin-left: 5px
+}
+
+    .rollpic .next:hover {
+        background-position: 0 -114px
+    }
+
+.rollpicshow {
+    float: left;
+    border: solid 1px #ddd
+}
+
+    .rollpicshow li {
+        margin: 10px
+    }
+/*.rollpicshow{margin-top: 30px;}*/
+.rollpic {
+    width: 95%;
+    margin: 0 auto;
+    height: 173px;
+    /*background: yellow;*/
+}
+/*动态新闻公告*/
+.marquee {
+    height: 300px;
+    overflow: hidden;
+    line-height: 22px
+}
+/*重要公告*/
+.z_detail {
+    margin-top: 30px;
+}
+
+.detail ul li {
+    margin-top: 9px;
+    font-size: 14px;
+    font-family: "微软雅黑";
+}
+
+    .detail ul li a {
+        color: black;
+    }
+
+        .detail ul li a:hover {
+            color: #2B669A;
+        }
+
+    .detail ul li p {
+        float: right;
+        color: #ADADAD;
+        font-size: 12px;
+    }
+
+.detail li s {
+    width: 3px;
+    height: 5px;
+    display: inline-block;
+    margin-right: 6px;
+    background-image: url(../img/136990283.png);
+}
+
+.z_autonews {
+    margin-top: 30px;
+}
+/*搜索框*/
+.sousuo {
+    width: 100%;
+    height: 50px;
+    /*background: yellow;*/
+}
+
+.search-keyword {
+    width: 250px;
+    height: 30px;
+    margin-top: 15px;
+    border: 1.5px solid #009688;
+    border-radius: 5px;
+    float: right;
+}
+
+.search span {
+    color: darkgrey;
+    float: right;
+    padding: 22px 0 0 10px;
+    font-size: 17px;
+}
+
+input::-webkit-input-placeholder {
+    color: #CCCCCC;
+}
+
+#defaultForm {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.mysubmit {
+    width: 100%;
+}

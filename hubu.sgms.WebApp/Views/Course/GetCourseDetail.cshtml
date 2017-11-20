@@ -1,0 +1,72 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/public/bootstrap-grid.min.css" rel="stylesheet" />
+    <link href="~/Content/public/style.css" rel="stylesheet" />
+    <script src="~/Scripts/public/jquery-3.2.1.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <title></title>
+    <style>
+        * {
+            font-family: "微软雅黑";
+        }
+
+        .cos_img {
+            margin-top: 20px;
+            width: 80%;
+            margin-left: 27%;
+            height: 300px;
+        }
+
+        .box {
+            height: 300px;
+        }
+
+            .box .box-img img {
+                width: 60%;
+                height: 300px;
+            }
+
+        .cos_detail {
+            margin-top: 20px;
+            width: 70%;
+            margin-left: 20%;
+        }
+    </style>
+</head>
+
+<body>
+    <!--主体部分-->
+    <div class="container-fluid">
+        <div class="container cos_bg">
+            <!--图片简介-->
+            <div class="cos_img">
+                <div class="box">
+                    <div class="box-img">
+                        <img src="~/Content/courseImg/@ViewData["coursePhoto"]" alt="">
+                    </div>
+                    <!--div class="box-content">
+                        <h4 class="title">课程简介</h4>
+                        <p class="description">数据库应是计算也是计算据库应算理论计算据库应计算机专其理论和技术是计算机专业基础课，也是计算机工程技术人员必备的知识和技能,属于必修课。</p>
+                    </!--div>-->
+                </div>
+            </div>
+            <!--内容介绍-->
+            <div class="cos_detail">
+                <p><label>课程名称：</label>@ViewData["courseName"]</p>
+                <p><label>课程类型：</label>@ViewData["courseType"]</p>
+                <p><label>课程学时：</label>@ViewData["courseHour"]</p>
+                <p><label>课程学分：</label>@ViewData["courseCredit"]</p>
+            </div>
+        </div>
+    </div>
+    <script>
+    </script>
+</body>
+</html>
+

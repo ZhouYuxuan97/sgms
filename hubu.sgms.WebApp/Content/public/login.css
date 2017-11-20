@@ -1,0 +1,56 @@
+	*{
+	font-family: "Î¢ÈíÑÅºÚ";
+}
+.z_mylogo{
+	height: 100px;
+	margin-top: 50PX;
+	margin-bottom: 60px;
+	/*background: yellow;*/
+}
+.z_mysubmit{
+	color: #fff;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+    width: 40%;
+    margin-left: 20%;
+    height: 35px;
+    margin-top: 30px;
+}
+.z_mylink{
+	width: 50%;
+	margin: 0 auto;
+	margin-top: 40px;
+}
+s{
+	margin-top: 10px;
+}
+.error{
+	font-size: 15px;
+	display: none;
+	background: url(../img/error.png) no-repeat;
+	padding-left: 18px;
+}
+.right{
+	font-size: 15px;
+	display: none;
+	background: url(../img/correct.png) no-repeat;
+	padding-left: 18px;
+	margin-left: 10px;
+}
+p{
+	margin-top: 5px;
+}
+.z_name{
+	width: 20%;
+	padding-top: 10px;
+	float: left;
+}
+.auth{
+	width: 40%;
+	height: 30px;
+	margin-top: 10px;
+	/*border-radius: 5px;*/
+}
+.txtVerification{
+	width: 20%;
+}

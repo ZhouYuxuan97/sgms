@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8A7AB288-F125-4A63-852E-D3820E165C80}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>hubu.sgms.BLL</RootNamespace>
+    <AssemblyName>hubu.sgms.BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IArrange_CourseService.cs" />
+    <Compile Include="IClassroomService.cs" />
+    <Compile Include="IClassService.cs" />
+    <Compile Include="ICollegeService.cs" />
+    <Compile Include="ICourseService.cs" />
+    <Compile Include="ICourse_TimeService.cs" />
+    <Compile Include="IHomeService.cs" />
+    <Compile Include="ILoginService.cs" />
+    <Compile Include="IMajorService.cs" />
+    <Compile Include="Impl\Arrange_CourseServiceImpl.cs" />
+    <Compile Include="Impl\ClassroomServiceImpl.cs" />
+    <Compile Include="Impl\ClassServiceImpl.cs" />
+    <Compile Include="Impl\CollegeServiceImpl.cs" />
+    <Compile Include="Impl\CourseServiceImpl.cs" />
+    <Compile Include="Impl\Course_TimeServiceImpl.cs" />
+    <Compile Include="Impl\HomeServiceImpl.cs" />
+    <Compile Include="Impl\LoginServiceImpl.cs" />
+    <Compile Include="Impl\MajorServiceImpl.cs" />
+    <Compile Include="Impl\RoleInfoServiceImpl.cs" />
+    <Compile Include="Impl\StudentServiceImpl.cs" />
+    <Compile Include="Impl\TeacherServiceImpl.cs" />
+    <Compile Include="Impl\Teacher_CourseServiceImpl.cs" />
+    <Compile Include="INewsServices.cs" />
+    <Compile Include="IRoleInfoService.cs" />
+    <Compile Include="IStudentService.cs" />
+    <Compile Include="ITeacherService.cs" />
+    <Compile Include="ITeacher_CourseService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\hubu.sgms.DAL\hubu.sgms.DAL.csproj">
+      <Project>{a7e9acfa-2177-45f6-9cc9-dae89733bb07}</Project>
+      <Name>hubu.sgms.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\hubu.sgms.Model\hubu.sgms.Model.csproj">
+      <Project>{de5ecfdf-f4d4-42e7-937b-7ecd165af6fc}</Project>
+      <Name>hubu.sgms.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\hubu.sgms.Utils\hubu.sgms.Utils.csproj">
+      <Project>{4c8e3dd6-8268-4c97-812d-a4667ceed670}</Project>
+      <Name>hubu.sgms.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

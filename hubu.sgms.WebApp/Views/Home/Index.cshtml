@@ -1,0 +1,752 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/public/new_file.css" />
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/public/jcarousellite.js"></script>
+    <script type="text/javascript" src="~/Scripts/public/docs.min.js"></script>
+    <title>学生选课系统首页</title>
+</head>
+<body onload="loadCourseInfo()">
+    <!--logo部分-->
+    <div class="container-fluid">
+        <div class="z_top">
+            <div class="container">
+                <div class="col-md-6">
+                    <img src="~/Content/img/logo2.PNG" />
+                </div>
+                <div class="col-md-4">
+                    <!--搜索框-->
+                    <div class="sousuo">
+                        <form method="get" onsubmit="">
+                            <div class="search">
+                                <span class="glyphicon glyphicon-search"></span>
+                                <input type="text" class="search-keyword" placeholder="请输入课程/老师名称" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-2" style="width: 146px;">
+                    <ul class="top_r">
+                        <li>
+                            <a href="#">注册</a>
+                        </li>
+                        <li><span>|</span></li>
+                        <li>
+                            <a href='/Login/Index'>登录</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--nav部分-->
+    <div class="z_nav container-fluid">
+        <div class="nav_cent container">
+            <ul>
+                <li>
+                    <a href="#">
+                        <center>网站首页</center>
+                    </a>
+                </li>
+                <li>
+                    <a href="#course0">
+                        <center>最新课程</center>
+                    </a>
+                </li>
+                <li>
+                    <a href="#course1">
+                        <center>公共必修课</center>
+                    </a>
+                </li>
+                <li>
+                    <a href="#course2">
+                        <center>公共选修课</center>
+                    </a>
+                </li>
+                <li>
+                    <a href="#course3">
+                        <center>专业必修课</center>
+                    </a>
+                </li>
+                <li>
+                    <a href="#course4">
+                        <center>专业选修课</center>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!--轮播图部分-->
+    <div id='mycarousel' class='carousel slide' data-ride='carousel'>
+        <!-- 幻灯片图片 -->
+        <div class='carousel-inner'>
+            <div class="item active">
+                <img src="~/Content/img/a.jpg" alt="" />
+                <div class="carousel-caption">
+                    <h3>选课网站简介</h3>
+                    <p>该网站主要帮助学生方便快捷的进行选课，专业从事互联网软件开发、技术服务、技术咨询和教育咨询业务，核心是基础课程的学习和实践。致力于中西部地区IT人才造梦工厂，帮助更多有志青年通过学习软件开发技术改变自己的命运，优化互联网市场和环境</p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="~/Content/img/b.jpg" alt="">
+                <div class="carousel-caption">
+                    <h3>选课网站简介</h3>
+                    <p>该网站主要帮助学生方便快捷的进行选课，专业从事互联网软件开发、技术服务、技术咨询和教育咨询业务，核心是基础课程的学习和实践。致力于中西部地区IT人才造梦工厂，帮助更多有志青年通过学习软件开发技术改变自己的命运，优化互联网市场和环境</p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="~/Content/img/c.jpg" alt="">
+                <div class="carousel-caption">
+                    <h3>选课网站简介</h3>
+                    <p>该网站主要帮助学生方便快捷的进行选课，专业从事互联网软件开发、技术服务、技术咨询和教育咨询业务，核心是基础课程的学习和实践。致力于中西部地区IT人才造梦工厂，帮助更多有志青年通过学习软件开发技术改变自己的命运，优化互联网市场和环境</p>
+                </div>
+            </div>
+        </div>
+        <!-- 左右控制 -->
+        <a href="#mycarousel" class='left carousel-control' data-slide='prev'>
+            <span class='glyphicon glyphicon-chevron-left'></span>
+        </a>
+
+        <a href="#mycarousel" class='right carousel-control' data-slide='next'>
+            <span class='glyphicon glyphicon-chevron-right'></span>
+        </a>
+    </div>	
+
+    <!--通知公告-->
+    <div class="container">
+        <!--左侧新闻动态-->
+        <div class="col-md-8 z_detail">
+            <div class="panel panel-default">
+                <div class="panel-heading">通知公告</div>
+                <div class="panel-body detail">
+                    <!--新闻公告图片-->
+                    <div class="rollpic cl">
+                        <a href="javascript:void(0)" class="prev"></a>
+                        <div class="rollpicshow">
+                            <ul>
+                                <li><img width="170" height="143" title="" src="~/Content/img/new1.jpg"></li>
+                                <li><img width="170" height="143" title="" src="~/Content/img/new2.jpg"></li>
+                                <li><img width="170" height="143" title="" src="~/Content/img/new3.jpg"></li>
+                                <li><img width="170" height="143" title="" src="~/Content/img/new1.jpg"></li>
+                                <li><img width="170" height="143" title="" src="~/Content/img/new2.jpg"></li>
+                                <li><img width="170" height="143" title="" src="~/Content/img/new3.jpg"></li>
+                                <li><img width="170" height="143" title="" src="~/Content/img/new1.jpg"></li>
+                                <li><img width="170" height="143" title="" src="~/Content/img/new2.jpg"></li>
+                            </ul>
+                        </div>
+                        <a href="javascript:void(0)" class="next"></a>
+                    </div>
+                    <ul>
+                        <li>
+                            <s></s> 
+                            <a onclick="showDetail(@ViewData["id1"])" href="#" title="@ViewData["title1"]">@ViewData["title1"]</a><img src="~/Content/img/new.gif" />
+                            <p>@ViewData["time1"]</p>
+                        </li>
+                        <li>
+                            <s></s>
+                            <a onclick="showDetail(@ViewData["id2"])" href="#" title="@ViewData["title2"].">@ViewData["title2"]</a><img src="~/Content/img/new.gif" />
+                            <p>@ViewData["time2"]</p>
+                        </li>
+                        <li>
+                            <s></s>
+                            <a onclick="showDetail(@ViewData["id3"])" href="#" title="@ViewData["title3"]">@ViewData["title3"]</a>
+                            <p>@ViewData["time3"]</p><img src="~/Content/img/new.gif" />
+                        </li>
+                        <li>
+                            <s></s>
+                            <a onclick="showDetail(@ViewData["id4"])" href="#" title="@ViewData["title4"]">@ViewData["title4"]</aonclick="showDetail(@ViewData["id1"])">
+                            <p>@ViewData["time4"]</p><img src="~/Content/img/new.gif" />
+                        </li>
+                        <li>
+                            <s></s>
+                            <a onclick="showDetail(@ViewData["id5"])" href="#" title="@ViewData["title5"]">@ViewData["title5"]</a>
+                            <p>@ViewData["time5"]</p>
+                        </li>
+                        <li>
+                            <s></s>
+                            <a onclick="showDetail(@ViewData["id6"])" href="#" title="@ViewData["title6"]">@ViewData["title6"]</a>
+                            <p>@ViewData["time6"]</p>
+                        </li>
+                        <li>
+                            <s></s>
+                            <a onclick="showDetail(@ViewData["id7"])" href="#" title="@ViewData["title7"]">@ViewData["title7"]</a>
+                            <p>@ViewData["time7"]</p>
+                        </li>
+                        <li>
+                            <s></s>
+                            <a onclick="showDetail(@ViewData["id8"])" href="#" title="@ViewData["title8"]">@ViewData["title8"]</a>
+                            <p>@ViewData["time8"]</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--动态文字公告-->
+        <div class="col-md-4 z_autonews">
+            <div class="panel panel-default">
+                <div class="panel-heading">新闻动态</div>
+                <div class="panel-body">
+                    <div class="layui-collapse" lay-accordion="">
+                        <div class="layui-colla-item">
+                            <div class="layui-colla-content layui-show">
+                                <div id="marquee" class="marquee">
+                                    <div id="holder" style="font-size: 15px;">
+                                        <ul>
+                                            <li><b>[公告一]@ViewData["msg1"]</li>
+                                            <br />
+                                            <li><b>[公告二]@ViewData["msg2"]</li>
+                                            <br />
+                                            <li><b>[公告三]@ViewData["msg3"]</li>
+                                            <br />
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <!---课程信息-->
+    <div class="container-fluid">
+        <div class="container">
+            <!--最新课程-->
+            <div class="z_class">
+                <div id="new" class="z_class_nav">
+                    <h4 id="course0">最新课程<sup><img src="~/Content/img/new.gif"></sup><a href='/Course/CourseDisplay'>更多>></a></h4>
+                    <div class="z_class_detail col-md-4">
+                        <!--<img src="holder.js/100%x70%">-->
+                        <img id="newImg1" src=""/>
+                        <p>
+                            <a href="#"></a>
+                        </p>
+                        <span>
+                            <label>课程学分：</label>
+                            <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                            <br />
+                            <label>开课时间：</label>2017/9/1  <font>学习人数：56人</font>
+                        </span>
+                    </div>
+                    <div class="z_class_detail col-md-4">
+                        <img id="newImg2" src="" />
+                        <p>
+                            <a href="#"></a>
+                        </p>
+                        <span>
+                            <label>授课老师：</label>张某某
+                            <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                            <br />
+                            <label>开课时间：</label>2017/9/1  <font>学习人数：56人</font>
+                        </span>
+                    </div>
+                    <div class="z_class_detail col-md-4">
+                        <img id="newImg3" src="" />
+                        <p>
+                            <a href="#"></a>
+                        </p>
+                        <span>
+                            <label>授课老师：</label>李某某
+                            <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                            <br />
+                            <label>开课时间：</label>2017/9/1  <font>学习人数：45人</font>
+                        </span>
+                    </div>
+                    <div class="z_class_detail col-md-4">
+                        <img id="newImg4" src="" />
+                        <p>
+                            <a href="#"></a>
+                        </p>
+                        <span>
+                            <label>授课老师：</label>张某某
+                            <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                            <br />
+                            <label>开课时间：</label>2017/9/1  <font>学习人数：56人</font>
+                        </span>
+                    </div>
+                    <div class="z_class_detail col-md-4">
+                        <img id="newImg5" src="" />
+                        <p>
+                            <a href="#"></a>
+                        </p>
+                        <span>
+                            <label>授课老师：</label>张某某
+                            <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                            <br />
+                            <label>开课时间：</label>2017/9/1  <font>学习人数：56人</font>
+                        </span>
+                    </div>
+                    <div class="z_class_detail col-md-4">
+                        <img id="newImg6" src="" />
+                        <p>
+                            <a href="#"></a>
+                        </p>
+                        <span>
+                            <label>授课老师：</label>张某某
+                            <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                            <br />
+                            <label>开课时间：</label>2017/9/1  <font>学习人数：56人</font>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!--公共必修课-->
+            <div class="z_class">
+                <div id="gb" class="z_class_nav">
+                    <h4 id="course1">公共必修课<!--<sup><img src="img/new.gif"></sup>--><a href='/Course/CourseDisplay?courseType=公共必修课'>更多>></a></h4>
+                    <div class="z_class_detail col-md-4">
+                        <!--<img src="holder.js/100%x70%">-->
+                        <img id="gbImg1" src="" />
+                        <p>
+                            <a href="#"></a>
+                        </p>
+                        <span>
+                            <label>授课老师：</label>张某某
+                            <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                            <br />
+                            <label>开课时间：</label>2017/9/1  <font>学习人数：56人</font>
+                        </span>
+                    </div>
+                    <div class="z_class_detail col-md-4">
+                        <!--<img src="holder.js/100%x70%">-->
+                        <img id="gbImg2" src="" />
+                        <p>
+                            <a href="#"></a>
+                        </p>
+                        <span>
+                            <label>授课老师：</label>张某某
+                            <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                            <br />
+                            <label>开课时间：</label>2017/9/1  <font>学习人数：56人</font>
+                        </span>
+                    </div>
+                    <div class="z_class_detail col-md-4">
+                        <!--<img src="holder.js/100%x70%">-->
+                        <img id="gbImg3" src="" />
+                        <p>
+                            <a href="#"></a>
+                        </p>
+                        <span>
+                            <label>授课老师：</label>张某某
+                            <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                            <br />
+                            <label>开课时间：</label>2017/9/1  <font>学习人数：56人</font>
+                        </span>
+                    </div>
+                    <div class="z_class_detail col-md-4">
+                        <!--<img src="holder.js/100%x70%">-->
+                        <img id="gbImg4" src="" />
+                        <p>
+                            <a href="#"></a>
+                        </p>
+                        <span>
+                            <label>授课老师：</label>张某某
+                            <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                            <br />
+                            <label>开课时间：</label>2017/9/1  <font>学习人数：56人</font>
+                        </span>
+                    </div>
+                    <div class="z_class_detail col-md-4">
+                        <!--<img src="holder.js/100%x70%">-->
+                        <img id="gbImg5" src="" />
+                        <p>
+                            <a href="#"></a>
+                        </p>
+                        <span>
+                            <label>授课老师：</label>张某某
+                            <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                            <br />
+                            <label>开课时间：</label>2017/9/1  <font>学习人数：56人</font>
+                        </span>
+                    </div>
+                    <div class="z_class_detail col-md-4">
+                        <!--<img src="holder.js/100%x70%">-->
+                        <img id="gbImg6" src="" />
+                        <p>
+                            <a href="#"></a>
+                        </p>
+                        <span>
+                            <label>授课老师：</label>张某某
+                            <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                            <br />
+                            <label>开课时间：</label>2017/9/1  <font>学习人数：56人</font>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!--公共选修课-->
+            <div class="z_class">
+                <div id="gx" class="z_class_nav">
+                    <h4 id="course2">公共选修课<!--<sup><img src="img/new.gif"></sup>--><a href='/Course/CourseDisplay?courseType=公共选修课'>更多>></a></h4>
+                    <div class="z_class_detail col-md-4">
+                        <!--<img src="holder.js/100%x70%">-->
+                        <img id="gxImg1" src="" />
+                        <p>
+                            <a href="#"></a>
+                        </p>
+                        <span>
+                            <label>授课老师：</label>张某某
+                            <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                            <br />
+                            <label>开课时间：</label>2017/9/1  <font>学习人数：56人</font>
+                        </span>
+                    </div>
+                    <div class="z_class_detail col-md-4">
+                        <!--<img src="holder.js/100%x70%">-->
+                        <img id="gxImg2" src="" />
+                        <p>
+                            <a href="#"></a>
+                        </p>
+                        <span>
+                            <label>授课老师：</label>张某某
+                            <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                            <br />
+                            <label>开课时间：</label>2017/9/1  <font>学习人数：56人</font>
+                        </span>
+                    </div>
+                    <div class="z_class_detail col-md-4">
+                        <!--<img src="holder.js/100%x70%">-->
+                        <img id="gxImg3" src="" />
+                        <p>
+                            <a href="#"></a>
+                        </p>
+                        <span>
+                            <label>授课老师：</label>张某某
+                            <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                            <br />
+                            <label>开课时间：</label>2017/9/1  <font>学习人数：56人</font>
+                        </span>
+                    </div>
+                    <div class="z_class_detail col-md-4">
+                        <!--<img src="holder.js/100%x70%">-->
+                        <img id="gxImg4" src="" />
+                        <p>
+                            <a href="#"></a>
+                        </p>
+                        <span>
+                            <label>授课老师：</label>张某某
+                            <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                            <br />
+                            <label>开课时间：</label>2017/9/1  <font>学习人数：56人</font>
+                        </span>
+                    </div>
+                    <div class="z_class_detail col-md-4">
+                        <!--<img src="holder.js/100%x70%">-->
+                        <img id="gxImg5" src="" />
+                        <p>
+                            <a href="#"></a>
+                        </p>
+                        <span>
+                            <label>授课老师：</label>张某某
+                            <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                            <br />
+                            <label>开课时间：</label>2017/9/1  <font>学习人数：56人</font>
+                        </span>
+                    </div>
+                    <div class="z_class_detail col-md-4">
+                        <!--<img src="holder.js/100%x70%">-->
+                        <img id="gxImg6" src="" />
+                        <p>
+                            <a href="#"></a>
+                        </p>
+                        <span>
+                            <label>授课老师：</label>张某某
+                            <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                            <br />
+                            <label>开课时间：</label>2017/9/1  <font>学习人数：56人</font>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!--专业必修课-->
+            <div class="z_class">
+                <div id="zb" class="z_class_nav">
+                    <h4 id="course3">专业必修课<!--<sup><img src="img/new.gif"></sup>--><a href='/Course/CourseDisplay?courseType=专业必修课'>更多>></a></h4>
+                    <div class="z_class_detail col-md-4">
+                        <!--<img src="holder.js/100%x70%">-->
+                        <img id="zbImg1" src="" />
+                        <p>
+                            <a href="#"></a>
+                        </p>
+                        <span>
+                            <label>授课老师：</label>张某某
+                            <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                            <br />
+                            <label>开课时间：</label>2017/9/1  <font>学习人数：56人</font>
+                        </span>
+                    </div>
+                    <div class="z_class_detail col-md-4">
+                        <!--<img src="holder.js/100%x70%">-->
+                        <img id="zbImg2" src="" />
+                        <p>
+                            <a href="#"></a>
+                        </p>
+                        <span>
+                            <label>授课老师：</label>张某某
+                            <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                            <br />
+                            <label>开课时间：</label>2017/9/1  <font>学习人数：56人</font>
+                        </span>
+                    </div>
+                    <div class="z_class_detail col-md-4">
+                        <!--<img src="holder.js/100%x70%">-->
+                        <img id="zbImg3" src="" />
+                        <p>
+                            <a href="#"></a>
+                        </p>
+                        <span>
+                            <label>授课老师：</label>张某某
+                            <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                            <br />
+                            <label>开课时间：</label>2017/9/1  <font>学习人数：56人</font>
+                        </span>
+                    </div>
+                    <div class="z_class_detail col-md-4">
+                        <!--<img src="holder.js/100%x70%">-->
+                        <img id="zbImg4" src="" />
+                        <p>
+                            <a href="#"></a>
+                        </p>
+                        <span>
+                            <label>授课老师：</label>张某某
+                            <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                            <br />
+                            <label>开课时间：</label>2017/9/1  <font>学习人数：56人</font>
+                        </span>
+                    </div>
+                    <div class="z_class_detail col-md-4">
+                        <!--<img src="holder.js/100%x70%">-->
+                        <img id="zbImg5" src="" />
+                        <p>
+                            <a href="#"></a>
+                        </p>
+                        <span>
+                            <label>授课老师：</label>张某某
+                            <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                            <br />
+                            <label>开课时间：</label>2017/9/1  <font>学习人数：56人</font>
+                        </span>
+                    </div>
+                    <div class="z_class_detail col-md-4">
+                        <!--<img src="holder.js/100%x70%">-->
+                        <img id="zbImg6" src="" />
+                        <p>
+                            <a href="#"></a>
+                        </p>
+                        <span>
+                            <label>授课老师：</label>张某某
+                            <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                            <br />
+                            <label>开课时间：</label>2017/9/1  <font>学习人数：56人</font>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!--专业选修-->
+            <div class="z_class">
+                <div id="zx" class="z_class_nav">
+                    <h4 id="course4">专业选修课<!--<sup><img src="img/new.gif"></sup>--><a href='/Course/CourseDisplay?courseType=专业选修课'>更多>></a></h4>
+                    <div class="z_class_detail col-md-4">
+                        <!--<img src="holder.js/100%x70%">-->
+                        <img id="zxImg1" src="" />
+                        <p>
+                            <a href="#"></a>
+                        </p>
+                        <span>
+                            <label>授课老师：</label>张某某
+                            <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                            <br />
+                            <label>开课时间：</label>2017/9/1  <font>学习人数：56人</font>
+                        </span>
+                    </div>
+                    <div class="z_class_detail col-md-4">
+                        <!--<img src="holder.js/100%x70%">-->
+                        <img id="zxImg2" src="" />
+                        <p>
+                            <a href="#"></a>
+                        </p>
+                        <span>
+                            <label>授课老师：</label>张某某
+                            <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                            <br />
+                            <label>开课时间：</label>2017/9/1  <font>学习人数：56人</font>
+                        </span>
+                    </div>
+                    <div class="z_class_detail col-md-4">
+                        <!--<img src="holder.js/100%x70%">-->
+                        <img id="zxImg3" src="" />
+                        <p>
+                            <a href="#"></a>
+                        </p>
+                        <span>
+                            <label>授课老师：</label>张某某
+                            <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                            <br />
+                            <label>开课时间：</label>2017/9/1  <font>学习人数：56人</font>
+                        </span>
+                    </div>
+                    <div class="z_class_detail col-md-4">
+                        <!--<img src="holder.js/100%x70%">-->
+                        <img id="zxImg4" src="" />
+                        <p>
+                            <a href="#"></a>
+                        </p>
+                        <span>
+                            <label>授课老师：</label>张某某
+                            <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                            <br />
+                            <label>开课时间：</label>2017/9/1  <font>学习人数：56人</font>
+                        </span>
+                    </div>
+                    <div class="z_class_detail col-md-4">
+                        <!--<img src="holder.js/100%x70%">-->
+                        <img id="zxImg5" src="" />
+                        <p>
+                            <a href="#"></a>
+                        </p>
+                        <span>
+                            <label>授课老师：</label>张某某
+                            <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                            <br />
+                            <label>开课时间：</label>2017/9/1  <font>学习人数：56人</font>
+                        </span>
+                    </div>
+                    <div class="z_class_detail col-md-4">
+                        <!--<img src="holder.js/100%x70%">-->
+                        <img id="zxImg6" src="" />
+                        <p>
+                            <a href="#"></a>
+                        </p>
+                        <span>
+                            <label>授课老师：</label>张某某
+                            <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                            <br />
+                            <label>开课时间：</label>2017/9/1  <font>学习人数：56人</font>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--回到顶部-->
+    <div class="container">
+        <div class="tooltip-demo">
+            <button type="button" onclick="window.location.href='/Home/Index'" class="btn btn-default pull-right" data-toggle="tooltip" data-placement="left" title="" data-original-title="回到顶部">
+                <span class="glyphicon glyphicon-arrow-up"></span>
+            </button>
+        </div>
+    </div>
+
+    <!--底部友情提示 -->
+    <div class="container-fluid buttombaxkground">
+        <div class="container">
+            <div class="buttom_1" align="center">
+                <ul>
+                    <li>
+                        <a href="#">友情链接</a>
+                    </li>
+                    <li><span>|</span></li>
+                    <li>
+                        <a href="#">游客留言</a>
+                    </li>
+                    <li><span>|</span></li>
+                    <li>
+                        <a href="#">网站服务</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="container">
+            <div class="buttom_2" align="center">
+                版权所有2017湖北大学 联系电话：88663890 电子邮件：jwc@hubu.edu.cn 鄂ICP备05003305 邮编：地址：湖北省武汉市武昌区友谊大道368号
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/public/index.js"></script>
+
+    <script>
+
+        //动态加载课程信息
+        function loadCourseInfo() {
+
+            $.ajax({
+                url: "/Home/GetNewCourse?size=6",
+                method: "post",
+                async: false,
+                success: function (data) {
+
+                    if (data.status == "0") {
+                        //alert(data.status);
+                        //将数据填入相应的图片位置
+
+                        //最新课程
+                        var newList = data.newCourseList;
+                        insert(newList,"newImg","new");
+
+                        //公选课程
+                        var gxList = data.gxCourseList;
+                        insert(gxList, "gxImg","gx");
+
+                        //公共必修课
+                        var gbList = data.gbCourseList;
+                        insert(gbList, "gbImg","gb");
+
+                        //专选课程
+                        var zxList = data.zxCourseList;
+                        insert(zxList, "zxImg","zx");
+
+                        //专业必修课
+                        var zbList = data.zbCourseList;
+                        insert(zbList, "zbImg","zb");
+
+
+                    }
+                    else {
+                        alert("网络出错啦！！");
+                    }
+                },
+                error: function () {
+                    alert("网络出错啦！！");
+                }
+            });
+        }
+
+        //执行插入
+        function insert(array, imgId, divId) {
+
+            var rootImg = "/Content/courseImg/";
+
+            var links = document.getElementById(divId).getElementsByTagName("a");
+
+            $.each(array, function (i) {
+
+                links[i+1].innerHTML = array[i].course_name;
+                document.getElementById(imgId + (i + 1) + "").src = rootImg + array[i].course_photo;
+
+            });
+
+
+        }
+
+              //显示新闻详情
+        function showDetail(index) {
+          
+              window.location.href = "/News/ShowDetail?id=" + index;
+
+        }
+
+        function showMore(){
+            window.location.href = "/News/ShowMore" 
+        }
+    </script>
+</body>
+</html>

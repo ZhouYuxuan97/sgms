@@ -1,0 +1,105 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/public/login.css" /> 
+    <link rel="stylesheet" href="~/Content/public/jquery.idcode.css" />
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/public/jquery.idcode.js"></script>
+    <script src="~/Scripts/public/login.js"></script>
+    <title>欢迎登陆</title>
+</head>
+<body>
+    <div class="container">
+        <div class="col-md-1"></div>
+        <div class="z_mylogo col-md-11">
+            <img src="~/Content/img/HUBU.PNG">
+        </div>
+    </div>
+    <div class="container z_mycontent">
+        <div class="col-md-5 col-md-offset-1">
+            <img src="~/Content/img/photo.jpg" />
+        </div>
+        <div class="col-md-6">
+            @using (Ajax.BeginForm("UserLogin", new { }, new AjaxOptions()
+            {
+                HttpMethod = "post",
+                OnSuccess = "afterLogin"
+            }, new { id = "loginForm"}))
+            {
+
+                <p>
+                    <div class="z_name">学工号:</div>
+                    <input type="text" name='username' class='auth'>
+                    <span class='error'></span>
+                    <span class='right'></span>
+                </p>
+                    <p>
+                        <div class="z_name">密码:</div>
+                        <input type="password" name="password" class='auth'>
+                        <span class='error'></span>
+                        <span class='right'></span>
+                    </p>
+                    <p>
+                        <div class="lblVerification z_name">验证码:</div>
+                        <input type="text" id="Txtidcode" class="txtVerification auth" name='yzm' />
+                        <span id="idcode"></span>
+                        <span class='error'></span>
+                        <span class='right'></span>
+                    </p>
+                    <p>
+                        <input type="submit" value="提交" id="btns" class="z_mysubmit">
+                    </p>
+
+            }
+        </div>
+    </div>
+    <div class="container">
+        <div class="z_mylink">联系电话：88663890 电子邮件：jwc@hubu.edu.cn 鄂ICP备05003305 邮编: 430062 </div>
+    </div>
+
+    <script>
+        //回调函数
+        function afterLogin(data) {
+            //var serverData = data.split(':');
+            //if (serverData[0] == "success") {
+            //    window.location.href = "/Admin/Index";
+            //}
+            //else if (serverData[0] == "error") {
+            //    alert("登陆失败");
+            //    return false;
+            //}
+            //else {
+            //    alert("系统繁忙");
+            //    return false;
+            //}
+            var status = data.status;
+            if (!status || status == '3') {
+                alert("系统已经关闭，请联系管理员！");
+                return;
+            }
+            if (!status || status == '0') {
+                //  alert("登陆失败");
+                alert(data.message);
+                return;
+            } else if (data.successUrl != null) {
+                window.location.href = data.successUrl;//跳转到返回的url
+            } else {
+                alert("登陆失败");
+                return;
+            }
+            
+        }
+    </script>
+    
+</body>
+</html>

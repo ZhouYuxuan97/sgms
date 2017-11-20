@@ -1,0 +1,437 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="css/style.default.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="css/pageGroup.css" />
+    <script type="text/javascript" src="js/jquery-1.7.min.js"></script>
+    <script type="text/javascript" src="js/pageGroup.js"></script> 
+    <link href="~/Content/bootstrap3.3.7.min.css" rel="stylesheet" />
+    <script src="~/Scripts/Course/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="~/Content/Admin/example.css">
+    <script src="^/Course/sweet-alert.js"></script>
+    <link rel="stylesheet" href="~/Content/admin/sweet-alert.css">
+    <title>查询课程信息</title>
+    <style type="text/css">
+        .container-fluid {
+            padding: 0;
+        }
+
+            .container-fluid nav {
+                padding-left: 10%;
+            }
+    </style>
+</head>
+
+<body>
+        <div class="container-fluid">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="container-fluid">
+                    <div>
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <span id="courseType">课程类型&emsp;</span>
+
+                                    <b class="caret"></b>
+                                </a>
+                                <ul id="courseTypeList" class="dropdown-menu">
+                                    <li>
+                                        <a class="courseTypeElem" name="courseType-1" onclick="chooseCourseType(this,1);" href="#">专业必修课</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a class="courseTypeElem" name="courseType-2" onclick="chooseCourseType(this,2);" href="#">专业选修课</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a class="courseTypeElem" name="courseType-3" onclick="chooseCourseType(this,3);" href="#">公共必修课</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a class="courseTypeElem" name="courseType-4" onclick="chooseCourseType(this,4);" href="#">公共选修课</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <span id="courseTime">开课时间&emsp;</span>
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a onclick="chooseCourseTime(this,16);" href="#">16</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a onclick="chooseCourseTime(this,17);" href="#">17</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <span id="coursecollege">开课学院&emsp;</span>
+                                    <b class="caret"></b>
+                                </a>
+                                <ul id="collegeList" class="dropdown-menu">
+                                    @*<li>
+                                            <a onclick="chooseCollege(this,1);" href="#">计算机与信息工程学院</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a onclick="chooseCollege(this,1);" href="#">数学与统计学院</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a onclick="chooseCollege(this,1);" href="#">物电学院</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a onclick="chooseCollege(this,1);" href="#">外语学院</a>
+                                        </li>*@
+                                </ul>
+                            </li>
+                        </ul>
+                        <form id="navForm" class="navbar-form navbar-left" role="search">
+                            <div class="form-group">
+                                <input id="courseName" name="courseName" type="text" class="form-control" placeholder="请输入课程名称" />
+                            </div>
+                            <input id="searchCourseBtn" type="button" class="btn btn-info" value="提交" />
+                        </form>
+                    </div>
+
+
+                </div>
+            </nav>
+        </div>
+   
+            <div id="body">
+                <div class="container">
+                    <!--展示课程的表格-->
+                    <table class="table table-hover table-bordered" id="diasplaycourseInfo">
+                        <colgroup>
+                            <col class="con0" style="width: 10%" />
+                            <col class="con1" style="width: 8%" />
+                            <col class="con0" style="width: 8%" />
+                            <col class="con0" style="width: 8%" />
+                        </colgroup>
+                        <thead>
+                            <tr class="warning">
+                                <th>课程名称</th>
+                                <th>课程学分</th>
+                                <th>课程学时</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="courseList">
+                            @*<tr onclick="courseDetail(1)">
+                                <td>高数</td>
+                                <td>6</td>
+                                <td>48</td>
+                                <td>数统学院</td>
+                            </tr>*@
+                        </tbody>
+                    </table>
+                    
+
+                    <div id="pageid">
+                        <ul class="pager">
+                            <li class="previous"><a href="#" onclick="prePage();">&larr; Older</a></li>
+                            <li class="next"><a href="#" onclick="nextPage();">Newer &rarr;</a></li>
+                        </ul>
+                        <center>第<span id="page">1</span>页，共<span id="totalPage">1</span>页</center>
+                    </div>
+                    <!--分页按钮  pagination  pager-->
+
+                </div>
+            </div>
+
+            <footer></footer>
+            @{
+                using (Ajax.BeginForm("SelectColleges", "Course", new AjaxOptions()
+                {
+                    HttpMethod = "post",
+                    OnSuccess = "getColleges",
+                    LoadingElementId = "loadingImg"
+                }))
+                {
+                    //ajax表单
+                    <button id="getCollagesBtn" type="submit" style="display:none;">getCollages</button>
+                }
+            }
+            <div id="loadingImg" style="position: absolute;left:45%;top:25%;">
+                <img src="~/images/loading.gif" />
+            </div>
+
+            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+            <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+            <script src="~/Scripts/bootstrap3.3.7.min.js"></script>
+            <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+            <script type="text/javascript">
+                var courseTypeId = "";//课程类型
+                var year = "";//年份
+                var collegeId = "";//学院名称
+                var page = 1;
+                var totalPage = 1;
+                var size = 10;
+                var defaultCourseType = '@ViewData["courseTypeFromRequest"]';
+
+                //        function DeleteCourseInfo(obj){
+                //以jquery为例实现点击某行获得某个td的数据
+                //          $("#diasplaycourseInfo tr").click(function () {//给每行绑定了一个点击事件
+                //  var rowIndex = obj.parentElement.rowIndex;
+                //  alter(rowIndex);
+                // document.getElementById("diasplaycourseInfo").deleteRow(rowIndex);
+
+                //     }
+
+
+
+                //获取学院列表
+                $(function () {
+                    $("#getCollagesBtn").submit();//获取学院列表
+                    $("#searchCourseBtn").click(function () {
+
+                        if (courseTypeId == null || courseTypeId == "") {
+                            //课程类型不能为空
+                            alert("课程类型不能为空!");
+                            return false;
+                        }
+                        //请求数据后刷新表格
+                        refreshCourseList();
+                    })
+                    setDefaultCourseType(defaultCourseType);
+                })
+
+                /**
+                 * 当访问页面时，带有默认课程类型的参数时，将填充选择栏的默认参数
+                 * param courseType
+                 */
+                function setDefaultCourseType(courseType) {
+                    if (!courseType) {
+                        courseType = "公共选修课";
+                    }
+                    //遍历默认课程栏，当名称相同时，更新信息，并且刷新列表
+                    $(".courseTypeElem").each(function (index, elem) {
+                        var tmp = $(this).html();//获取li中的课程类型名
+                        if (tmp.trim() == courseType.trim()) {
+                            console.log(tmp);
+                            var indexStr = $(this).attr("name");
+                            var index = parseInt(indexStr.substr(11));
+                            courseTypeId = index;
+                            //$(this).click();//如果用click()方法，后面的代码不会执行
+                            $("#courseType").html($.parseHTML(tmp, document, true));
+                            refreshCourseList();
+                        }
+                    });
+                }
+
+                //获取列表
+                function refreshCourseList() {
+                    var courseName = $("#courseName").val();
+                    $.ajax({
+                        url: "/Course/SelectCourses",
+                        method: "post",
+                        async: false,
+                        data: { courseType: courseTypeId, courseTime: year, collegeId: collegeId, courseName: courseName, page: page, size: size },
+                        beforeSend: function () {
+                            $("#loadingImg").show();              //在得到信息之前现在正在加载
+                            },
+                        success: function (data) {
+                            //course_id,course_name,course_credit,course_hour,college_id
+                            var count = parseInt(data.count);
+                            var list = data.list;
+                            //设置总页数
+                            totalPage = parseInt(count / size);
+                            if (count % size > 0) {
+                                totalPage++;
+                            }
+                            $("#page").html(page);
+                            $("#totalPage").html(totalPage);
+                            //$.parseHTML('', document, true)
+
+                            //<tr onclick="courseDetail(1)"><td>高数</td><td>6</td><td>48</td><td>数统学院</td></tr >
+                            var html = '';
+                            $(list).each(function (index, elem) {
+                                //      html += '<tr onclick="courseDetail(' + elem.course_id + ')"><td>'
+                                //        + elem.course_name + '</td><td>' + elem.course_credit + '</td><td>'
+                                //      + elem.course_hour + '</td><td>';
+                                html += '<tr><td>'
+                                    + elem.course_name + '</td><td>' + elem.course_credit + '</td><td>'
+                                    + elem.course_hour + '</td>';
+                                var insertText = '<td class="center"><a href="#" onclick="courseEdit(' + elem.course_id + ')" class="edit">Edit</a> &nbsp;&nbsp;&nbsp;<a href="#" onclick="courseDetail(' + elem.course_id + ')" class="view">View</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="courseDelete(' + elem.course_id + ')" class="Delete">Delete</a></td>';
+                                html += insertText;
+
+                                //遍历学院列表的节点，获取学院名
+                                var collegeNameToSet = "";
+                                var cId = elem.college_id;
+                                $(".collegeNameSetter").each(function (index, elem) {
+                                    var codeCollegeId = $(elem).attr("name");//学院编号存放于节点的name属性中
+                                    if (parseInt(codeCollegeId) == parseInt(cId)) {
+                                        collegeNameToSet = $(elem).html().trim();
+                                    }
+                                });
+                                //    html += collegeNameToSet + '</td></tr >';
+                                //   html += '<tr onclick="courseDetail(' + elem.course_id + ')">操作<td>';
+
+                            });
+                            //插入节点到courseList中
+                            $("#courseList").html($.parseHTML(html, document, true));
+
+                            $("#loadingImg").hide();//隐藏等待图标
+                        }
+                    });
+                }
+
+                /**
+                 * 上一页按钮的点击事件
+                 */
+                function prePage() {
+                    if (page == 1) {
+                        return false;
+                    } else {
+                        page--;
+                        refreshCourseList();
+                    }
+                }
+
+                /**
+                 * 上一页按钮的点击事件
+                 */
+                function nextPage() {
+                    if (page == totalPage) {
+                        return false;
+                    } else {
+                        page++;
+                        refreshCourseList();
+                    }
+                }
+
+                /**
+                 * 获取学院列表并插入到导航栏中
+                 * param data
+                 */
+                function getColleges(data) {
+                    console.log(data.count);
+                    var list = data.list;
+                    var html = "";
+                    //<li>< a onclick= "choosecollege(this, 1); " href= "#" > 外语学院</a></li >
+                    $(list).each(function (index, elem) {
+                        html = '<li><a class="collegeNameSetter" name="' + elem.college_id + '" onclick= "chooseCollege(this, ' + elem.college_id + '); " href= "#" > ' + elem.name + "</a></li >";
+                        $("#collegeList").append($.parseHTML(html, document, true));
+
+                        if (index != data.count - 1) {
+                            $("#collegeList").append($.parseHTML('<li class="divider"></li>', document, true));
+                        }
+
+                        //$.parseHTML('', document, true)
+                    });
+                    //$("#collegeList").html(html);
+
+                }
+
+                /**
+                 * 导航栏选择时间栏对应的函数
+                 * param {Object} par	接收时间的对象
+                 * param {Object} year	用户选择的年份
+                 */
+                function chooseCourseTime(par, yearParam) {
+                    var html = "&emsp;&emsp;" + yearParam + "&emsp;&emsp;";
+                    $("#courseTime").html($.parseHTML(html, document, true));
+                    year = yearParam;
+                    console.log("year:" + year);
+                }
+
+                /**
+                 * 点击上方导航栏后，切换栏目，并且想后台请求数据并刷新表格
+                 * param {Object} par
+                 * param {Object} index	课程类型枚举的id
+                 */
+
+                function chooseCourseType(par, index) {
+                    //				$("#courseTypeList .active").removeClass("active");
+                    //				$(par).parent().addClass("active"); //设置选择项为活跃
+                    var courseTypeName = $(par).html();
+                    console.log(index + " " + courseTypeName);
+                    courseTypeId = index;
+                    $("#courseType").html($.parseHTML(courseTypeName, document, true));
+                }
+
+                /**
+                 * 点击上方的导航栏选择开课学院后的事件
+                 * param {Object} par	时间对象
+                 * param {Object} collegeId	学院id
+                 */
+                function chooseCollege(par, index) {
+                    collegeId = index;
+                    var collegeName = $(par).html().trim(); //学院名称
+                    console.log(collegeName);
+                    var html = collegeName + "&emsp;";
+                    $("#coursecollege").html($.parseHTML(html, document, true));
+                }
+                /**
+                 * 展示课程的详细信息
+                 * param {Object} courseId	课程id
+                 */
+
+                function courseEdit(courseId) {
+                    //console.log(courseId);
+                    //todo	展示课程的详细信息（跳转到新页面，或者弹出窗口）
+                    //alert(courseId);
+                    window.location.href = "/Admin/UpdateCourseInfo?courseId=" + courseId;
+                }
+
+                /**
+                 * 展示课程的详细信息
+                 * param {Object} courseId	课程id
+                 */
+                function courseDetail(courseId) {
+                    //console.log(courseId);
+                    //todo	展示课程的详细信息（跳转到新页面，或者弹出窗口）
+                    //alert(courseId);
+                    window.location.href = "/Admin/ViewCourseInfo?courseId=" + courseId;
+                }
+
+                function courseDelete(courseId) {
+                    //console.log(courseId);
+                    //todo	展示课程的详细信息（跳转到新页面，或者弹出窗口）
+                    //alert(courseId);
+                    /*  swal({
+                          title: "确定删除吗?",
+                          text: "删除后无法恢复!",
+                          type: "warning",
+                          showCancelButton: true,
+                          confirmButtonColor: '#DD6B55',
+                          confirmButtonText: '删除',
+                          cancelButtonText: "取消",
+                          closeOnConfirm: false,
+                          closeOnCancel: false
+                      },
+                  function(){
+                      swal("Deleted!", "该课程信息已被成功删除!", "success");
+                      window.location.href = "/Admin/DeleteCourseInfo?courseId=" + courseId;   
+                          });
+              };*/
+
+                    if (confirm("你确定删除该课程？")) {
+                        window.location.href = "/Admin/DeleteCourseInfo?courseId=" + courseId;
+                    }
+                    else {
+                        return false;
+                    }
+                    //window.location.href = "/Admin/DeleteCourseInfo?courseId=" + courseId;
+                }
+
+            </script>
+</body>
+</html>
