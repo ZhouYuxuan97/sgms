@@ -42,38 +42,41 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        @{ 
+                    
+                        @{
                             foreach (hubu.sgms.Model.Course_choosing course in courses)
                             {
-                                <td>@course.course_name</td>
-                                <td>
-                                    @{ 
-                                        var grade1 = course.usual_grade == null ? "暂无" : course.usual_grade.ToString();
-                                    }
-                                    @grade1
-                                </td>
-                                <td>
-                                    @{
-                                        var grade2 = course.test_grade == null ? "暂无" : course.test_grade.ToString();
-                                    }
-                                    @grade2
-                                </td>
-                                <td>
-                                    @{
-                                        var grade3 = course.total_grade == null ? "暂无" : course.total_grade.ToString();
-                                    }
-                                    @grade3
-                                </td>
-                                <td>@course.course_credit</td>
-                                <td>
-                                    @{var passed = course.total_grade > 60 ? "是" : "否";}
-                                    @passed
-                                </td>
-                                <td>正常考试</td>
+                                <tr>
+                                    <td>@course.course_name</td>
+                                    <td>
+                                        @{
+                                            var grade1 = course.usual_grade == null ? "暂无" : course.usual_grade.ToString();
+                                        }
+                                        @grade1
+                                    </td>
+                                    <td>
+                                        @{
+                                            var grade2 = course.test_grade == null ? "暂无" : course.test_grade.ToString();
+                                        }
+                                        @grade2
+                                    </td>
+                                    <td>
+                                        @{
+                                            var grade3 = course.total_grade == null ? "暂无" : course.total_grade.ToString();
+                                        }
+                                        @grade3
+                                    </td>
+                                    <td>@course.course_credit</td>
+                                    <td>
+                                        @{var passed = course.total_grade > 60 ? "是" : "否";}
+                                        @passed
+                                    </td>
+                                    <td>正常考试</td>
+                                    
+                                </tr>
                             }
                         }
-                    </tr>
+
                     @*<tr>
                         <td>javaweb</td>
                         <td>90</td>
