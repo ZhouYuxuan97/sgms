@@ -28,6 +28,29 @@ namespace hubu.sgms.WebApp.Controllers
         // Admin后台中心主界面
         public ActionResult Index()
         {
+            Login login = (Login)Session["loginInfo"];
+            if (login == null)
+            {
+                //未登录
+                //跳转到登录页面
+                Session["prePage"] = "/Admin/Index";//将当前页面地址放入session，登录后返回到该页面
+                return RedirectToAction("Index", "Login");
+            }
+            if (login.username == "100")
+            {
+                ViewData["info1"]= "/Arrange/SASelArrangeCourseInfo";
+                ViewData["info2"] = "/Arrange/SAArrangeCourse";
+            }
+            else
+            {
+                ViewData["info1"] = "/Arrange/CASelArrangeCourseInfo";
+                ViewData["info2"] = "/Arrange/CAArrangeCourse";
+
+            }
+            //查询学生信息
+            Administrator admin = roleInfoService.SelectAdministratorByID(login.username);
+            ViewData["admin"] = admin;
+
             return View();
         }
 
@@ -453,7 +476,6 @@ namespace hubu.sgms.WebApp.Controllers
         }
         #endregion
 
-
         #region 增删查改-学生
         // 添加学生信息
         public ActionResult AddStudentInfo()
@@ -539,6 +561,7 @@ namespace hubu.sgms.WebApp.Controllers
             ViewData["studentList"] = studentList;
             return View();
         }
+
         public ActionResult AdminUpdateStudentInfo(string studentID)
         {
             Student student = roleInfoService.SelectStudent(studentID);
@@ -564,6 +587,7 @@ namespace hubu.sgms.WebApp.Controllers
 
             return View();
         }
+
         public ActionResult SubmitAdminUpdateStudentInfo()
         {
             string studentID = Request["studentID"];
@@ -591,7 +615,7 @@ namespace hubu.sgms.WebApp.Controllers
 
             string result = roleInfoService.UpdateStudentInfo(studentID, studentName, studentSex, studentIDCard, studentAge, studentDepartment, studentMajor, studentGrade, studentType, studentAddress, studentNative, studentBirthplace, studentPoliticsstatus, studentContact, studentFamily, studentAward, studentOther, studentStatus);
 
-            return View("AdminAlterStudentInfo");
+            return Json(new { status = 1, msg = "OK!" });
         }
 
         // 查看学生详细信息
@@ -628,26 +652,5 @@ namespace hubu.sgms.WebApp.Controllers
             return View("AdminAlterStudentInfo");
         }
         #endregion
-
-        public ActionResult ChangeSelfInfo()
-        {
-            Login login = (Login)Session["loginInfo"];
-            if (login == null)
-            {
-                //未登录
-                //跳转到登录页面
-                Session["prePage"] = "/Admin/Index";//将当前页面地址放入session，登录后返回到该页面
-                return RedirectToAction("Index", "Login");
-            }
-
-            string username = login.username;
-            //string username = "201702";
-
-            Administrator admin = roleInfoService.SelectAdministratorByID(username);
-            ViewData["admin"] = admin;
-            return View();
-        }
-
-
     }
 }
