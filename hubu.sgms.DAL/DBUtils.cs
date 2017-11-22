@@ -60,7 +60,14 @@ namespace hubu.sgms.DAL
         //查询操作
         public DataTable getRecords(string sql, SqlParameter[] param)
         {
-            conn.Open();
+            try
+            {
+                conn.Open();
+            }
+            catch
+            {
+
+            }
             SqlCommand comm = new SqlCommand(sql, conn);
             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(comm);
             // SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sql, conn);

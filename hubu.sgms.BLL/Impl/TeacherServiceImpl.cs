@@ -12,6 +12,7 @@ namespace hubu.sgms.BLL.Impl
     public class TeacherServiceImpl : ITeacherService
     {
         ITeacherDAL teacherDAL = new TeacherDALImpl();
+        private static ITeacherService teacherService = new TeacherServiceImpl();
 
         public IList<Teacher_course> SelectAllCourse(string teacher_id)
         {

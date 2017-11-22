@@ -1,0 +1,106 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>学生修改个人信息</title>
+    <link href="~/Scripts/bs/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Scripts/layui/css/layui.css">
+    <link href="~/Content/student.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Scripts/bs/js/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bs/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/pcasunzip.js" charset="gb2312"></script>
+</head>
+<body>
+    @{ var teacher = ViewData["teacher"] as hubu.sgms.Model.Teacher;}
+    <!--修改个人信息-->
+    <div class="container">
+        <div class="z_content">
+            <div class="embed-responsive embed-responsive-16by9">
+                <form id="defaultForm" class="form-horizontal" action="javascript:void(0);" style="margin-top: 10px;">
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">用户名</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" name="student_name" placeholder="用户名" value="@teacher.teacher_name"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">职工号</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" name="student_id_card" placeholder="职工号" value="@teacher.teacher_id_card"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">教学年龄</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" name="email" placeholder="教学年龄" value="@teacher.teacher_teachingtime" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">职称</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" name="student_phone" placeholder="职称" value="@teacher.teacher_title" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">院系</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" name="email" placeholder="院系" value="@teacher.teacher_department" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">联系手机号</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" name="student_phone" placeholder="手机号" value="@teacher.teacher_contact"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">政治面貌</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" name="student_phone" placeholder="手机号" value="@teacher.teacher_politicsstatus" />
+                        </div>
+                    </div>
+                  
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">民族</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" name="student_phone" placeholder="手机号" value="@teacher.teacher_native" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">个人描述</label>
+                        <div class="col-lg-6">
+                            <textarea rows="3" class="form-control" name="student_other" value="@teacher.teacher_other"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-2 col-lg-offset-4">
+                            <button type="button" onclick="changeStuInfo();" class="btn btn-success " name="signup" value="Sign up">&nbsp;&nbsp;提交&nbsp;&nbsp;</button>
+                        </div>
+                        <div class="col-lg-6">
+                            <button type="reset" class="btn btn-warning" name="reset" value="重置">&nbsp;&nbsp;重置&nbsp;&nbsp;</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+         </div>
+     </div>
+    <script type="text/javascript" src="~/Scripts/layui/layui.js"></script>
+    <script type="text/javascript" src="~/Scripts/dist/js/formValidation.js"></script>
+    <script type="text/javascript" src="~/Scripts/dist/js/framework/bootstrap.js"></script>
+    <script type="text/javascript" src="~/Scripts/dist/js/language/zh_CN.js"></script>
+    <script src="~/Scripts/student.js"></script>
+</body>
+</html>

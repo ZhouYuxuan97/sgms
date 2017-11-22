@@ -48,6 +48,20 @@ namespace hubu.sgms.WebApp.Controllers
 
         public ActionResult ChangePassPage()
         {
+            Login login = (Login)Session["loginInfo"];
+            if (login == null)
+            {
+                //未登录
+                //跳转到登录页面
+                Session["prePage"] = "/Student/Index";//将当前页面地址放入session，登录后返回到该页面
+                return RedirectToAction("Index", "Login");
+            }
+
+            string username = login.username;
+            //string username = "201702";
+
+            Student student = studentService.GetStudentById(username);
+            ViewData["student"] = student;
             return View();
         }
 
@@ -285,5 +299,26 @@ namespace hubu.sgms.WebApp.Controllers
         }
         #endregion
 
+        public ActionResult ChangeSelfInfo()
+        {
+            Login login = (Login)Session["loginInfo"];
+            if (login == null)
+            {
+                //未登录
+                //跳转到登录页面
+                Session["prePage"] = "/Student/Index";//将当前页面地址放入session，登录后返回到该页面
+                return RedirectToAction("Index", "Login");
+            }
+
+            string username = login.username;
+            //string username = "201702";
+
+            Student student = studentService.GetStudentById(username);
+            ViewData["student"] = student;
+            return View();
+        }
+
+
+       
     }
 }

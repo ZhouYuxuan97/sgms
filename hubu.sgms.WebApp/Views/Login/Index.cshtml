@@ -89,7 +89,7 @@
             }
             if (!status || status == '0') {
                 //  alert("登陆失败");
-                alert(data.message);
+                alert(data.msg);
                 return;
             } else if (data.successUrl != null) {
                 window.location.href = data.successUrl;//跳转到返回的url
