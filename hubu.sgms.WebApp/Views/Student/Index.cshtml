@@ -1,7 +1,6 @@
 ﻿@{
     Layout = null;
 }
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,6 +40,7 @@
                             <dd class="z_item"><a href="javascript:;">专业选修课</a></dd>	 <!--需要实现-->
                         </dl>
                     </li>
+
                     <li class="layui-nav-item">
                         <a href="javascript:;">成绩查询</a>
                         @{ var student = ViewData["student"] as hubu.sgms.Model.Student;}
@@ -84,68 +84,13 @@
                 @* 修改个人信息 *@
                 <div class="z_content">
                     <!--修改个人信息-->
-                    <div class="container">
-                        <form id="defaultForm" class="form-horizontal" action="javascript:void(0);" style="margin-top: 10px;">
-                            <div class="form-group">
-                                <label class="col-lg-3 control-label">用户名</label>
-                                <div class="col-lg-6">
-                                    <input type="text" class="form-control" name="student_name" placeholder="用户名" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-3 control-label">身份证号</label>
-                                <div class="col-lg-6">
-                                    <input type="text" class="form-control" name="student_id_card" placeholder="身份证号" />
-                                </div>
-                            </div>
-                            <!--级联菜单城市选择-->
-                            <div class="form-group">
-                                <label for="" class='col-lg-3 control-label'>联系地址:</label>
-                                <div class="col-lg-2">
-                                    <select name="user.province" id="province" class="form-control"></select>
-                                </div>
-                                <div class="col-lg-2">
-                                    <select name="user.city" id="city" class="form-control"></select>
-                                </div>
-                                <div class="col-lg-2">
-                                    <select name="user.area" id="area" class="form-control"></select>
-                                </div>
-                            </div>
-                            <!--级联菜单城市选择-->
-                            <div class="form-group">
-                                <label class="col-lg-3 control-label">手机号</label>
-                                <div class="col-lg-6">
-                                    <input type="text" class="form-control" name="student_phone" placeholder="手机号" />
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-lg-3 control-label">邮箱</label>
-                                <div class="col-lg-6">
-                                    <input type="text" class="form-control" name="email" placeholder="邮箱" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-3 control-label">个人描述</label>
-                                <div class="col-lg-6">
-                                    <textarea rows="3" class="form-control" name="student_other"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-lg-2 col-lg-offset-4">
-                                    <button type="button" onclick="changeStuInfo();" class="btn btn-success " name="signup" value="Sign up" class="z_button">&nbsp;&nbsp;提交&nbsp;&nbsp;</button>
-                                </div>
-                                <div class="col-lg-6">
-                                    <button type="reset" class="btn btn-warning" name="reset" value="重置" class="z_button">&nbsp;&nbsp;重置&nbsp;&nbsp;</button>
-                                </div>
-                            </div>
-                        </form>
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class='embed-responsive-item' src="~/Student/ChangeSelfInfo" width="100%" ></iframe>
                     </div>
                 </div>
                 @* 修改密码 *@
                 <div class="z_content">
                     <!--修改密码-->
-                    <!--<iframe src="stu_changepass.html" width="100%" height="500px"></iframe>-->
                     <div class="embed-responsive embed-responsive-16by9">
                         <iframe class='embed-responsive-item' src="~/Student/ChangePassPage" width="100%" allowtransparency="true" allowfullscreen="true" allowfullscreenInteractive="true" scrolling="no" border="0" frameborder="0"></iframe>
                     </div>

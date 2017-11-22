@@ -9,7 +9,6 @@ namespace hubu.sgms.BLL
 {
     public interface ITeacherService
     {
-
         IList<Teacher> SelTeacherByCollegeId(string CollegeId);
         Teacher SelTeacherByTeacherId(string TeacherId);
 

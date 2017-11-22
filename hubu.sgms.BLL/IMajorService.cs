@@ -11,7 +11,6 @@ namespace hubu.sgms.BLL
     {
         IList<Major> SelMajorByCollegeId(string CollegeId);
         Major SelMajorByMajorId(string MajorId);
-
     }
 
 

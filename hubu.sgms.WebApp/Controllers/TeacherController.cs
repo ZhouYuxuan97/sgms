@@ -229,5 +229,45 @@ namespace hubu.sgms.WebApp.Controllers
 
             return RedirectToAction("TeacherCheckScore",new { courseid = courseid });
         }
+
+        public ActionResult ChangeSelfInfo()
+        {
+            Login login = (Login)Session["loginInfo"];
+            if (login == null)
+            {
+                //未登录
+                //跳转到登录页面
+                Session["prePage"] = "/Teacher/TeacherManager";//将当前页面地址放入session，登录后返回到该页面
+                return RedirectToAction("Index", "Login");
+            }
+
+            string username = login.username;
+            //string username = "201702";
+
+            Teacher teacher = teacherService.SelTeacherByTeacherId(username);
+            ViewData["teacher"] = teacher;
+            return View();
+        }
+
+        public ActionResult ChangePassPage()
+        {
+            Login login = (Login)Session["loginInfo"];
+            if (login == null)
+            {
+                //未登录
+                //跳转到登录页面
+                Session["prePage"] = "/Teacher/TeacherManager";//将当前页面地址放入session，登录后返回到该页面
+                return RedirectToAction("Index", "Login");
+            }
+
+            string username = login.username;
+            //string username = "201702";
+
+            Teacher teacher = teacherService.SelTeacherByTeacherId("150003");
+            ViewData["teacher"] = teacher;
+
+            return View();
+        }
+
     }
 }
