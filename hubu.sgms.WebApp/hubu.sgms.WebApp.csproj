@@ -842,7 +842,6 @@
     <Content Include="Views\Admin\AdminUpdateStudentInfo.cshtml" />
     <Content Include="Views\Admin\AdminUpdateTeacherInfo.cshtml" />
     <Content Include="Views\Admin\AlterAdminInfo.cshtml" />
-    <Content Include="Views\Admin\DeleteAdmin.cshtml" />
     <Content Include="Views\Arrange\CAArrangeCourse.cshtml" />
     <Content Include="Views\News\ShowDetail.cshtml" />
     <Content Include="Views\News\AdminShowDetail.cshtml" />

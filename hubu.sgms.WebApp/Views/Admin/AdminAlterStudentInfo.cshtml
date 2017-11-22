@@ -24,7 +24,6 @@
         .container-fluid {
             padding: 0;
         }
-
             .container-fluid nav {
                 padding-left: 10%;
             }
@@ -34,7 +33,7 @@
     <div class="container-fluid">
         <nav class="navbar navbar-default" role="navigation">
             <div class="container-fluid">
-                <form id="navForm" class="navbar-form navbar-left" role="search" method="post" action="/Admin/AdminAlterStudentInfo">
+                <form id="formid" class="navbar-form navbar-left" role="search" method="post" action="/Admin/AdminAlterStudentInfo">
                     <label>学院: </label>
                     <span class="field" style="width:400px;">
                         <select name="studentDepartment" id="studentDepartment">
@@ -79,7 +78,9 @@
                     <div class="form-group">
                         <input id="studentName" name="studentName" type="text" class="form-control" placeholder="请输入学生姓名" />
                     </div>
-                    <input id="searchCourseBtn" type="submit" class="btn btn-info" value="查询" />
+                    <input id="searchCourseBtn" type="button" onclick="refreshCourseList()" class="btn btn-info" value="查询" />
+                    <input id="pageNumber" name="page" type="text" value="" style="display:none" />
+                    <input id="sizeNumber" name="size" type="text" value="" style="display:none" />
                 </form>
                 <a href="/Admin/AddStudentInfo" class="dropdown-toggle">添加学生</a>
             </div>
@@ -132,10 +133,10 @@
 
             <div id="pageid">
                 <ul class="pager">
-                    <li class="previous"><a href="#" onclick="prePage();">&larr; Older</a></li>
-                    <li class="next"><a href="#" onclick="nextPage();">Newer &rarr;</a></li>
+                    <li class="previous"><a href="#" onclick="prePage('@ViewData["page"]');">&larr; Older</a></li>
+                    <li class="next"><a href="#" onclick="nextPage('@ViewData["page"]');">Newer &rarr;</a></li>
                 </ul>
-                <center>第<span id="page">1</span>页，共<span id="totalPage">1</span>页</center>
+                <center>第<span id="page">@ViewData["page"]</span>页，共<span id="totalPage">@ViewData["totalPage"]</span>页</center>
             </div>
             <!--分页按钮  pagination  pager-->
         </div>
@@ -145,13 +146,47 @@
     <script src="~/Scripts/bootstrap3.3.7.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script type="text/javascript">
+        var page = 1;
+        var size = 10;
+
+        function refreshCourseList() {
+            $("#pageNumber").val(page);
+            $("#sizeNumber").val(size);
+            $("#formid").submit();
+        }
+
+        // 上一页按钮的点击事件
+        function prePage(page) {
+            if (page == 1) {
+                return false;
+            } else {
+                page--;
+                //refreshCourseList();
+                $("#pageNumber").val(page);
+                $("#sizeNumber").val(size);
+                $("#formid").submit();
+            }
+        }
+
+        // 下一页按钮的点击事件
+        function nextPage(page) {
+            if (page == @ViewData["totalPage"]+0) {
+                return false;
+            } else {
+                page++;
+                $("#pageNumber").val(page);
+                $("#sizeNumber").val(size);
+                $("#formid").submit();
+            }
+        }
+
+
         /**
          * 当学院下拉框被点击时,刷新专业下拉框
          */
         $(document).ready(function () {
             $("select[name='studentDepartment']").change(function () {
                 var college = $("#studentDepartment").val();
-
                 $.ajax({
                     type: "POST",
                     url: "/Arrange/CAFillMajor",
@@ -196,27 +231,6 @@
                 });
             });
         });
-
-
-        // 上一页按钮的点击事件
-        function prePage() {
-            if (page == 1) {
-                return false;
-            } else {
-                page--;
-                refreshCourseList();
-            }
-        }
-
-        // 下一页按钮的点击事件
-        function nextPage() {
-            if (page == totalPage) {
-                return false;
-            } else {
-                page++;
-                refreshCourseList();
-            }
-        }
 
 
         /**

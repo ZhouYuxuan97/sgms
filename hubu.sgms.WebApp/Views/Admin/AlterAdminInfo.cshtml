@@ -12,12 +12,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="css/style.default.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="css/pageGroup.css" />
-    <script type="text/javascript" src="js/jquery-1.7.min.js"></script>
-    <script type="text/javascript" src="js/pageGroup.js"></script>
+ 
     <link href="~/Content/bootstrap3.3.7.min.css" rel="stylesheet" />
-    <script src="~/Scripts/Course/sweetalert2.min.js"></script>
+ 
     <link rel="stylesheet" href="~/Content/Admin/example.css">
-    <script src="^/Course/sweet-alert.js"></script>
+   
     <link rel="stylesheet" href="~/Content/admin/sweet-alert.css">
     <title>查询管理员信息</title>
     <style type="text/css">
@@ -64,8 +63,10 @@
                     </span> &nbsp;
                     <div class="form-group">
                         <input id="adminName" name="adminName" type="text" class="form-control" placeholder="请输入管理员姓名" />
-                    </div>
-                    <input id="searchCourseBtn" type="submit" class="btn btn-info" value="查询" />
+                    </div>       
+                    <input id="searchCourseBtn" type="button" onclick="refreshCourseList()" class="btn btn-info" value="查询" />      
+                    <input id="pageNumber" name="page" type="text" value="" style="display:none" />
+                    <input id="sizeNumber" name="size" type="text" value="" style="display:none" />
                 </form>
                 <a href="/Admin/AddAdminInfo" class="dropdown-toggle">添加新管理员</a>
             </div>
@@ -115,10 +116,10 @@
 
             <div id="pageid">
                 <ul class="pager">
-                    <li class="previous"><a href="#" onclick="prePage();">&larr; Older</a></li>
-                    <li class="next"><a href="#" onclick="nextPage();">Newer &rarr;</a></li>
+                    <li class="previous"><a href="#" onclick="prePage('@ViewData["page"]');">&larr; Older</a></li>
+                    <li class="next"><a href="#" onclick="nextPage('@ViewData["page"]');">Newer &rarr;</a></li>
                 </ul>
-                <center>第<span id="page">1</span>页，共<span id="totalPage">1</span>页</center>
+                <center>第<span id="page">@ViewData["page"]</span>页，共<span id="totalPage">@ViewData["totalPage"]</span>页</center>
             </div>
             <!--分页按钮  pagination  pager-->
         </div>
@@ -128,25 +129,38 @@
     <script src="~/Scripts/bootstrap3.3.7.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script type="text/javascript">
+        var page = 1;
+        var size = 10;
+
+        function refreshCourseList() {
+            $("#pageNumber").val(page);
+            $("#sizeNumber").val(size);
+            $("#formid").submit();
+        }
 
         // 上一页按钮的点击事件
-        function prePage() {
+        function prePage(page) {
             if (page == 1) {
                 return false;
             } else {
                 page--;
-                refreshCourseList();
+                //refreshCourseList();
+                $("#pageNumber").val(page);
+                $("#sizeNumber").val(size);
+                $("#formid").submit();
             }
         }
 
-
         // 下一页按钮的点击事件
-        function nextPage() {
-            if (page == totalPage) {
+        function nextPage(page) {
+            if (page == @ViewData["totalPage"]+0) {
                 return false;
             } else {
                 page++;
-                refreshCourseList();
+                //refreshCourseList();
+                $("#pageNumber").val(page);
+                $("#sizeNumber").val(size);
+                $("#formid").submit();
             }
         }
 
