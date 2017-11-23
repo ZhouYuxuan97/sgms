@@ -226,7 +226,6 @@ namespace hubu.sgms.WebApp.Controllers
         }
 
 
-
         #region 增删查改-管理员
         // 管理员添加个人信息
         public ActionResult AddAdminInfo()
@@ -257,6 +256,7 @@ namespace hubu.sgms.WebApp.Controllers
             string sqlNull = "2b婿s1jHh子1hl91";  // 赋值，防止sql报错
             string adminDepartment = Request["adminDepartment"];
             string adminName = Request["adminName"];
+            int size = Convert.ToInt32(Request["size"]);
 
             if (adminName == null && adminDepartment == null)   //一开始加载不显示
             {
@@ -274,7 +274,14 @@ namespace hubu.sgms.WebApp.Controllers
             {
                 adminDepartment = sqlNull;
             }
-            List<Administrator> administratorList = roleInfoService.SelectAllAdminInfo(adminName, adminDepartment);
+
+            int count = roleInfoService.SelectCountAdmin(adminName, adminDepartment);
+            ViewData["totalPage"] = ((count - 1) / size) + 1;
+
+            int page = Convert.ToInt32(Request["page"]);
+            ViewData["page"] = page;
+
+            List<Administrator> administratorList = roleInfoService.SelectAllAdminInfo(adminName, adminDepartment, page, size);
             ViewData["adminList"] = administratorList;
             return View();
         }
@@ -375,6 +382,8 @@ namespace hubu.sgms.WebApp.Controllers
         {
             string teacherName = Request["teacherName"];
             string teacherDepartment = Request["teacherDepartment"];
+            int size = 10;//Convert.ToInt32(Request["size"]);
+
             if (teacherName == null && teacherDepartment == null)   //刚加载页面时不显示信息
             {
                 return View();
@@ -392,7 +401,14 @@ namespace hubu.sgms.WebApp.Controllers
                 teacherDepartment = "2b婿s1jHh子1hl91";   //赋值，防止sql报错
                 teacherName = "2b婿s1jHh子1hl91";         //赋值，防止sql报错
             }
-            List<Teacher> teacherList = roleInfoService.SelectAllTeacherInfo(teacherName, teacherDepartment);
+
+            int count = roleInfoService.SelectCountTeacher(teacherName, teacherDepartment);
+            ViewData["totalPage"] = ((count - 1) / size) + 1;
+
+            int page = Convert.ToInt32(Request["page"]);
+            ViewData["page"] = page;
+
+            List<Teacher> teacherList = roleInfoService.SelectAllTeacherInfo(teacherName, teacherDepartment, page, size);
             ViewData["teacherList"] = teacherList;
             return View();
         }
@@ -522,6 +538,7 @@ namespace hubu.sgms.WebApp.Controllers
             string studentDepartment = Request["studentDepartment"];
             string studentMajor = Request["majorlist"];
             string studentClass = Request["classlist"];
+            int size = 10;//Convert.ToInt32(Request["size"]);
 
             if (studentDepartment == null && studentName == null)    //刚加载页面时不显示信息
             {
@@ -556,8 +573,13 @@ namespace hubu.sgms.WebApp.Controllers
                 studentClass = sqlNull;
             }
 
+            int count = roleInfoService.SelectCountStudent(studentName, studentDepartment, studentMajor, studentClass);
+            ViewData["totalPage"] = ((count - 1) / size) + 1;
 
-            List<Student> studentList = roleInfoService.SelectAllStudentInfo(studentName, studentDepartment, studentMajor, studentClass);
+            int page = Convert.ToInt32(Request["page"]);
+            ViewData["page"] = page;
+
+            List<Student> studentList = roleInfoService.SelectAllStudentInfo(studentName, studentDepartment, studentMajor, studentClass, page, size);
             ViewData["studentList"] = studentList;
             return View();
         }
