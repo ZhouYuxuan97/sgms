@@ -24,8 +24,11 @@ namespace hubu.sgms.BLL
         // 通过 ID 查找对应的管理员信息
         Administrator SelectAdministratorByID(string adminID);
 
+        // 查看相应条件的管理员信息个数
+        int SelectCountAdmin(string adminName, string adminDepartment);
+
         // 条件查找管理员信息
-        List<Administrator> SelectAllAdminInfo(string adminName, string adminDepartment);
+        List<Administrator> SelectAllAdminInfo(string adminName, string adminDepartment, int page, int size);
 
         // 删除管理员
         string DeleteAdmin(string adminID);
@@ -45,8 +48,11 @@ namespace hubu.sgms.BLL
         // 通过 ID 查找对应的教师信息
         Teacher SelectTeacherByID(string teacherID);
 
+        // 查看相应条件的教师信息个数
+        int SelectCountTeacher(string teacherName, string teacherDepartment);
+
         // 通过条件查找教师信息
-        List<Teacher> SelectAllTeacherInfo(string teacherName, string teacherDepartment);
+        List<Teacher> SelectAllTeacherInfo(string teacherName, string teacherDepartment, int page, int size);
 
         // 通过 ID 删除对应的教师
         string AdminDeleteTeacher(string teacherID);
@@ -65,8 +71,11 @@ namespace hubu.sgms.BLL
         // 通过 ID 查找对应的学生信息
         Student SelectStudent(string studentID);
 
+        // 查看相应条件的学生信息个数
+        int SelectCountStudent(string studentName, string studentDepartment, string studentMajor, string studentClass);
+
         // 通过条件查找学生信息
-        List<Student> SelectAllStudentInfo(string studentName, string studentDepartment, string studentMajor, string studentClass);
+        List<Student> SelectAllStudentInfo(string studentName, string studentDepartment, string studentMajor, string studentClass, int page, int size);
 
         // 通过 ID 删除对应的学生
         string AdminDeleteStudent(string studentID);

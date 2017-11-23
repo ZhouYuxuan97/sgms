@@ -11,6 +11,7 @@ namespace hubu.sgms.DAL.Impl
 {
     public class RoleDALImpl : IRoleInfoDAL
     {
+        #region 管理员
         // 添加管理员信息
         public string AddAdminInfo(string adminID, string adminName, string adminSex, string adminIDCard, string adminDepartment, string adminContact, string adminOther, int adminStatus)
         {
@@ -33,72 +34,6 @@ namespace hubu.sgms.DAL.Impl
             return succeed;
         }
 
-        // 添加教师员信息
-        public string AddTeacherInfo(string teacherID, string teacherName, string teacherSex, string teacherIDCard, int teacherAge, string teacherDepartment, string teacherTitle, string teacherNative, string teacherBirthplace, string teacherPoliticsstatus, string teacherTeachingtime, string teacherContact, string teacherOther, int teacherStatus)
-        {
-            string sql = "Insert into Teacher(teacher_id,teacher_name,teachert_sex,teacher_id_card,teachert_age,teacher_department,teacher_title,teacher_native,teacher_birthplace,teacher_politicsstatus,teacher_teachingtime,teacher_contact,teacher_other,status)values" +
-                                            "(@teacherID,@teacherName,@teacherSex,@teacherIDCard,@teacherAge,@teacherDepartment,@teacherTitle,@teacherNative,@teacherBirthplace,@teacherPoliticsstatus,@teacherTeachingtime,@teacherContact,@teacherOther,@teacherStatus)";
-            // teacherID teacherName teacherSex teacherIDCard teacherAge teacherDepartment teacherTitle teacherNative teacherBirthplace 
-            // teacherPoliticsstatus teacherTeachingtime teacherContact teacherOther teacherStatus
-            SqlParameter[] parameters = {
-                new SqlParameter("@teacherID",teacherID),
-                new SqlParameter("@teacherName",teacherName),
-                new SqlParameter("@teacherSex",teacherSex),
-                new SqlParameter("@teacherIDCard",teacherIDCard),
-                new SqlParameter("@teacherAge",teacherAge),
-                new SqlParameter("@teacherDepartment",teacherDepartment),
-                new SqlParameter("@teacherTitle",teacherTitle),
-                new SqlParameter("@teacherNative",teacherNative),
-                new SqlParameter("@teacherBirthplace",teacherBirthplace),
-                new SqlParameter("@teacherPoliticsstatus",teacherPoliticsstatus),
-                new SqlParameter("@teacherTeachingtime",teacherTeachingtime),
-                new SqlParameter("@teacherContact",teacherContact),
-                new SqlParameter("@teacherOther",teacherOther),
-                new SqlParameter("@teacherStatus",teacherStatus)
-            };
-
-            int count = DBUtils.getDBUtils().cud(sql, parameters);
-            string succeed = "成功添加" + count + "个教师信息";
-            return succeed;
-
-        }
-
-        // 添加学生信息
-        public string AddStudentInfo(string studentID, string studentName, string studentSex, string studentIDCard, int studentAge, string studentDepartment, string studentMajor, string studentGrade, string studentType, string studentAddress, string studentNative, string studentBirthplace, string studentPoliticsstatus, string studentContact, string studentFamily, string studentAward, string studentOther, int studentStatus, string studentClass)
-        {
-            string sql = "Insert into Student(student_id,student_name,student_sex,student_age,student_id_card,student_department,student_major,student_grade,student_type,student_address,student_native,student_birthplace,student_politicsstatus,student_contact,student_family,student_award,student_other,status,class_id,college_id)values" +
-                                            "(@studentID,@studentName,@studentSex,@studentAge,@studentIDCard,(select name from College where college_id=@studentDepartment)," +
-                                                                                                                               "(select major_name from Major where major_id =@studentMajor)," +
-                                                                                                                                             "@studentGrade,@studentType,@studentAddress,@studentNative,@studentBirthplace,@studentPoliticsstatus,@studentContact,@studentFamily,@studentAward,@studentOther,@studentStatus,@studentClass,@studentDepartment)";
-            SqlParameter[] parameters = {
-                new SqlParameter("@studentID",studentID),
-                new SqlParameter("@studentName",studentName),
-                new SqlParameter("@studentSex",studentSex),
-                new SqlParameter("@studentIDCard",studentIDCard),
-                new SqlParameter("@studentAge",studentAge),
-                new SqlParameter("@studentDepartment",studentDepartment),
-                new SqlParameter("@studentMajor",studentMajor),
-                new SqlParameter("@studentGrade",studentGrade),
-                new SqlParameter("@studentType",studentType),
-                new SqlParameter("@studentAddress",studentAddress),
-                new SqlParameter("@studentNative",studentNative),
-                new SqlParameter("@studentBirthplace",studentBirthplace),
-                new SqlParameter("@studentPoliticsstatus",studentPoliticsstatus),
-                new SqlParameter("@studentContact",studentContact),
-                new SqlParameter("@studentFamily",studentFamily),
-                new SqlParameter("@studentAward",studentAward),
-                new SqlParameter("@studentOther",studentOther),
-                new SqlParameter("@studentStatus",studentStatus),
-                new SqlParameter("@studentClass",studentClass)
-            };
-
-            int count = DBUtils.getDBUtils().cud(sql, parameters);
-            string succeed = "成功添加" + count + "个学生信息";
-            return succeed;
-        }
-
-
-
         // 修改管理员信息
         public string UpdateAdminInfo(string adminID, string adminName, string adminSex, string adminIDCard, string adminDepartment, string adminContact, string adminOther, int adminStatus)
         {
@@ -120,69 +55,6 @@ namespace hubu.sgms.DAL.Impl
             string succeed = "成功修改" + count + "个管理员信息";
             return succeed;
         }
-
-        // 修改教师信息
-        public string UpdateTeacherInfo(string teacherID, string teacherName, string teacherSex, string teacherIDCard, int teacherAge, string teacherDepartment, string teacherTitle, string teacherNative, string teacherBirthplace, string teacherPoliticsstatus, string teacherTeachingtime, string teacherContact, string teacherOther, int teacherStatus)
-        {
-            string sql = "update Teacher set teacher_name=@teacherName, teachert_sex=@teacherSex, teacher_id_card=@teacherIDCard, teachert_age=@teacherAge," +
-                        "teacher_department=@teacherDepartment,teacher_title=@teacherTitle,teacher_native=@teacherNative,teacher_birthplace=@teacherBirthplace,teacher_politicsstatus=@teacherPoliticsstatus," +
-                        "teacher_teachingtime=@teacherTeachingtime,teacher_contact=@teacherContact,teacher_other=@teacherOther,status=@teacherStatus where teacher_id = @teacherID";
-            SqlParameter[] parameters = {
-                new SqlParameter("@teacherID",teacherID),
-                new SqlParameter("@teacherName",teacherName),
-                new SqlParameter("@teacherSex",teacherSex),
-                new SqlParameter("@teacherIDCard",teacherIDCard),
-                new SqlParameter("@teacherAge",teacherAge),
-                new SqlParameter("@teacherDepartment",teacherDepartment),
-                new SqlParameter("@teacherTitle",teacherTitle),
-                new SqlParameter("@teacherNative",teacherNative),
-                new SqlParameter("@teacherBirthplace",teacherBirthplace),
-                new SqlParameter("@teacherPoliticsstatus",teacherPoliticsstatus),
-                new SqlParameter("@teacherTeachingtime",teacherTeachingtime),
-                new SqlParameter("@teacherContact",teacherContact),
-                new SqlParameter("@teacherOther",teacherOther),
-                new SqlParameter("@teacherStatus",teacherStatus)
-            };
-
-            int count = DBUtils.getDBUtils().cud(sql, parameters);
-            string succeed = "成功修改" + count + "个教师信息";
-            return succeed;
-        }
-
-        // 修改学生信息
-        public string UpdateStudentInfo(string studentID, string studentName, string studentSex, string studentIDCard, int studentAge, string studentDepartment, string studentMajor, string studentGrade, string studentType, string studentAddress, string studentNative, string studentBirthplace, string studentPoliticsstatus, string studentContact, string studentFamily, string studentAward, string studentOther, int studentStatus)
-        {
-            string sql = "update Student set student_name=@studentName,student_sex=@studentSex,student_age=@studentAge,student_id_card=@studentIDCard,student_department=@studentDepartment,student_major=@studentMajor," +
-                "student_grade=@studentGrade,student_type=@studentType,student_address=@studentAddress,student_native=@studentNative,student_birthplace=@studentBirthplace,student_politicsstatus=@studentPoliticsstatus," +
-                "student_contact=@studentContact,student_family=@studentFamily,student_award=@studentAward,student_other=@studentOther,status=@studentStatus where student_id=@studentID";
-            SqlParameter[] parameters = {
-                new SqlParameter("@studentID",studentID),
-                new SqlParameter("@studentName",studentName),
-                new SqlParameter("@studentSex",studentSex),
-                new SqlParameter("@studentIDCard",studentIDCard),
-                new SqlParameter("@studentAge",studentAge),
-                new SqlParameter("@studentDepartment",studentDepartment),
-                new SqlParameter("@studentMajor",studentMajor),
-                new SqlParameter("@studentGrade",studentGrade),
-                new SqlParameter("@studentType",studentType),
-                new SqlParameter("@studentAddress",studentAddress),
-                new SqlParameter("@studentNative",studentNative),
-                new SqlParameter("@studentBirthplace",studentBirthplace),
-                new SqlParameter("@studentPoliticsstatus",studentPoliticsstatus),
-                new SqlParameter("@studentContact",studentContact),
-                new SqlParameter("@studentFamily",studentFamily),
-                new SqlParameter("@studentAward",studentAward),
-                new SqlParameter("@studentOther",studentOther),
-                new SqlParameter("@studentStatus",studentStatus)
-            };
-
-            int count = DBUtils.getDBUtils().cud(sql, parameters);
-            string succeed = "成功修改" + count + "个学生信息";
-            return succeed;
-        }
-
-
-
 
         // 通过 ID 查找对应的管理员信息
         Administrator IRoleInfoDAL.SelectAdministratorByID(string adminID)
@@ -214,12 +86,53 @@ namespace hubu.sgms.DAL.Impl
             return administrator;
         }
 
+        // 查看相应条件的管理员信息个数
+        public int SelectCountAdmin(string adminName, string adminDepartment)
+        {
+            string sqlNull = "2b婿s1jHh子1hl91";
+            string sql = "select count(*) as res from Administrator";
+
+            #region 拼接sql
+            if (adminName == sqlNull && adminDepartment == sqlNull)  //都没有输入
+            {
+                sql = "select count(*) as res from Administrator where administrator_name=@adminName and administrator_department=@adminDepartment or 1=1";
+            }
+            else if (adminName == sqlNull && adminDepartment != sqlNull)     //只输入院系
+            {
+                sql = "select count(*) as res from Administrator where (administrator_name=@adminName or 1=1) and administrator_department=@adminDepartment";
+            }
+            else if (adminName != sqlNull && adminDepartment == sqlNull) //只输入姓名
+            {
+                sql = "select count(*) as res from Administrator where administrator_name like @adminName and (administrator_department=@adminDepartment or 1=1)";
+                adminName = "%" + adminName + "%";
+            }
+            else if (adminName != sqlNull && adminDepartment == sqlNull)  //都输入了
+            {
+                sql = "select count(*) as res from Administrator where administrator_name like @adminName and administrator_department=@adminDepartment";
+                adminName = "%" + adminName + "%";
+            }
+            #endregion
+
+            SqlParameter[] parameters = {
+                new SqlParameter("@adminName",adminName),
+                new SqlParameter("@adminDepartment",adminDepartment)
+            };
+
+            //查询
+            DataTable dataTable = DBUtils.getDBUtils().getRecords(sql, parameters);
+
+            DataRow row = dataTable.Rows[0];
+            int count = Convert.ToInt32(row["res"]);
+            return count;
+        }
+
         // 通过条件查找管理员信息
-        public List<Administrator> SelectAllAdminInfo(string adminName, string adminDepartment)
+        public List<Administrator> SelectAllAdminInfo(string adminName, string adminDepartment, int page, int size)
         {
             string sqlNull = "2b婿s1jHh子1hl91";
             string sql = "select * from Administrator";
 
+            #region 拼接sql
             if (adminName == sqlNull && adminDepartment == sqlNull)  //都没有输入
             {
                 sql = "select * from Administrator where administrator_name=@adminName and administrator_department=@adminDepartment or 1=1";
@@ -238,13 +151,15 @@ namespace hubu.sgms.DAL.Impl
                 sql = "select * from Administrator where administrator_name like @adminName and administrator_department=@adminDepartment";
                 adminName = "%" + adminName + "%";
             }
+            #endregion
 
             SqlParameter[] parameters = {
                 new SqlParameter("@adminName",adminName),
                 new SqlParameter("@adminDepartment",adminDepartment)
             };
             //查询
-            DataTable dataTable = DBUtils.getDBUtils().getRecords(sql, parameters);
+            //DataTable dataTable = DBUtils.getDBUtils().getRecords(sql, parameters);
+            DataTable dataTable = DBUtils.getDBUtils().getRecordsWithPage(sql, parameters, size, page);
             //存放结果
             List<Administrator> administratorList = new List<Administrator>();
             //遍历
@@ -280,7 +195,67 @@ namespace hubu.sgms.DAL.Impl
             string succeed = "成功删除" + count + "个管理员信息";
             return succeed;
         }
+        #endregion
 
+
+        #region 教师
+        // 添加教师员信息
+        public string AddTeacherInfo(string teacherID, string teacherName, string teacherSex, string teacherIDCard, int teacherAge, string teacherDepartment, string teacherTitle, string teacherNative, string teacherBirthplace, string teacherPoliticsstatus, string teacherTeachingtime, string teacherContact, string teacherOther, int teacherStatus)
+        {
+            string sql = "Insert into Teacher(teacher_id,teacher_name,teachert_sex,teacher_id_card,teachert_age,teacher_department,teacher_title,teacher_native,teacher_birthplace,teacher_politicsstatus,teacher_teachingtime,teacher_contact,teacher_other,status)values" +
+                                            "(@teacherID,@teacherName,@teacherSex,@teacherIDCard,@teacherAge,@teacherDepartment,@teacherTitle,@teacherNative,@teacherBirthplace,@teacherPoliticsstatus,@teacherTeachingtime,@teacherContact,@teacherOther,@teacherStatus)";
+            // teacherID teacherName teacherSex teacherIDCard teacherAge teacherDepartment teacherTitle teacherNative teacherBirthplace 
+            // teacherPoliticsstatus teacherTeachingtime teacherContact teacherOther teacherStatus
+            SqlParameter[] parameters = {
+                new SqlParameter("@teacherID",teacherID),
+                new SqlParameter("@teacherName",teacherName),
+                new SqlParameter("@teacherSex",teacherSex),
+                new SqlParameter("@teacherIDCard",teacherIDCard),
+                new SqlParameter("@teacherAge",teacherAge),
+                new SqlParameter("@teacherDepartment",teacherDepartment),
+                new SqlParameter("@teacherTitle",teacherTitle),
+                new SqlParameter("@teacherNative",teacherNative),
+                new SqlParameter("@teacherBirthplace",teacherBirthplace),
+                new SqlParameter("@teacherPoliticsstatus",teacherPoliticsstatus),
+                new SqlParameter("@teacherTeachingtime",teacherTeachingtime),
+                new SqlParameter("@teacherContact",teacherContact),
+                new SqlParameter("@teacherOther",teacherOther),
+                new SqlParameter("@teacherStatus",teacherStatus)
+            };
+
+            int count = DBUtils.getDBUtils().cud(sql, parameters);
+            string succeed = "成功添加" + count + "个教师信息";
+            return succeed;
+
+        }
+
+        // 修改教师信息
+        public string UpdateTeacherInfo(string teacherID, string teacherName, string teacherSex, string teacherIDCard, int teacherAge, string teacherDepartment, string teacherTitle, string teacherNative, string teacherBirthplace, string teacherPoliticsstatus, string teacherTeachingtime, string teacherContact, string teacherOther, int teacherStatus)
+        {
+            string sql = "update Teacher set teacher_name=@teacherName, teachert_sex=@teacherSex, teacher_id_card=@teacherIDCard, teachert_age=@teacherAge," +
+                        "teacher_department=@teacherDepartment,teacher_title=@teacherTitle,teacher_native=@teacherNative,teacher_birthplace=@teacherBirthplace,teacher_politicsstatus=@teacherPoliticsstatus," +
+                        "teacher_teachingtime=@teacherTeachingtime,teacher_contact=@teacherContact,teacher_other=@teacherOther,status=@teacherStatus where teacher_id = @teacherID";
+            SqlParameter[] parameters = {
+                new SqlParameter("@teacherID",teacherID),
+                new SqlParameter("@teacherName",teacherName),
+                new SqlParameter("@teacherSex",teacherSex),
+                new SqlParameter("@teacherIDCard",teacherIDCard),
+                new SqlParameter("@teacherAge",teacherAge),
+                new SqlParameter("@teacherDepartment",teacherDepartment),
+                new SqlParameter("@teacherTitle",teacherTitle),
+                new SqlParameter("@teacherNative",teacherNative),
+                new SqlParameter("@teacherBirthplace",teacherBirthplace),
+                new SqlParameter("@teacherPoliticsstatus",teacherPoliticsstatus),
+                new SqlParameter("@teacherTeachingtime",teacherTeachingtime),
+                new SqlParameter("@teacherContact",teacherContact),
+                new SqlParameter("@teacherOther",teacherOther),
+                new SqlParameter("@teacherStatus",teacherStatus)
+            };
+
+            int count = DBUtils.getDBUtils().cud(sql, parameters);
+            string succeed = "成功修改" + count + "个教师信息";
+            return succeed;
+        }
 
         // 通过 ID 查找对应的教师信息
         Teacher IRoleInfoDAL.SelectTeacherByID(string teacherID)
@@ -316,34 +291,78 @@ namespace hubu.sgms.DAL.Impl
             return teacher;
         }
 
-        // 通过条件查找教师信息
-        public List<Teacher> SelectAllTeacherInfo(string teacherName, string teacherDepartment)
+        // 查看相应条件的教师信息个数
+        public int SelectCountTeacher(string teacherName, string teacherDepartment)
         {
+            string sqlNull = "2b婿s1jHh子1hl91";
             string sql = "select * from Teacher";
+
+            #region 拼接sql
             if (teacherName == "2b婿s1jHh子1hl91" && teacherDepartment == "2b婿s1jHh子1hl91")
             {
-                sql = "select * from Teacher where teacher_name=@teacherName and teacher_department=@teacherDepartment or 1=1";
+                sql = "select count(*) as res from Teacher where teacher_name=@teacherName and teacher_department=@teacherDepartment or 1=1";
             }
-            else if (teacherName == "2b婿s1jHh子1hl91" && teacherDepartment != "2b婿s1jHh子1hl91")
+            else if (teacherName == sqlNull && teacherDepartment != sqlNull)
             {
-                sql = "select * from Teacher where (teacher_name=@teacherName or 1=1) and teacher_department=@teacherDepartment";
+                sql = "select count(*) as res from Teacher where (teacher_name=@teacherName or 1=1) and teacher_department=@teacherDepartment";
             }
-            else if (teacherName != "2b婿s1jHh子1hl91" && teacherDepartment == "2b婿s1jHh子1hl91")
+            else if (teacherName != sqlNull && teacherDepartment == sqlNull)
             {
-                sql = "select * from Teacher where teacher_name like @teacherName and (teacher_department=@teacherDepartment or 1=1)";
+                sql = "select count(*) as res from Teacher where teacher_name like @teacherName and (teacher_department=@teacherDepartment or 1=1)";
                 teacherName = "%" + teacherName + "%";
             }
-            else if (teacherName != "2b婿s1jHh子1hl91" && teacherDepartment != "2b婿s1jHh子1hl91")
+            else if (teacherName != sqlNull && teacherDepartment != sqlNull)
             {
-                sql = "select * from Teacher where teacher_name like @teacherName and teacher_department=@teacherDepartment";
+                sql = "select count(*) as res from Teacher where teacher_name like @teacherName and teacher_department=@teacherDepartment";
                 teacherName = "%" + teacherName + "%";
             }
+            #endregion
+
             SqlParameter[] parameters = {
                 new SqlParameter("@teacherName",teacherName),
                 new SqlParameter("@teacherDepartment",teacherDepartment)
             };
             //查询
             DataTable dataTable = DBUtils.getDBUtils().getRecords(sql, parameters);
+
+            DataRow row = dataTable.Rows[0];
+            int count = Convert.ToInt32(row["res"]);
+            return count;
+        }
+
+        // 通过条件查找教师信息
+        public List<Teacher> SelectAllTeacherInfo(string teacherName, string teacherDepartment, int page, int size)
+        {
+            string sqlNull = "2b婿s1jHh子1hl91";
+            string sql = "select * from Teacher";
+
+            #region 拼接sql
+            if (teacherName == sqlNull && teacherDepartment == sqlNull)
+            {
+                sql = "select * from Teacher where teacher_name=@teacherName and teacher_department=@teacherDepartment or 1=1";
+            }
+            else if (teacherName == sqlNull && teacherDepartment != sqlNull)
+            {
+                sql = "select * from Teacher where (teacher_name=@teacherName or 1=1) and teacher_department=@teacherDepartment";
+            }
+            else if (teacherName != sqlNull && teacherDepartment == sqlNull)
+            {
+                sql = "select * from Teacher where teacher_name like @teacherName and (teacher_department=@teacherDepartment or 1=1)";
+                teacherName = "%" + teacherName + "%";
+            }
+            else if (teacherName != sqlNull && teacherDepartment != sqlNull)
+            {
+                sql = "select * from Teacher where teacher_name like @teacherName and teacher_department=@teacherDepartment";
+                teacherName = "%" + teacherName + "%";
+            }
+            #endregion
+
+            SqlParameter[] parameters = {
+                new SqlParameter("@teacherName",teacherName),
+                new SqlParameter("@teacherDepartment",teacherDepartment)
+            };
+            //查询
+            DataTable dataTable = DBUtils.getDBUtils().getRecordsWithPage(sql, parameters, size, page);
             //存放结果
             List<Teacher> teacherList = new List<Teacher>();
             //遍历
@@ -386,9 +405,75 @@ namespace hubu.sgms.DAL.Impl
             string succeed = "成功删除" + count + "个教师信息";
             return succeed;
         }
+        #endregion
 
 
+        #region 学生
+        // 添加学生信息
+        public string AddStudentInfo(string studentID, string studentName, string studentSex, string studentIDCard, int studentAge, string studentDepartment, string studentMajor, string studentGrade, string studentType, string studentAddress, string studentNative, string studentBirthplace, string studentPoliticsstatus, string studentContact, string studentFamily, string studentAward, string studentOther, int studentStatus, string studentClass)
+        {
+            string sql = "Insert into Student(student_id,student_name,student_sex,student_age,student_id_card,student_department,student_major,student_grade,student_type,student_address,student_native,student_birthplace,student_politicsstatus,student_contact,student_family,student_award,student_other,status,class_id,college_id)values" +
+                                            "(@studentID,@studentName,@studentSex,@studentAge,@studentIDCard,(select name from College where college_id=@studentDepartment)," +
+                                                                                                                               "(select major_name from Major where major_id =@studentMajor)," +
+                                                                                                                                             "@studentGrade,@studentType,@studentAddress,@studentNative,@studentBirthplace,@studentPoliticsstatus,@studentContact,@studentFamily,@studentAward,@studentOther,@studentStatus,@studentClass,@studentDepartment)";
+            SqlParameter[] parameters = {
+                new SqlParameter("@studentID",studentID),
+                new SqlParameter("@studentName",studentName),
+                new SqlParameter("@studentSex",studentSex),
+                new SqlParameter("@studentIDCard",studentIDCard),
+                new SqlParameter("@studentAge",studentAge),
+                new SqlParameter("@studentDepartment",studentDepartment),
+                new SqlParameter("@studentMajor",studentMajor),
+                new SqlParameter("@studentGrade",studentGrade),
+                new SqlParameter("@studentType",studentType),
+                new SqlParameter("@studentAddress",studentAddress),
+                new SqlParameter("@studentNative",studentNative),
+                new SqlParameter("@studentBirthplace",studentBirthplace),
+                new SqlParameter("@studentPoliticsstatus",studentPoliticsstatus),
+                new SqlParameter("@studentContact",studentContact),
+                new SqlParameter("@studentFamily",studentFamily),
+                new SqlParameter("@studentAward",studentAward),
+                new SqlParameter("@studentOther",studentOther),
+                new SqlParameter("@studentStatus",studentStatus),
+                new SqlParameter("@studentClass",studentClass)
+            };
 
+            int count = DBUtils.getDBUtils().cud(sql, parameters);
+            string succeed = "成功添加" + count + "个学生信息";
+            return succeed;
+        }
+
+        // 修改学生信息
+        public string UpdateStudentInfo(string studentID, string studentName, string studentSex, string studentIDCard, int studentAge, string studentDepartment, string studentMajor, string studentGrade, string studentType, string studentAddress, string studentNative, string studentBirthplace, string studentPoliticsstatus, string studentContact, string studentFamily, string studentAward, string studentOther, int studentStatus)
+        {
+            string sql = "update Student set student_name=@studentName,student_sex=@studentSex,student_age=@studentAge,student_id_card=@studentIDCard,student_department=@studentDepartment,student_major=@studentMajor," +
+                "student_grade=@studentGrade,student_type=@studentType,student_address=@studentAddress,student_native=@studentNative,student_birthplace=@studentBirthplace,student_politicsstatus=@studentPoliticsstatus," +
+                "student_contact=@studentContact,student_family=@studentFamily,student_award=@studentAward,student_other=@studentOther,status=@studentStatus where student_id=@studentID";
+            SqlParameter[] parameters = {
+                new SqlParameter("@studentID",studentID),
+                new SqlParameter("@studentName",studentName),
+                new SqlParameter("@studentSex",studentSex),
+                new SqlParameter("@studentIDCard",studentIDCard),
+                new SqlParameter("@studentAge",studentAge),
+                new SqlParameter("@studentDepartment",studentDepartment),
+                new SqlParameter("@studentMajor",studentMajor),
+                new SqlParameter("@studentGrade",studentGrade),
+                new SqlParameter("@studentType",studentType),
+                new SqlParameter("@studentAddress",studentAddress),
+                new SqlParameter("@studentNative",studentNative),
+                new SqlParameter("@studentBirthplace",studentBirthplace),
+                new SqlParameter("@studentPoliticsstatus",studentPoliticsstatus),
+                new SqlParameter("@studentContact",studentContact),
+                new SqlParameter("@studentFamily",studentFamily),
+                new SqlParameter("@studentAward",studentAward),
+                new SqlParameter("@studentOther",studentOther),
+                new SqlParameter("@studentStatus",studentStatus)
+            };
+
+            int count = DBUtils.getDBUtils().cud(sql, parameters);
+            string succeed = "成功修改" + count + "个学生信息";
+            return succeed;
+        }
 
         // 通过 ID 查找对应的学生信息
         Student IRoleInfoDAL.SelectStudent(string studentID)
@@ -427,12 +512,76 @@ namespace hubu.sgms.DAL.Impl
             return student;
         }
 
+        // 查看相应条件的学生信息个数
+        public int SelectCountStudent(string studentName, string studentDepartment, string studentMajor, string studentClass)
+        {
+            string sqlNull = "2b婿s1jHh子1hl91";
+            string sql = "select count(*) as res from Student";
+
+            #region 拼接sql
+            if (studentDepartment != sqlNull && studentMajor == sqlNull && studentName == sqlNull)   //只输入学院信息
+            {
+                sql = "select count(*) as res from Student where (college_id=@studentDepartment) and (student_major=(select major_name from Major where major_id=@studentMajor) or 1=1)and" +
+                    "(class_id=@studentClass or 1=1) and (student_name=@studentName or 1=1)";
+            }
+            if (studentMajor != sqlNull && studentClass == sqlNull && studentName == sqlNull)   //只输入学院，专业
+            {
+                sql = "select count(*) as res from Student where (college_id=@studentDepartment) and (student_major=(select major_name from Major where major_id=@studentMajor)) and" +
+                    "(class_id=@studentClass or 1=1) and (student_name=@studentName or 1=1)";
+            }
+            if (studentClass != sqlNull && studentName == sqlNull)   //只输入学院，专业，班级
+            {
+                sql = "select count(*) as res from Student where (college_id=@studentDepartment) and (student_major=(select major_name from Major where major_id=@studentMajor)) and" +
+                    "(class_id=@studentClass) and (student_name=@studentName or 1=1)";
+            }
+            if (studentDepartment == sqlNull && studentName != sqlNull)   //只输入姓名
+            {
+                sql = "select count(*) as res from Student where (college_id=@studentDepartment or 1=1) and (student_major=(select major_name from Major where major_id=@studentMajor) or 1=1) and" +
+                    "(class_id=@studentClass or 1=1) and (student_name like @studentName)";
+                studentName = "%" + studentName + "%";
+            }
+            if (studentDepartment != sqlNull && studentMajor == sqlNull && studentName != sqlNull)   //只输入学院，姓名
+            {
+                sql = "select count(*) as res from Student where (college_id=@studentDepartment) and (student_major=(select major_name from Major where major_id=@studentMajor) or 1=1) and" +
+                    "(class_id=@studentClass or 1=1) and (student_name like @studentName)";
+                studentName = "%" + studentName + "%";
+            }
+            if (studentMajor != sqlNull && studentClass == sqlNull && studentName != sqlNull)   //只输入学院，专业，姓名
+            {
+                sql = "select count(*) as res from Student where (college_id=@studentDepartment) and (student_major=(select major_name from Major where major_id=@studentMajor)) and" +
+                    "(class_id=@studentClass or 1=1) and (student_name like @studentName)";
+                studentName = "%" + studentName + "%";
+            }
+            if (studentClass != sqlNull && studentName != sqlNull)  //都输入了
+            {
+                sql = "select count(*) as res from Student where (college_id=@studentDepartment) and (student_major=(select major_name from Major where major_id=@studentMajor)) and" +
+                    "(class_id=@studentClass) and (student_name like @studentName)";
+                studentName = "%" + studentName + "%";
+            }
+            #endregion
+
+            SqlParameter[] parameters = {
+                new SqlParameter("@studentDepartment",studentDepartment),
+                new SqlParameter("@studentMajor",studentMajor),
+                new SqlParameter("@studentClass",studentClass),
+                new SqlParameter("@studentName",studentName)
+            };
+
+            //查询
+            DataTable dataTable = DBUtils.getDBUtils().getRecords(sql, parameters);
+
+            DataRow row = dataTable.Rows[0];
+            int count = Convert.ToInt32(row["res"]);
+            return count;
+        }
+
         // 通过条件查找学生信息
-        public List<Student> SelectAllStudentInfo(string studentName, string studentDepartment, string studentMajor, string studentClass)
+        public List<Student> SelectAllStudentInfo(string studentName, string studentDepartment, string studentMajor, string studentClass, int page, int size)
         {
             string sqlNull = "2b婿s1jHh子1hl91";
             string sql = "select * from Student";
 
+            #region 拼接sql
             if (studentDepartment != sqlNull && studentMajor == sqlNull && studentName == sqlNull)   //只输入学院信息
             {
                 sql = "select * from Student where (college_id=@studentDepartment) and (student_major=(select major_name from Major where major_id=@studentMajor) or 1=1)and" +
@@ -472,6 +621,7 @@ namespace hubu.sgms.DAL.Impl
                     "(class_id=@studentClass) and (student_name like @studentName)";
                 studentName = "%" + studentName + "%";
             }
+            #endregion
 
             SqlParameter[] parameter = {
                 new SqlParameter("@studentDepartment",studentDepartment),
@@ -480,7 +630,7 @@ namespace hubu.sgms.DAL.Impl
                 new SqlParameter("@studentName",studentName)
             };
 
-            DataTable dataTable = DBUtils.getDBUtils().getRecords(sql, parameter);
+            DataTable dataTable = DBUtils.getDBUtils().getRecordsWithPage(sql, parameter, size, page);
             List<Student> studentList = new List<Student>();
 
             foreach (DataRow dataRow in dataTable.Rows)
@@ -525,5 +675,6 @@ namespace hubu.sgms.DAL.Impl
             string succeed = "成功删除" + count + "个学生信息";
             return succeed;
         }
+        #endregion
     }
 }
