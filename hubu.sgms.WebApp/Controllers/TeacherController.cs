@@ -12,7 +12,7 @@ namespace hubu.sgms.WebApp.Controllers
     public class TeacherController : Controller
     {
         ITeacherService teacherService = new TeacherServiceImpl();
-
+        private IRoleInfoService roleInfoService = new RoleInfoServiceImpl();
         // GET: Teacher
         public ActionResult Index()
         {
@@ -263,10 +263,44 @@ namespace hubu.sgms.WebApp.Controllers
             string username = login.username;
             //string username = "201702";
 
-            Teacher teacher = teacherService.SelTeacherByTeacherId("150003");
+            Teacher teacher = roleInfoService.SelectTeacherByID(username);
             ViewData["teacher"] = teacher;
 
             return View();
+        }
+
+
+        //提交修改后的个人信息
+        public ActionResult SubmitUpdateTeacherInfo(string teacherID, string contact, string other)
+        {
+
+            Teacher teacher = roleInfoService.SelectTeacherByID(teacherID);
+
+            string teacherName = teacher.teacher_name;
+            string teacherSex = teacher.teachert_sex;
+            string teacherIDCard = teacher.teacher_id_card;
+            int teacherAge = Convert.ToInt32(teacher.teachert_age);
+            string teacherDepartment = teacher.teacher_department;
+            string teacherTitle = teacher.teacher_title;
+            string teacherNative = teacher.teacher_native;
+            string teacherBirthplace = teacher.teacher_birthplace;
+            string teacherPoliticsstatus = teacher.teacher_politicsstatus;
+            string teacherTeachingtime = teacher.teacher_teachingtime;
+            string teacherContact = teacher.teacher_contact;
+            string teacherOther = teacher.teacher_other;
+            int teacherStatus = Convert.ToInt32(teacher.status);
+            if (contact != "")
+            {
+                teacherContact = teacher.teacher_contact;
+            }
+            if (other != "")
+            {
+                teacherContact = teacher.teacher_other;
+            }
+
+            string result = roleInfoService.UpdateTeacherInfo(teacherID, teacherName, teacherSex, teacherIDCard, teacherAge, teacherDepartment, teacherTitle, teacherNative, teacherBirthplace, teacherPoliticsstatus, teacherTeachingtime, teacherContact, teacherOther, teacherStatus);
+
+            return Json(new { status = 1, msg = "OK!" });
         }
 
     }

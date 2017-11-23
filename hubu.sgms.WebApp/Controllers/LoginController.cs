@@ -60,6 +60,9 @@ namespace hubu.sgms.WebApp.Controllers
                     case "student":
                         successUrl = "/Student/Index"; 
                         break;
+                    case "superadmin":
+                        successUrl = "/Admin/Index";
+                        break;
                     default:
                         return Json(new { status = "0", msg = "身份不合法!" });
                 }

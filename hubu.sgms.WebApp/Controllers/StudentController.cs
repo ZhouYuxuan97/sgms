@@ -14,7 +14,7 @@ namespace hubu.sgms.WebApp.Controllers
     {
         private IStudentService studentService = StudentServiceImpl.Instance();
         private ICourseService courseService = new CourseServiceImpl();
-
+        private IRoleInfoService roleInfoService = new RoleInfoServiceImpl();
         // GET: Student
         public ActionResult Index()
         {
@@ -85,7 +85,6 @@ namespace hubu.sgms.WebApp.Controllers
             return View();
         }
         #endregion
-
 
         #region 学生选课接口,参数:老师课程表id
         /// <summary>
@@ -177,7 +176,6 @@ namespace hubu.sgms.WebApp.Controllers
                 course_choose_count=course_Choosings.Count,course_choose=course_Choosings});
         }
         #endregion
-
 
         #region 跳转到选课页面
         public ActionResult ChooseCoursePage(string courseTypeName)
@@ -299,6 +297,7 @@ namespace hubu.sgms.WebApp.Controllers
         }
         #endregion
 
+        //修改个人信息
         public ActionResult ChangeSelfInfo()
         {
             Login login = (Login)Session["loginInfo"];
@@ -315,10 +314,49 @@ namespace hubu.sgms.WebApp.Controllers
 
             Student student = studentService.GetStudentById(username);
             ViewData["student"] = student;
+            var temp = student.student_id;
             return View();
         }
 
 
-       
+        //提交修改后的个人信息
+        public ActionResult SubmitUpdateStudentInfo(string studentID,string contact,string award,string other)
+        {
+            Student student = roleInfoService.SelectStudent(studentID);
+            string studentName = student.student_name;
+            string studentSex = student.student_sex;
+            string studentIDCard = student.student_id_card;
+            int    studentAge = Convert.ToInt32(student.student_age);
+            string studentDepartment = student.student_department;
+            string studentMajor = student.student_major;
+            string studentGrade = student.student_grade;
+            string studentType = student.student_type;
+            string studentAddress = student.student_address;
+            string studentNative = student.student_native;
+            string studentBirthplace = student.student_birthplace;
+            string studentPoliticsstatus = student.student_politicsstatus;
+            string studentContact = student.student_contact;
+            string studentFamily = student.student_family;
+            string studentAward = student.student_award;
+            string studentOther = student.student_other;
+            int studentStatus =Convert.ToInt32(student.status);
+            if (contact != "")
+            {
+                studentContact = contact;
+            }
+            if (award != "")
+            {
+                studentAward = award;
+            }
+            if (other != "")
+            {
+                studentOther = other;
+            }
+
+            string result = roleInfoService.UpdateStudentInfo(studentID, studentName, studentSex, studentIDCard, studentAge, studentDepartment, studentMajor, studentGrade, studentType, studentAddress, studentNative, studentBirthplace, studentPoliticsstatus, studentContact, studentFamily, studentAward, studentOther, studentStatus);
+
+            return Json(new { status = 1, msg = "OK!" });
+        }
+
     }
 }
