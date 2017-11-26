@@ -389,6 +389,7 @@
     <Content Include="Scripts\bs\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Scripts\bs\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Scripts\bs\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="Properties\PublishProfiles\ASP.NET第六组.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap3.3.7.min.js" />
     <Content Include="Scripts\bs\css\bootstrap-theme.css" />
