@@ -303,5 +303,31 @@ namespace hubu.sgms.WebApp.Controllers
             return Json(new { status = 1, msg = "OK!" });
         }
 
+        public ActionResult CheckStatus()
+        {
+            Status status = teacherService.GetAllStatus("t");
+            if (status.global_status == "0")
+            {
+                return Json(new { status = "0", msg = "系统已经关闭，请联系管理员！" });
+            }
+            else
+            {
+                return Json(new { status = "1", msg = "正常使用" });
+            }
+        }
+
+        public ActionResult CheckStatusStudent()
+        {
+            Status status = teacherService.GetAllStatus("s");
+            if (status.global_status == "0")
+            {
+                return Json(new { status = "0", msg = "系统已经关闭，请联系管理员！" });
+            }
+            else
+            {
+                return Json(new { status = "1", msg = "正常使用" });
+            }
+        }
+
     }
 }

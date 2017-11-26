@@ -113,7 +113,19 @@
         })
 
         function jumpToScore(courseid) {
-            window.location.href = "/Teacher/TeacherCheckScore?courseid=" + courseid;
+            $.ajax({
+                type: "post",
+                url: "/Teacher/CheckStatus",
+                success: function (data) {
+                    if (data.status == "0") {
+                        alert(data.msg);
+                        return;
+                    }
+                    else {
+                        window.location.href = "/Teacher/TeacherCheckScore?courseid=" + courseid;
+                    }
+                }
+            });
         }
     </script>
 </body>
