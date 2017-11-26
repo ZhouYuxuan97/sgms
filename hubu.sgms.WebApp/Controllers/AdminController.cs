@@ -14,9 +14,8 @@ namespace hubu.sgms.WebApp.Controllers
     {
         private ICourseService courseService = new CourseServiceImpl();
         private IRoleInfoService roleInfoService = new RoleInfoServiceImpl();
-        ITeacherService teacherService = new TeacherServiceImpl();
 
-        // 生成ID方法
+         // 生成ID方法
         public string CreateID()
         {
             DateTime dt_new = DateTime.Now;
@@ -744,37 +743,6 @@ namespace hubu.sgms.WebApp.Controllers
             string result = roleInfoService.UpdateAdminInfo(adminID, adminName, adminSex, adminIDCard, adminDepartment, adminContact, adminOther, adminStatus);
 
             return View("ChangeSelfInfo");
-        }
-
-
-        public ActionResult changeTeacherStatus()
-        {
-            Status status = teacherService.GetAllStatus("t");
-            if(status.global_status == "1")
-            {
-                teacherService.SetAllStatus("1","0");
-                return Json(new { status = "0", msg = "打分系统已经关闭" });
-            }
-            else
-            {
-                teacherService.SetAllStatus("1", "1");
-                return Json(new { status = "1", msg = "打分系统已经开启" });
-            }
-        }
-
-        public ActionResult changeStudenttatus()
-        {
-            Status status = teacherService.GetAllStatus("s");
-            if (status.global_status == "1")
-            {
-                teacherService.SetAllStatus("2", "0");
-                return Json(new { status = "0", msg = "选课系统已经关闭" });
-            }
-            else
-            {
-                teacherService.SetAllStatus("2", "1");
-                return Json(new { status = "1", msg = "选课系统已经开启" });
-            }
         }
     }
 }

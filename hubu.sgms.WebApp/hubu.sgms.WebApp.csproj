@@ -818,7 +818,6 @@
     <Content Include="Scripts\layui\font\iconfont.ttf" />
     <Content Include="Scripts\layui\font\iconfont.woff" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Admin\StudentChangePassword.cshtml" />
     <Content Include="Views\Course\CourseDisplay.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Admin\AddCourseInfo.cshtml" />

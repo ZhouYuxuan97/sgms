@@ -79,11 +79,12 @@
         </form>
     </div>
 
+
     <script>
         function changeStuInfo() {
             var Contact = document.getElementById("studentContact").value;
             var Other = document.getElementById("studentOther").value;
-            var id=@admin.administrator_id_card;
+            var id=@admin.administrator_id;
             window.location.href = "/Admin/SubmitUpdateAdInfo?adminID="+id+"&contact="+Contact+"&other="+Other;
         }
 
