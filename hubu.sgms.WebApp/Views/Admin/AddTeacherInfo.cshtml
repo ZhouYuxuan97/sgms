@@ -22,12 +22,12 @@
     <form id="formid" class="stdform stdform2" action="/Admin/SubmitAddTeacherInfo" method="post">
         <p>
             <label>姓名</label>
-            <span class="field"><input type="text" name="teacherName" id="teacherName" class="longinput" style="width:200px;" /></span>
+            <span class="field"><input type="text" name="teacherName" id="teacherName" class="longinput" style="width:280px;" /></span>
         </p>
         <p>
             <label>性别</label>
             <span class="field" style="width:400px;">
-                <select id="teacherSex" name="teacherSex">
+                <select id="teacherSex" name="teacherSex" style="width:300px;">
                     <option value="" style="display: none;" disabled selected>性别</option>
                     <option value="男">男</option>
                     <option value="女">女</option>
@@ -37,16 +37,16 @@
         </p>
         <p>
             <label>卡号</label>
-            <span class="field"><input type="text" name="teacherIDCard" id="teacherIDCard" class="longinput" style="width:200px;" /></span>
+            <span class="field"><input type="text" name="teacherIDCard" id="teacherIDCard" class="longinput" style="width:280px;" /></span>
         </p>
         <p>
             <label>年龄</label>
-            <span class="field"><input type="text" name="teacherAge" id="teacherAge" class="longinput" style="width:200px;" /></span>
+            <span class="field"><input type="text" name="teacherAge" id="teacherAge" class="longinput" style="width:280px;" /></span>
         </p>
         <p>
             <label>教师所属学院</label>
-            <span class="field" style="width:700px;">
-                <select name="teacherDepartment" id="teacherDepartment">
+            <span class="field" style="width:300px;">
+                <select name="teacherDepartment" id="teacherDepartment" style="width:300px;">
                     <option value="" style="display: none;" disabled selected>所属学院</option>
                     <option value="文学院">文学院</option>
                     <option value="新闻传播学院">新闻传播学院</option>
@@ -74,12 +74,12 @@
         </p>
         <p>
             <label>教师Title</label>
-            <span class="field"><input type="text" name="teacherTitle" id="teacherTitle" class="longinput" style="width:200px;" /></span>
+            <span class="field"><input type="text" name="teacherTitle" id="teacherTitle" class="longinput" style="width:280px;" /></span>
         </p>
         <p>
             <label>民族</label>
-            <span class="field" style="width:400px;">
-                <select name="teacherNative" id="teacherNative">
+            <span class="field" style="width:300px;">
+                <select name="teacherNative" id="teacherNative" style="width:300px;">
                     <option value="" style="display: none;" disabled selected>民族</option>
                     <option value="汉">汉</option>
                     <option value="土家">土家</option>
@@ -88,17 +88,18 @@
                 </select>
             </span>
         </p>
+
         <p>
             <label>出身地地址</label>
-            <span class="field"><input type="text" name="teacherBirthplace" id="teacherBirthplace" class="longinput" style="width:200px;" /></span>
+            <span class="field"><input type="text" name="teacherBirthplace" id="teacherBirthplace" class="longinput" style="width:280px;" /></span>
         </p>
 
         <!--上传照片-->
 
         <p>
             <label>政治面貌</label>
-            <span class="field" style="width:400px;">
-                <select name="teacherPoliticsstatus" id="teacherPoliticsstatus">
+            <span class="field" style="width:300px;">
+                <select name="teacherPoliticsstatus" id="teacherPoliticsstatus" style="width:300px;">
                     <option value="" style="display: none;" disabled selected>政治面貌</option>
                     <option value="群众">群众</option>
                     <option value="中共党员">中共党员</option>
@@ -108,8 +109,8 @@
         </p>
         <p>
             <label>教课时间</label>
-            <span class="field" style="width:400px;">
-                <select name="teacherTeachingtime" id="teacherTeachingtime">
+            <span class="field" style="width:300px;">
+                <select name="teacherTeachingtime" id="teacherTeachingtime" style="width:300px;">
                     <option value="" style="display: none;" disabled selected>教课时间</option>
                     <option value="5年以下">5年以下</option>
                     <option value="5-10年">5-10年</option>
@@ -120,16 +121,16 @@
         </p>
         <p>
             <label>联系方式</label>
-            <span class="field"><input type="text" name="teacherContact" id="teacherContact" class="longinput" style="width:200px;" /></span>
+            <span class="field"><input type="text" name="teacherContact" id="teacherContact" class="longinput" style="width:280px;" /></span>
         </p>
         <p>
             <label>个人描述</label>
-            <span class="field"><input type="text" name="teacherOther" id="teacherOther" class="longinput" style="width:200px;" /></span>
+            <span class="field"><input type="text" name="teacherOther" id="teacherOther" class="longinput" style="width:280px;" /></span>
         </p>
         <p>
             <label>状态</label>
-            <span class="field" style="width:400px;">
-                <select name="teacherStatus" id="teacherStatus">
+            <span class="field" style="width:300px;">
+                <select name="teacherStatus" id="teacherStatus" style="width:300px;">
                     <option value="" style="display: none;" disabled selected>状态</option>
                     <option value="1">正常</option>
                     <option value="2">休假</option>
@@ -137,6 +138,7 @@
                 </select>
             </span>
         </p>
+
         <div class="showcase sweet" style="height:50px;background-color:white" align="Center">
             <button class="submit" align="Center" style="width:120px;margin-top: 10px;">添加教师信息</button>
         </div>

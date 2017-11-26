@@ -37,7 +37,7 @@
                 <form id="formid" class="navbar-form navbar-left" role="search" method="post" action="/Admin/AdminAlterStudentInfo">
                     <label>学院: </label>
                     <span class="field" style="width:400px;">
-                        <select name="studentDepartment" id="studentDepartment">
+                        <select name="studentDepartment" id="studentDepartment" style="width:300px;">
                             <option value="" style="display: none;" disabled selected>所属学院</option>
                             <option value="1">文学院</option>
                             <option value="2">新闻传播学院</option>
@@ -64,22 +64,22 @@
                     </span>  &nbsp;
                     <label>专业:</label>
                     <span class="field" style="width:900px;">
-                        <select name="majorlist" id="majorlist">
+                        <select name="majorlist" id="majorlist" style="width:300px;">
                             <option value="" selected="selected">请先选择学院</option>
 
                         </select>
                     </span>  &nbsp;
                     <label>班级:</label>
                     <span class="field" style="width:900px;">
-                        <select name="classlist" id="classlist">
+                        <select name="classlist" id="classlist" style="width:300px;">
                             <option value="" selected="selected">请先选择专业</option>
 
                         </select>
                     </span>  &nbsp;
                     <div class="form-group">
-                        <input id="studentName" name="studentName" type="text" class="form-control" placeholder="请输入学生姓名" />
+                        <input id="studentName" style="width:280px;" name="studentName" type="text" class="form-control" placeholder="请输入学生姓名" />
                     </div>
-                    <input id="searchCourseBtn" type="button" onclick="refreshCourseList()" class="btn btn-info" value="查询" />
+                    <input style="width:280px;" id="searchCourseBtn" type="button" onclick="refreshCourseList()" class="btn btn-info" value="查询" />
                     <input id="pageNumber" name="page" type="text" value="" style="display:none" />
                     <input id="sizeNumber" name="size" type="text" value="" style="display:none" />
                 </form>
