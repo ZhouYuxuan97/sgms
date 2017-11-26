@@ -230,6 +230,7 @@ namespace hubu.sgms.WebApp.Controllers
             return RedirectToAction("TeacherCheckScore",new { courseid = courseid });
         }
 
+
         public ActionResult ChangeSelfInfo()
         {
             Login login = (Login)Session["loginInfo"];
@@ -244,10 +245,11 @@ namespace hubu.sgms.WebApp.Controllers
             string username = login.username;
             //string username = "201702";
 
-            Teacher teacher = teacherService.SelTeacherByTeacherId(username);
+            Teacher teacher = roleInfoService.SelectTeacherByID(username);
             ViewData["teacher"] = teacher;
             return View();
         }
+
 
         public ActionResult ChangePassPage()
         {
@@ -273,7 +275,6 @@ namespace hubu.sgms.WebApp.Controllers
         //提交修改后的个人信息
         public ActionResult SubmitUpdateTeacherInfo(string teacherID, string contact, string other)
         {
-
             Teacher teacher = roleInfoService.SelectTeacherByID(teacherID);
 
             string teacherName = teacher.teacher_name;
@@ -289,18 +290,18 @@ namespace hubu.sgms.WebApp.Controllers
             string teacherContact = teacher.teacher_contact;
             string teacherOther = teacher.teacher_other;
             int teacherStatus = Convert.ToInt32(teacher.status);
-            if (contact != "")
+            if (!contact.Equals(teacherContact))
             {
-                teacherContact = teacher.teacher_contact;
+                teacherContact = contact;
             }
-            if (other != "")
+            if (!other.Equals(teacherOther))
             {
-                teacherContact = teacher.teacher_other;
+                teacherContact = other;
             }
 
             string result = roleInfoService.UpdateTeacherInfo(teacherID, teacherName, teacherSex, teacherIDCard, teacherAge, teacherDepartment, teacherTitle, teacherNative, teacherBirthplace, teacherPoliticsstatus, teacherTeachingtime, teacherContact, teacherOther, teacherStatus);
 
-            return Json(new { status = 1, msg = "OK!" });
+            return View("ChangeSelfInfo");
         }
 
     }

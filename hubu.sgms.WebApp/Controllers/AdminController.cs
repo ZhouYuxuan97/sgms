@@ -674,5 +674,75 @@ namespace hubu.sgms.WebApp.Controllers
             return View("AdminAlterStudentInfo");
         }
         #endregion
+
+
+        public ActionResult ChangeSelfInfo()
+        {
+            Login login = (Login)Session["loginInfo"];
+            if (login == null)
+            {
+                //未登录
+                //跳转到登录页面
+                Session["prePage"] = "/Admin/Index";//将当前页面地址放入session，登录后返回到该页面
+                return RedirectToAction("Index", "Login");
+            }
+
+            string username = login.username;
+            //string username = "201702";
+
+            Administrator admin = roleInfoService.SelectAdministratorByID(username);
+
+            ViewData["admin"] = admin;
+            return View();
+        }
+
+
+        public ActionResult ChangePassPage()
+        {
+            Login login = (Login)Session["loginInfo"];
+            if (login == null)
+            {
+                //未登录
+                //跳转到登录页面
+                Session["prePage"] = "/Admin/Index";//将当前页面地址放入session，登录后返回到该页面
+                return RedirectToAction("Index", "Login");
+            }
+
+            string username = login.username;
+            //string username = "201702";
+
+            Administrator admin = roleInfoService.SelectAdministratorByID(username);
+            ViewData["admin"] = admin;
+
+            return View();
+        }
+
+
+        //提交修改后的个人信息
+        public ActionResult SubmitUpdateAdInfo(string adminID, string contact, string other)
+        {
+            Administrator admin = roleInfoService.SelectAdministratorByID(adminID);
+            adminID = admin.administrator_id;
+            string adminName = admin.administrator_name;
+            string adminSex = admin.administratort_sex;
+            string adminIDCard = admin.administrator_contact;
+            string adminContact = admin.administrator_department;
+            string adminDepartment = admin.administrator_id_card;
+            string adminOther = admin.administrator_other;
+            int adminStatus = Convert.ToInt32(admin.status);
+
+            if (!contact.Equals(adminContact))
+            {
+                adminContact = contact;
+            }
+            if (!other.Equals(adminOther))
+            {
+                adminOther = other;
+            }
+
+            string result = roleInfoService.UpdateAdminInfo(adminID, adminName, adminSex, adminIDCard, adminDepartment, adminContact, adminOther, adminStatus);
+
+            return View("ChangeSelfInfo");
+        }
     }
 }

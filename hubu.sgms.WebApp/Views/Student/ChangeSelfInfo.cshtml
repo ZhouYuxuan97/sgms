@@ -15,7 +15,7 @@
     @{ var student = ViewData["student"] as hubu.sgms.Model.Student;}
     <div class="container">
         <div class="z_content" >
-            <div class="embed-responsive embed-responsive-16by9" style="height:1000px">
+            <div class="embed-responsive embed-responsive-16by9" style="height:700px">
                 <form id="defaultForm" class="form-horizontal" action="javascript:void(0);" style="margin-top: 10px; ">
                             
                    <input type="hidden" id="studentID"  class="form-control" name="studentID" placeholder="姓名" value="@student.student_id" disabled="disabled" />
@@ -106,7 +106,11 @@
             </div>
         </div>
     </div>
-
+   
+     <div style="text-align:center">
+        <button onclick="ww()" class="btn btn-success">&nbsp;&nbsp;提交&nbsp;&nbsp;</button>
+        <button type="reset" class="btn btn-warning" name="reset" value="重置">&nbsp;&nbsp;重置&nbsp;&nbsp;</button>
+    </div>
     <div style="text-align:center">
             <button  onclick="ww()"  class="btn btn-success">&nbsp;&nbsp;提交&nbsp;&nbsp;</button>
             <button  type="reset" class="btn btn-warning" name="reset" value="重置">&nbsp;&nbsp;重置&nbsp;&nbsp;</button>
@@ -117,26 +121,7 @@
             var Contact = document.getElementById("studentContact").value;
             var Other = document.getElementById("studentOther").value;
             var id=@student.student_id;
-
-
-            $.ajax({
-                url: "/Student/SubmitUpdateStudentInfo",
-                method: "post",
-                data:{
-                    studentID:id,
-                    contact:Contact,
-                    award:Award,
-                    other:Other
-                },
-                success: function (data) {
-                    if (data.status == 1) {
-                        alert("修改成功!");
-                    }
-                    else {
-                        alert("修改失败!");
-                    }
-                }
-            });
+            window.location.href = "/Student/SubmitUpdateStudentInfo?studentID="+id+"&contact="+Contact+"&award="+Award+"&other="+Other;
         }
     </script>    
 </body>

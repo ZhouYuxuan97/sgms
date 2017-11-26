@@ -865,6 +865,7 @@
     <Content Include="Views\Admin\ChangeSelfInfo.cshtml" />
     <Content Include="Views\Teacher\ChangeSelfInfo.cshtml" />
     <Content Include="Views\Course\HomeCourseDetail.cshtml" />
+    <Content Include="Views\Teacher\SubmitUpdateTeacherInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
