@@ -32,10 +32,16 @@ namespace hubu.sgms.BLL.Impl
             return administrator;
         }
 
-        // 条件查找管理员信息
-        public List<Administrator> SelectAllAdminInfo(string adminName, string adminDepartment)
+        // 查看相应条件的管理员信息个数
+        public int SelectCountAdmin(string adminName, string adminDepartment)
         {
-            return roleDAL.SelectAllAdminInfo(adminName, adminDepartment);
+            return roleDAL.SelectCountAdmin(adminName, adminDepartment);
+        }
+
+        // 条件查找管理员信息
+        public List<Administrator> SelectAllAdminInfo(string adminName, string adminDepartment, int page, int size)
+        {
+            return roleDAL.SelectAllAdminInfo(adminName, adminDepartment, page, size);
         }
 
         // 删除管理员
@@ -65,10 +71,16 @@ namespace hubu.sgms.BLL.Impl
             return teacher;
         }
 
-        // 通过条件查找教师信息
-        public List<Teacher> SelectAllTeacherInfo(string teacherName, string teacherDepartment)
+        // 查看相应条件的教师信息个数
+        public int SelectCountTeacher(string teacherName, string teacherDepartment)
         {
-            return roleDAL.SelectAllTeacherInfo(teacherName, teacherDepartment);
+            return roleDAL.SelectCountTeacher(teacherName, teacherDepartment);
+        }
+
+        // 通过条件查找教师信息
+        public List<Teacher> SelectAllTeacherInfo(string teacherName, string teacherDepartment, int page, int size)
+        {
+            return roleDAL.SelectAllTeacherInfo(teacherName, teacherDepartment, page, size);
         }
 
         // 通过 ID 删除对应的教师
@@ -98,10 +110,16 @@ namespace hubu.sgms.BLL.Impl
             return student;
         }
 
-        // 通过条件查找学生信息
-        public List<Student> SelectAllStudentInfo(string studentName, string studentDepartment, string studentMajor, string studentClass)
+        // 查看相应条件的学生信息个数
+        public int SelectCountStudent(string studentName, string studentDepartment, string studentMajor, string studentClass)
         {
-            return roleDAL.SelectAllStudentInfo(studentName, studentDepartment, studentMajor, studentClass);
+            return roleDAL.SelectCountStudent(studentName, studentDepartment, studentMajor, studentClass);
+        }
+
+        // 通过条件查找学生信息
+        public List<Student> SelectAllStudentInfo(string studentName, string studentDepartment, string studentMajor, string studentClass, int page, int size)
+        {
+            return roleDAL.SelectAllStudentInfo(studentName, studentDepartment, studentMajor, studentClass, page, size);
         }
 
         // 通过 ID 删除对应的学生
