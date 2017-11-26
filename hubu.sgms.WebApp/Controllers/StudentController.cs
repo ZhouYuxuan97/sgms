@@ -340,22 +340,22 @@ namespace hubu.sgms.WebApp.Controllers
             string studentAward = student.student_award;
             string studentOther = student.student_other;
             int studentStatus =Convert.ToInt32(student.status);
-            if (contact != "")
+            if (contact != null)
             {
                 studentContact = contact;
             }
-            if (award != "")
+            if (award != null)
             {
                 studentAward = award;
             }
-            if (other != "")
+            if (other != null)
             {
                 studentOther = other;
             }
 
             string result = roleInfoService.UpdateStudentInfo(studentID, studentName, studentSex, studentIDCard, studentAge, studentDepartment, studentMajor, studentGrade, studentType, studentAddress, studentNative, studentBirthplace, studentPoliticsstatus, studentContact, studentFamily, studentAward, studentOther, studentStatus);
 
-            return Json(new { status = 1, msg = "OK!" });
+            return View("ChangeSelfInfo");
         }
 
     }

@@ -20,24 +20,34 @@
     <!--修改个人信息-->
     <div class="container">
         <form id="defaultForm" class="form-horizontal" action="javascript:void(0);" style="margin-top: 10px;">
+
+            <input type="hidden" id="studentID" class="form-control" name="studentID" placeholder="@admin.administrator_id_card" value="@admin.administrator_id_card" disabled="disabled" />
+
             <div class="form-group">
                 <label class="col-lg-3 control-label">用户名</label>
                 <div class="col-lg-6">
-                    <input type="text" class="form-control" name="student_name" placeholder="用户名" value="admin.administrator_name" />
+                    <input disabled="disabled" type="text" class="form-control" name="student_name" placeholder="@admin.administrator_name" value="@admin.administrator_name" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-lg-3 control-label">性别</label>
+                <div class="col-lg-6">
+                    <input disabled="disabled" type="text" class="form-control" name="student_name" placeholder="@admin.administratort_sex" value="@admin.administratort_sex" />
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="col-lg-3 control-label">账号</label>
                 <div class="col-lg-6">
-                    <input type="text" class="form-control" name="student_id_card" placeholder="账号" value="admin.administrator_id_card" />
+                    <input disabled="disabled" type="text" class="form-control" name="student_id_card" placeholder="@admin.administrator_id_card" value="@admin.administrator_id_card" />
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="col-lg-3 control-label">院系</label>
                 <div class="col-lg-6">
-                    <input type="text" class="form-control" name="email" placeholder="院系" value="admin.administrator_department" />
+                    <input disabled="disabled" type="text" class="form-control" name="email" placeholder="@admin.administrator_department" value="@admin.administrator_department" />
                 </div>
             </div>       
 
@@ -45,7 +55,7 @@
             <div class="form-group">
                 <label class="col-lg-3 control-label">联系方式</label>
                 <div class="col-lg-6">
-                    <input type="text" class="form-control" name="student_phone" placeholder="手机号" value="admin.administrator_contact" />
+                    <input id="studentContact" type="text" class="form-control" name="student_phone" placeholder="@admin.administrator_contact" value="@admin.administrator_contact" />
                 </div>
             </div>
 
@@ -53,7 +63,7 @@
             <div class="form-group">
                 <label class="col-lg-3 control-label">个人描述</label>
                 <div class="col-lg-6">
-                    <textarea rows="3" class="form-control" name="student_other" value="admin.administrator_other"></textarea>
+                    <textarea id="studentOther" rows="3" class="form-control" name="student_other" placeholder="@admin.administrator_other"  style="height:170px" value="@admin.administrator_other"></textarea>
                 </div>
             </div>
 
@@ -68,10 +78,16 @@
             </div>
         </form>
     </div>
-    <script type="text/javascript" src="~/Scripts/layui/layui.js"></script>
-    <script type="text/javascript" src="~/Scripts/dist/js/formValidation.js"></script>
-    <script type="text/javascript" src="~/Scripts/dist/js/framework/bootstrap.js"></script>
-    <script type="text/javascript" src="~/Scripts/dist/js/language/zh_CN.js"></script>
-    <script src="~/Scripts/student.js"></script>
+
+    <script>
+        function changeStuInfo() {
+            var Contact = document.getElementById("studentContact").value;
+            var Other = document.getElementById("studentOther").value;
+            var id=@admin.administrator_id_card;
+            window.location.href = "/Admin/SubmitUpdateAdInfo?adminID="+id+"&contact="+Contact+"&other="+Other;
+        }
+
+    </script>
+   
 </body>
 </html>
