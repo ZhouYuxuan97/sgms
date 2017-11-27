@@ -246,7 +246,22 @@ namespace hubu.sgms.WebApp.Controllers
             //string username = "201702";
 
             Teacher teacher = roleInfoService.SelectTeacherByID(username);
-            ViewData["teacher"] = teacher;
+
+
+            ViewData["teacher_id"] = teacher.teacher_id;
+            ViewData["teacherName"]  = teacher.teacher_name;
+            ViewData["teacherSex"]  = teacher.teachert_sex;
+            ViewData["teacherIDCard"]  = teacher.teacher_id_card;
+            ViewData["teacherAge"]  = Convert.ToInt32(teacher.teachert_age);
+            ViewData["teacherDepartment"]  = teacher.teacher_department;
+            ViewData["teacherTitle"]  = teacher.teacher_title;
+            ViewData["teacherNative"]  = teacher.teacher_native;
+            ViewData["teacherBirthplace"]  = teacher.teacher_birthplace;
+            ViewData["teacherPoliticsstatus"]  = teacher.teacher_politicsstatus;
+            ViewData["teacherTeachingtime"]  = teacher.teacher_teachingtime;
+            ViewData["teacherContact"]  = teacher.teacher_contact;
+            ViewData["teacherOther"]  = teacher.teacher_other;
+            ViewData["teacherStatus"]  = Convert.ToInt32(teacher.status);
             return View();
         }
 
@@ -296,7 +311,7 @@ namespace hubu.sgms.WebApp.Controllers
             }
             if (!other.Equals(teacherOther))
             {
-                teacherContact = other;
+                teacherOther = other;
             }
 
             string result = roleInfoService.UpdateTeacherInfo(teacherID, teacherName, teacherSex, teacherIDCard, teacherAge, teacherDepartment, teacherTitle, teacherNative, teacherBirthplace, teacherPoliticsstatus, teacherTeachingtime, teacherContact, teacherOther, teacherStatus);

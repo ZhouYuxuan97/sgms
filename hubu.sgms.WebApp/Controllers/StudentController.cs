@@ -313,6 +313,27 @@ namespace hubu.sgms.WebApp.Controllers
             //string username = "201702";
 
             Student student = studentService.GetStudentById(username);
+
+            ViewData["student_id"] = student.student_id;
+            ViewData["studentName"]= student.student_name;
+            ViewData["studentSex"]= student.student_sex;
+            ViewData["studentIDCard"]= student.student_id_card;
+            ViewData["studentAge"]= Convert.ToInt32(student.student_age);
+            ViewData["studentDepartment"]= student.student_department;
+            ViewData["studentMajor"]= student.student_major;
+            ViewData["studentGrade"]= student.student_grade;
+            ViewData["studentType"]= student.student_type;
+            ViewData["studentAddress"]= student.student_address;
+            ViewData["studentNative"]= student.student_native;
+            ViewData["studentBirthplace"]= student.student_birthplace;
+            ViewData["studentPoliticsstatus"]= student.student_politicsstatus;
+            ViewData["studentContact"]= student.student_contact;
+            ViewData["studentFamily"]= student.student_family;
+            ViewData["studentAward"]= student.student_award;
+            ViewData["studentOther"]= student.student_other;
+            ViewData["studentStatus"]= Convert.ToInt32(student.status);
+
+
             ViewData["student"] = student;
             var temp = student.student_id;
             return View();

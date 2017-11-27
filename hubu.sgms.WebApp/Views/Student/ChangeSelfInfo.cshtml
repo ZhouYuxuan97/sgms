@@ -12,39 +12,41 @@
 </head>
 <body >
     <!--修改个人信息-->
-    @{ var student = ViewData["student"] as hubu.sgms.Model.Student;}
     <div class="container">
         <div class="z_content" >
             <div class="embed-responsive embed-responsive-16by9" style="height:700px">
                 <form id="defaultForm" class="form-horizontal" action="javascript:void(0);" style="margin-top: 10px; ">
                             
-                   <input type="hidden" id="studentID"  class="form-control" name="studentID" placeholder="姓名" value="@student.student_id" disabled="disabled" />
+                   <input type="hidden" id="studentID"  class="form-control" name="studentID" placeholder="姓名" 
+                          value="@ViewData["student_id"]"
+                           disabled ="disabled" />
 
                         <div class="form-group">
                                 <label class="col-lg-3 control-label" >姓名</label>
                             <div class="col-lg-6">
-                                <input type="text" id="studentName" class="form-control" name="studentName" placeholder="姓名" value="@student.student_name" disabled="disabled"/>
+                                <input type="text" id="studentName" class="form-control" name="studentName" placeholder="姓名" 
+                                       value="@ViewData["studentName"]" disabled="disabled"/>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-lg-3 control-label">学号</label>
                             <div class="col-lg-6">
-                                <input type="text" id="studentIDCard" class="form-control" name="studentIDCard" placeholder="学号" value="@student.student_id_card" disabled="disabled"/>
+                                <input type="text" id="studentIDCard" class="form-control" name="studentIDCard" placeholder="学号" value="@ViewData["studentIDCard"]" disabled="disabled"/>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-lg-3 control-label">性别</label>
                             <div class="col-lg-6">
-                                <input type="text" id="studentSex" class="form-control" name="studentSex" placeholder="性别" value="@student.student_sex" disabled="disabled" />
+                                <input type="text" id="studentSex" class="form-control" name="studentSex" placeholder="性别" value="@ViewData["studentSex"]" disabled="disabled" />
                             </div>
                         </div>
                    
                     <div class="form-group">
                         <label class="col-lg-3 control-label">年级</label>
                         <div class="col-lg-6">
-                            <input type="text" id="studentGrade" class="form-control" name="studentGrade" placeholder="年级" value="@student.student_grade" disabled="disabled"/>
+                            <input type="text" id="studentGrade" class="form-control" name="studentGrade" placeholder="年级" value="@ViewData["studentGrade"]" disabled="disabled"/>
                         </div>
                     </div>
 
@@ -52,14 +54,14 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label">学生类型</label>
                         <div class="col-lg-6">
-                            <input type="text" id="studentType" class="form-control" name="studentType" placeholder="学生类型" value="@student.student_type" disabled="disabled"/>
+                            <input type="text" id="studentType" class="form-control" name="studentType" placeholder="学生类型" value="@ViewData["studentType"]" disabled="disabled"/>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-3 control-label">院系</label>
                         <div class="col-lg-6">
-                            <input type="text" id="studentDepartment" class="form-control" name="studentDepartment" placeholder="院系" value="@student.student_department" disabled="disabled" />
+                            <input type="text" id="studentDepartment" class="form-control" name="studentDepartment" placeholder="院系" value="@ViewData["studentDepartment"]" disabled="disabled" />
                         </div>
                     </div>
 
@@ -67,7 +69,7 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label">专业</label>
                         <div class="col-lg-6">
-                            <input type="text" id="studentMajor" class="form-control" name="studentMajor" placeholder="专业" value="@student.student_major" disabled="disabled" />
+                            <input type="text" id="studentMajor" class="form-control" name="studentMajor" placeholder="专业" value="@ViewData["studentMajor"]" disabled="disabled" />
                         </div>
                     </div>
 
@@ -75,7 +77,7 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label">住宿地点</label>
                         <div class="col-lg-6">
-                            <input type="text" id="studentAddress" class="form-control" name="studentAddress" placeholder="住宿地点" value="@student.student_address" disabled="disabled"/>
+                            <input type="text" id="studentAddress" class="form-control" name="studentAddress" placeholder="住宿地点" value="@ViewData["studentAddress"]" disabled="disabled"/>
                         </div>
                     </div>
 
@@ -84,21 +86,21 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label">联系方式</label>
                         <div class="col-lg-6">
-                            <input type="text" id="studentContact" class="form-control" name="studentContact" placeholder="手机号" value="@student.student_contact"/>
+                            <input type="text" id="studentContact" class="form-control" name="studentContact" placeholder="@ViewData["studentContact"]" value="@ViewData["studentContact"]"/>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-3 control-label">所获奖项</label>
                         <div class="col-lg-6">
-                            <textarea rows="3" id="studentAward" class="form-control" name="studentAward" placeholder="@student.student_award" value="@student.student_award"></textarea>
+                            <textarea rows="3" id="studentAward" class="form-control" name="studentAward" placeholder="@ViewData["studentAward"]" value="@ViewData["studentAward"]"></textarea>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-3 control-label">个人描述</label>
                         <div class="col-lg-6">
-                            <textarea rows="3" id="studentOther" class="form-control" name="studentOther" placeholder="@student.student_other" value="@student.student_other"></textarea>
+                            <textarea rows="3" id="studentOther" class="form-control" name="studentOther" placeholder="@ViewData["studentOther"]" value="@ViewData["studentOther"]"></textarea>
                         </div>
                     </div> 
                 </form>
@@ -117,7 +119,7 @@
             var Award = document.getElementById("studentAward").value;
             var Contact = document.getElementById("studentContact").value;
             var Other = document.getElementById("studentOther").value;
-            var id=@student.student_id;
+            var id=@ViewData["student_id"];
             window.location.href = "/Student/SubmitUpdateStudentInfo?studentID="+id+"&contact="+Contact+"&award="+Award+"&other="+Other;
         }
     </script>    

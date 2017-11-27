@@ -16,38 +16,38 @@
     <script type="text/javascript" src="~/Scripts/pcasunzip.js" charset="gb2312"></script>
 </head>
 <body>
-    @{ var admin = ViewData["admin"] as hubu.sgms.Model.Administrator;}
     <!--修改个人信息-->
     <div class="container">
         <form id="defaultForm" class="form-horizontal" action="javascript:void(0);" style="margin-top: 10px;">
 
-            <input type="hidden" id="studentID" class="form-control" name="studentID" placeholder="@admin.administrator_id_card" value="@admin.administrator_id_card" disabled="disabled" />
+            <input type="hidden" id="studentID" class="form-control" name="studentID" placeholder="@ViewData["adminID"]" 
+                   value="@ViewData["adminID"]" disabled="disabled" />
 
             <div class="form-group">
                 <label class="col-lg-3 control-label">用户名</label>
                 <div class="col-lg-6">
-                    <input disabled="disabled" type="text" class="form-control" name="student_name" placeholder="@admin.administrator_name" value="@admin.administrator_name" />
+                    <input disabled="disabled" type="text" class="form-control" name="student_name" placeholder="@ViewData["adminName"]" value="@ViewData["adminName"]" />
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="col-lg-3 control-label">性别</label>
                 <div class="col-lg-6">
-                    <input disabled="disabled" type="text" class="form-control" name="student_name" placeholder="@admin.administratort_sex" value="@admin.administratort_sex" />
+                    <input disabled="disabled" type="text" class="form-control" name="student_name" placeholder="@ViewData["adminSex"]" value="@ViewData["adminSex"]" />
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="col-lg-3 control-label">账号</label>
                 <div class="col-lg-6">
-                    <input disabled="disabled" type="text" class="form-control" name="student_id_card" placeholder="@admin.administrator_id_card" value="@admin.administrator_id_card" />
+                    <input disabled="disabled" type="text" class="form-control" name="student_id_card" placeholder="@ViewData["administrator_id_card"]" value="@ViewData["administrator_id_card"]" />
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="col-lg-3 control-label">院系</label>
                 <div class="col-lg-6">
-                    <input disabled="disabled" type="text" class="form-control" name="email" placeholder="@admin.administrator_department" value="@admin.administrator_department" />
+                    <input disabled="disabled" type="text" class="form-control" name="email" placeholder="@ViewData["adminDepartment"]" value="@ViewData["adminDepartment"]" />
                 </div>
             </div>       
 
@@ -55,7 +55,7 @@
             <div class="form-group">
                 <label class="col-lg-3 control-label">联系方式</label>
                 <div class="col-lg-6">
-                    <input id="studentContact" type="text" class="form-control" name="student_phone" placeholder="@admin.administrator_contact" value="@admin.administrator_contact" />
+                    <input id="studentContact" type="text" class="form-control" name="student_phone" placeholder="@ViewData["adminContact"]" value="@ViewData["adminContact"]" />
                 </div>
             </div>
 
@@ -63,7 +63,7 @@
             <div class="form-group">
                 <label class="col-lg-3 control-label">个人描述</label>
                 <div class="col-lg-6">
-                    <textarea id="studentOther" rows="3" class="form-control" name="student_other" placeholder="@admin.administrator_other"  style="height:170px" value="@admin.administrator_other"></textarea>
+                    <textarea id="studentOther" rows="3" class="form-control" name="student_other" placeholder="@ViewData["adminOther"]"  style="height:170px" value="@ViewData["adminOther"]"></textarea>
                 </div>
             </div>
 
@@ -84,7 +84,7 @@
         function changeStuInfo() {
             var Contact = document.getElementById("studentContact").value;
             var Other = document.getElementById("studentOther").value;
-            var id=@admin.administrator_id;
+            var id=@ViewData["adminID"];
             window.location.href = "/Admin/SubmitUpdateAdInfo?adminID="+id+"&contact="+Contact+"&other="+Other;
         }
 

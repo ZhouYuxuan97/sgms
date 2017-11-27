@@ -36,7 +36,7 @@ namespace hubu.sgms.WebApp.Controllers
                 Session["prePage"] = "/Admin/Index";//将当前页面地址放入session，登录后返回到该页面
                 return RedirectToAction("Index", "Login");
             }
-            if (login.username == "100")
+            if (login.username == "123456")
             {
                 ViewData["info1"]= "/Arrange/SASelArrangeCourseInfo";
                 ViewData["info2"] = "/Arrange/SAArrangeCourse";
@@ -692,7 +692,14 @@ namespace hubu.sgms.WebApp.Controllers
 
             Administrator admin = roleInfoService.SelectAdministratorByID(username);
 
-            ViewData["admin"] = admin;
+            ViewData["adminID"]  = admin.administrator_id;
+            ViewData["adminName"]  = admin.administrator_name;
+            ViewData["adminSex"]  = admin.administratort_sex;
+            ViewData["adminContact"]= admin.administrator_contact;
+            ViewData["administrator_id_card"] = admin.administrator_id_card;
+            ViewData["adminDepartment"]  = admin.administrator_department;
+            ViewData["adminOther"]  = admin.administrator_other;
+            ViewData["adminStatus"]  =admin.status;
             return View();
         }
 
