@@ -30,8 +30,8 @@ namespace hubu.sgms.WebApp.Controllers
             {
                 return RedirectToAction("Index", "Login");
             }
-
-            string teacher_id = Session["teacher_id"].ToString();
+          
+            string teacher_id = info.username;
             IList<Teacher_course> courseList = teacherService.SelectAllCourse(teacher_id);
             return Json(new { courseList = courseList });
         }
@@ -104,7 +104,6 @@ namespace hubu.sgms.WebApp.Controllers
             {
                 return RedirectToAction("Index","Login");
             }
-
             Session.Add("teacher_id", info.username);
             return View();
         }
