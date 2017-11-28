@@ -62,6 +62,8 @@
                         <a href="javascript:;">其他</a>
                         <dl class="layui-nav-child">
                             <dd class="z_item"><a href="javascript:;">查询管理员信息</a></dd>
+                            <dd class="z_item"><a href="javascript:changeTeacherStatus();">教师打分开关</a></dd>
+                            <dd class="z_item"><a href="javascript:changeStudentStatus();">学生选课开关</a></dd>
                         </dl>
                     </li>
                 </ul>
@@ -123,7 +125,7 @@
                     </div>
                 </div>
 
-                <!--添加课程信息-->
+                <!--查询课程信息-->
                 <div class="z_content">
                     <div class="embed-responsive embed-responsive-16by9">
                         <iframe class='embed-responsive-item' src='@ViewData["info1"]' noResize scrolling="no" width="100%" height="800px" style="min-height:1200px" allowtransparency="true" allowfullscreen="true" allowfullscreenInteractive="true" border="0" frameborder="0"></iframe>
@@ -142,6 +144,20 @@
                     <div class="embed-responsive embed-responsive-16by9">
                         <iframe class='embed-responsive-item' src='/Admin/AlterAdminInfo' width="100%" height="100%" style="min-height:1600px" allowtransparency="true" allowfullscreen="true" allowfullscreenInteractive="true" border="0" frameborder="0"></iframe>
                     </div>
+                </div>
+                <div class="z_content">
+                    <!--系统开关老师-->
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class='embed-responsive-item' src='' width="100%" height="100%" style="min-height:1600px" allowtransparency="true" allowfullscreen="true" allowfullscreenInteractive="true" border="0" frameborder="0"></iframe>
+                    </div>
+
+                </div>
+                <div class="z_content">
+                    <!--系统开关学生-->
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class='embed-responsive-item' src='' width="100%" height="100%" style="min-height:1600px" allowtransparency="true" allowfullscreen="true" allowfullscreenInteractive="true" border="0" frameborder="0"></iframe>
+                    </div>
+
                 </div>
             </div>
 
@@ -168,6 +184,27 @@ layui.use('element', function(){
   var element = layui.element;
 
 });
+
+        function changeTeacherStatus() {
+            $.ajax({
+                type: "post",
+                url: "/Admin/changeTeacherStatus",
+                success: function (data) {
+                    alert(data.msg);
+                    return;
+                }
+            });
+        }
+        function changeStudentStatus() {
+            $.ajax({
+                type: "post",
+                url: "/Admin/changeStudenttatus",
+                success: function (data) {
+                    alert(data.msg);
+                    return;
+                }
+            });
+        }
 
 
     </script>
