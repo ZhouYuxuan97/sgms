@@ -38,12 +38,7 @@ namespace hubu.sgms.WebApp.Controllers
                 Session["prePage"] = "/Admin/Index";//将当前页面地址放入session，登录后返回到该页面
                 return RedirectToAction("Index", "Login");
             }
-            string role = login.role;
-            if (!"admin".Equals(role))
-            {
-                return RedirectToAction("Index", "Login");
-            }
-            if (login.username == "100")
+            if (login.username == "123456")
             {
                 ViewData["info1"]= "/Arrange/SASelArrangeCourseInfo";
                 ViewData["info2"] = "/Arrange/SAArrangeCourse";
@@ -932,12 +927,93 @@ namespace hubu.sgms.WebApp.Controllers
         #endregion
 
 
+        public ActionResult ChangeSelfInfo()
+        {
+            Login login = (Login)Session["loginInfo"];
+            if (login == null)
+            {
+                //未登录
+                //跳转到登录页面
+                Session["prePage"] = "/Admin/Index";//将当前页面地址放入session，登录后返回到该页面
+                return RedirectToAction("Index", "Login");
+            }
+
+            string username = login.username;
+            //string username = "201702";
+
+            Administrator admin = roleInfoService.SelectAdministratorByID(username);
+
+            ViewData["adminID"]  = admin.administrator_id;
+            ViewData["adminName"]  = admin.administrator_name;
+            ViewData["adminSex"]  = admin.administratort_sex;
+            ViewData["adminContact"]= admin.administrator_contact;
+            ViewData["administrator_id_card"] = admin.administrator_id_card;
+            ViewData["adminDepartment"]  = admin.administrator_department;
+            ViewData["adminOther"]  = admin.administrator_other;
+            ViewData["adminStatus"]  =admin.status;
+            return View();
+        }
+
+
+        public ActionResult ChangePassPage()
+        {
+            Login login = (Login)Session["loginInfo"];
+            if (login == null)
+            {
+                //未登录
+                //跳转到登录页面
+                Session["prePage"] = "/Admin/Index";//将当前页面地址放入session，登录后返回到该页面
+                return RedirectToAction("Index", "Login");
+            }
+
+            string username = login.username;
+            //string username = "201702";
+
+            Administrator admin = roleInfoService.SelectAdministratorByID(username);
+            ViewData["admin"] = admin;
+
+            return View();
+        }
+
+
+        //提交修改后的个人信息
+        public ActionResult SubmitUpdateAdInfo(string adminID, string contact, string other)
+        {
+            Administrator admin = roleInfoService.SelectAdministratorByID(adminID);
+            adminID = admin.administrator_id;
+            string adminName = admin.administrator_name;
+            string adminSex = admin.administratort_sex;
+            string adminIDCard = admin.administrator_contact;
+            string adminContact = admin.administrator_department;
+            string adminDepartment = admin.administrator_id_card;
+            string adminOther = admin.administrator_other;
+            int adminStatus = Convert.ToInt32(admin.status);
+
+            if (!contact.Equals(adminContact))
+            {
+                adminContact = contact;
+            }
+            if (!other.Equals(adminOther))
+            {
+                adminOther = other;
+            }
+
+            string result = roleInfoService.UpdateAdminInfo(adminID, adminName, adminSex, adminIDCard, adminDepartment, adminContact, adminOther, adminStatus);
+
+            return View("ChangeSelfInfo");
+        }
+
+        public ActionResult ChangeStatus()
+        {
+            return View();
+        }
+
         public ActionResult changeTeacherStatus()
         {
             Status status = teacherService.GetAllStatus("t");
             if (status.global_status == "0")
             {
-                teacherService.SetAllStatus("1","1");
+                teacherService.SetAllStatus("1", "1");
                 return Json(new { status = "0", msg = "打分系统已开启！" });
             }
             else

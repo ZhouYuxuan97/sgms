@@ -13,6 +13,7 @@ namespace hubu.sgms.WebApp.Controllers
     {
         ITeacherService teacherService = new TeacherServiceImpl();
         private IRoleInfoService roleInfoService = new RoleInfoServiceImpl();
+
         // GET: Teacher
         public ActionResult Index()
         {
@@ -161,6 +162,7 @@ namespace hubu.sgms.WebApp.Controllers
 
             return View();
         }
+
 
         /// <summary>
         /// 老师查看课程和成绩
@@ -318,6 +320,7 @@ namespace hubu.sgms.WebApp.Controllers
             return View("ChangeSelfInfo");
         }
 
+
         public ActionResult CheckStatus()
         {
             Status status = teacherService.GetAllStatus("t");
@@ -330,6 +333,7 @@ namespace hubu.sgms.WebApp.Controllers
                 return Json(new { status = "1", msg = "正常使用" });
             }
         }
+
 
         public ActionResult CheckStatusStudent()
         {

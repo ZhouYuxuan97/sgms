@@ -349,6 +349,11 @@
     <Content Include="Content\public\style.css" />
     <Content Include="Content\student.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Content\switch\css\normalize.css" />
+    <Content Include="Content\switch\css\style.css" />
+    <Content Include="Content\switch\js\index.js" />
+    <Content Include="Content\switch\js\jquery.js" />
+    <Content Include="Content\switch\js\prefixfree.min.js" />
     <Content Include="FileUploadImage\6.jpg" />
     <Content Include="FileUploadImage\7.jpg" />
     <Content Include="FileUploadImage\hubei02.png" />
@@ -391,6 +396,7 @@
     <Content Include="Scripts\bs\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Scripts\bs\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Scripts\bs\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\switch\scss\style.scss" />
     <None Include="Properties\PublishProfiles\ASP.NET第六组.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap3.3.7.min.js" />
@@ -865,6 +871,7 @@
     <Content Include="Views\Teacher\ChangeSelfInfo.cshtml" />
     <Content Include="Views\Course\HomeCourseDetail.cshtml" />
     <Content Include="Views\Teacher\SubmitUpdateTeacherInfo.cshtml" />
+    <Content Include="Views\Admin\ChangeStatus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

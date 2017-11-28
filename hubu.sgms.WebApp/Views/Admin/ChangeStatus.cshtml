@@ -1,0 +1,344 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>开关设置</title>
+    <style>
+        html {
+            font-family: sans-serif;
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+            display: block;
+        }
+
+        audio, canvas, progress, video {
+            display: inline-block;
+            vertical-align: baseline;
+        }
+
+            audio:not([controls]) {
+                display: none;
+                height: 0;
+            }
+
+        [hidden], template {
+            display: none;
+        }
+
+        a {
+            background-color: transparent;
+        }
+
+            a:active, a:hover {
+                outline: 0;
+            }
+
+        abbr[title] {
+            border-bottom: 1px dotted;
+        }
+
+        b, strong {
+            font-weight: bold;
+        }
+
+        dfn {
+            font-style: italic;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin: 0.67em 0;
+        }
+
+        mark {
+            background: #ff0;
+            color: #000;
+        }
+
+        small {
+            font-size: 80%;
+        }
+
+        sub, sup {
+            font-size: 75%;
+            line-height: 0;
+            position: relative;
+            vertical-align: baseline;
+        }
+
+        sup {
+            top: -0.5em;
+        }
+
+        sub {
+            bottom: -0.25em;
+        }
+
+        img {
+            border: 0;
+        }
+
+        svg:not(:root) {
+            overflow: hidden;
+        }
+
+        figure {
+            margin: 1em 40px;
+        }
+
+        hr {
+            -moz-box-sizing: content-box;
+            -webkit-box-sizing: content-box;
+            box-sizing: content-box;
+            height: 0;
+        }
+
+        pre {
+            overflow: auto;
+        }
+
+        code, kbd, pre, samp {
+            font-family: monospace, monospace;
+            font-size: 1em;
+        }
+
+        button, input, optgroup, select, textarea {
+            color: inherit;
+            font: inherit;
+            margin: 0;
+        }
+
+        button {
+            overflow: visible;
+        }
+
+        button, select {
+            text-transform: none;
+        }
+
+        button, html input[type="button"], input[type="reset"], input[type="submit"] {
+            -webkit-appearance: button;
+            cursor: pointer;
+        }
+
+            button[disabled], html input[disabled] {
+                cursor: default;
+            }
+
+            button::-moz-focus-inner, input::-moz-focus-inner {
+                border: 0;
+                padding: 0;
+            }
+
+        input {
+            line-height: normal;
+        }
+
+            input[type="checkbox"], input[type="radio"] {
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+                padding: 0;
+            }
+
+            input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
+                height: auto;
+            }
+
+            input[type="search"] {
+                -webkit-appearance: textfield;
+                -moz-box-sizing: content-box;
+                -webkit-box-sizing: content-box;
+                box-sizing: content-box;
+            }
+
+                input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
+                    -webkit-appearance: none;
+                }
+
+        fieldset {
+            border: 1px solid #c0c0c0;
+            margin: 0 2px;
+            padding: 0.35em 0.625em 0.75em;
+        }
+
+        legend {
+            border: 0;
+            padding: 0;
+        }
+
+        textarea {
+            overflow: auto;
+        }
+
+        optgroup {
+            font-weight: bold;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        td, th {
+            padding: 0;
+        }
+    </style>
+    <style>
+        *, *:before,
+        *:after {
+            box-sizing: border-box;
+        }
+
+        html {
+            font-family: 'Roboto Condensed', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100%;
+            color: #ECEFF1;
+            background-image: radial-gradient(#4f6875, #263238);
+        }
+
+        .toggle {
+            position: relative;
+            display: block;
+            margin: 0 auto;
+            width: 150px;
+            height: 60px;
+            color: white;
+            outline: 0;
+            text-decoration: none;
+            border-radius: 100px;
+            border: 2px solid #546E7A;
+            background-color: #263238;
+            transition: all 500ms;
+        }
+
+            .toggle:active {
+                background-color: #1c2429;
+            }
+
+            .toggle:hover:not(.toggle--moving):after {
+                background-color: #455A64;
+            }
+
+            .toggle:after {
+                display: block;
+                position: absolute;
+                top: 4px;
+                bottom: 4px;
+                left: 4px;
+                width: calc(50% - 4px);
+                line-height: 45px;
+                text-align: center;
+                text-transform: uppercase;
+                font-size: 20px;
+                color: white;
+                background-color: #37474F;
+                border: 2px solid;
+                transition: all 500ms;
+            }
+
+        .toggle--on:after {
+            content: 'On';
+            border-radius: 50px 5px 5px 50px;
+            color: #66BB6A;
+        }
+
+        .toggle--off:after {
+            content: 'Off';
+            border-radius: 5px 50px 50px 5px;
+            transform: translate(100%, 0);
+            color: #f44336;
+        }
+
+        .toggle--moving {
+            background-color: #1c2429;
+        }
+
+            .toggle--moving:after {
+                color: transparent;
+                border-color: #435862;
+                background-color: #222c31;
+                transition: color 0s, transform 500ms, border-radius 500ms, background-color 500ms;
+            }
+
+        h1 {
+            font-size: 40px;
+            margin-top: 0;
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            font-size: 25px;
+            margin-top: 0;
+            margin-bottom: 50px;
+        }
+    </style>
+    <script src="~/Content/switch/js/prefixfree.min.js"></script>
+    <script src="~/Scripts/Course/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="~/Content/admin/sweetalert2.min.css">
+</head>
+<body>
+    <h1>开关设置</h1>
+    <div style="width: 300px;height: 85px;">
+        <div style="float: left;">
+            <h2>学生选课开关</h2>
+        </div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <div style="float: left;">
+            <a href="#" class="toggle toggle--on" id="student" onclick="changeStudentStatus()"></a>
+        </div>
+    </div>
+    <div style="width: 300px;height: 85px;">
+        <div style="float: left;">
+            <h2 style="margin-top: 20px;">教师打分开关</h2>
+        </div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <div style="float: left;">
+            <a href="#" class="toggle toggle--on" id="teacher" onclick="changeTeacherStatus()"></a>
+        </div>
+    </div>
+    <script src='~/Content/switch/js/jquery.js'></script>
+    <script src="~/Content/switch/js/index.js"></script>
+    <script>
+        function changeTeacherStatus() {
+            $.ajax({
+                type: "post",
+                url: "/Admin/changeTeacherStatus",
+                success: function (data) {
+                    swal("操作成功!", data.msg, "success");
+                  //  alert(data.msg);
+                    return;
+                }
+            });
+        }
+        function changeStudentStatus() {
+            $.ajax({
+                type: "post",
+                url: "/Admin/changeStudentStatus",
+                success: function (data) {
+                    swal("操作成功!", data.msg, "success");
+            //        alert(data.msg);
+                    return;
+                }
+            });
+        }
+
+    </script>
+</body>
+
+
+</html>
