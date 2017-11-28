@@ -108,7 +108,7 @@
             var status = document.getElementById("status").value;
             var administrator_sex = document.getElementById("administrator_sex").value;
 
-            if (administrator_id == '' || administrator_name == '' || administrator_id_card == '' || administrator_contact == '' || administrator_department == '' || administrator_other == '' || administrator_sex == '' || status == '') {
+            if (administrator_id == '' || administrator_name == '' || administrator_id_card == '' || administrator_contact == '' || administrator_department == ''  || administrator_sex == '' ) {
                 swal('提交错误', '请检查信息是否完整', 'error');
                 return false;
             } else {
