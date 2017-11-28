@@ -221,7 +221,7 @@ layui.use('element', function(){
         function changeStudentStatus() {
             $.ajax({
                 type: "post",
-                url: "/Admin/changeStudenttatus",
+                url: "/Admin/changeStudentStatus",
                 success: function (data) {
                     alert(data.msg);
                     return;
