@@ -12,6 +12,7 @@ namespace hubu.sgms.WebApp.Controllers
 {
     public class AdminController : Controller
     {
+        ITeacherService teacherService = new TeacherServiceImpl();
         private ICourseService courseService = new CourseServiceImpl();
         private IRoleInfoService roleInfoService = new RoleInfoServiceImpl();
 
@@ -679,5 +680,36 @@ namespace hubu.sgms.WebApp.Controllers
             return View("AdminAlterStudentInfo");
         }
         #endregion
+
+
+        public ActionResult changeTeacherStatus()
+        {
+            Status status = teacherService.GetAllStatus("t");
+            if (status.global_status == "0")
+            {
+                teacherService.SetAllStatus("1","1");
+                return Json(new { status = "0", msg = "打分系统已开启！" });
+            }
+            else
+            {
+                teacherService.SetAllStatus("1", "0");
+                return Json(new { status = "1", msg = "打分系统已关闭！" });
+            }
+        }
+
+        public ActionResult changeStudentStatus()
+        {
+            Status status = teacherService.GetAllStatus("s");
+            if (status.global_status == "0")
+            {
+                teacherService.SetAllStatus("2", "1");
+                return Json(new { status = "0", msg = "选课系统已开启！" });
+            }
+            else
+            {
+                teacherService.SetAllStatus("2", "0");
+                return Json(new { status = "1", msg = "选课系统已关闭！" });
+            }
+        }
     }
 }
