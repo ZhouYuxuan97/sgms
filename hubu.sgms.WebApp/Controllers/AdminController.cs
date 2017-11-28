@@ -36,6 +36,11 @@ namespace hubu.sgms.WebApp.Controllers
                 Session["prePage"] = "/Admin/Index";//将当前页面地址放入session，登录后返回到该页面
                 return RedirectToAction("Index", "Login");
             }
+            string role = login.role;
+            if (!"admin".Equals(role))
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (login.username == "100")
             {
                 ViewData["info1"]= "/Arrange/SASelArrangeCourseInfo";

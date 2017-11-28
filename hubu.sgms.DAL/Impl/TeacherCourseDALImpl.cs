@@ -56,9 +56,13 @@ namespace hubu.sgms.DAL.Impl
             {
                 collegeSql = " college_id='" + collegeId + "' and ";
             }
-            string sql = "select * from Teacher_course where "+collegeSql+" course_id in (select course_id from Course where course_type=@courseType)";
+            int currentYear = DateTime.Now.Year%100;
+            int currentMonth = DateTime.Now.Month;
+            string opentime = currentYear + ((currentMonth >= 7) ? "02" : "01");
+            string sql = "select * from Teacher_course where "+collegeSql+ " course_id in (select course_id from Course where course_type=@courseType and course_opentime=@opentime)";
             SqlParameter[] pars = {
-                new SqlParameter("@courseType",courseType)
+                new SqlParameter("@courseType",courseType),
+                new SqlParameter("@opentime",opentime)
             };
             DataTable dataTable = DBUtils.getDBUtils().getRecords(sql, pars);
             IList<Teacher_course> courseList = new List<Teacher_course>();

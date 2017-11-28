@@ -464,7 +464,11 @@ namespace hubu.sgms.DAL.Impl
         /// <returns></returns>
         public IList<Course_choosing> SelectCourseChoosingListByStu(string stuId)
         {
-            string sql = "select * from Course_choosing where student_id='" + stuId + "'";
+            int currentYear = DateTime.Now.Year % 100;
+            int currentMonth = DateTime.Now.Month;
+            string opentime = currentYear + ((currentMonth >= 7) ? "02" : "01");
+
+            string sql = "select * from Course_choosing cc ,Course c where cc.course_id=c.course_id and cc.student_id='" + stuId + "' and c.course_opentime='" + opentime + "'";
             DataTable dataTable = DBUtils.getDBUtils().getRecords(sql);
             IList<Course_choosing> courses = new List<Course_choosing>();
             foreach(DataRow row in dataTable.Rows)
