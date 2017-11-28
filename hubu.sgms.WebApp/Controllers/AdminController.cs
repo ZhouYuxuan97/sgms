@@ -12,6 +12,7 @@ namespace hubu.sgms.WebApp.Controllers
 {
     public class AdminController : Controller
     {
+        ITeacherService teacherService = new TeacherServiceImpl();
         private ICourseService courseService = new CourseServiceImpl();
         private IRoleInfoService roleInfoService = new RoleInfoServiceImpl();
 
@@ -25,6 +26,7 @@ namespace hubu.sgms.WebApp.Controllers
             string ID = dateDiff.ToString();
             return ID;
         }
+        
         // Admin后台中心主界面
         public ActionResult Index()
         {
@@ -34,6 +36,11 @@ namespace hubu.sgms.WebApp.Controllers
                 //未登录
                 //跳转到登录页面
                 Session["prePage"] = "/Admin/Index";//将当前页面地址放入session，登录后返回到该页面
+                return RedirectToAction("Index", "Login");
+            }
+            string role = login.role;
+            if (!"admin".Equals(role))
+            {
                 return RedirectToAction("Index", "Login");
             }
             if (login.username == "100")
@@ -226,13 +233,31 @@ namespace hubu.sgms.WebApp.Controllers
         }
 
 
-
         #region 增删查改-管理员
         // 管理员添加个人信息
         public ActionResult AddAdminInfo()
         {
-            return View();
+            Login login = (Login)Session["loginInfo"];
+            if (login == null)
+            {
+                //未登录
+                //跳转到登录页面
+                Session["prePage"] = "/Admin/Index";//将当前页面地址放入session，登录后返回到该页面
+                return RedirectToAction("Index", "Login");
+            }
+            if (login.username == "123456")
+            {
+                return View();
+            }
+            else
+            {
+                Response.Write("<script>alert('您没有权限对该信息进行添加操作！');</script>");
+                return View("AlterAdminInfo");
+            }
+           
         }
+
+
         public ActionResult SubmitAddAdminInfo()
         {
             string adminID = CreateID();
@@ -288,20 +313,37 @@ namespace hubu.sgms.WebApp.Controllers
         }
         public ActionResult UpdateAdminInfo(string administratorId)
         {
-            Administrator admiadministrator = roleInfoService.SelectAdministratorByID(administratorId);
+            Login login = (Login)Session["loginInfo"];
+            if (login == null)
+            {
+                //未登录
+                //跳转到登录页面
+                Session["prePage"] = "/Admin/Index";//将当前页面地址放入session，登录后返回到该页面
+                return RedirectToAction("Index", "Login");
+            }
+            if (login.username == "123456")
+            {
+                Administrator admiadministrator = roleInfoService.SelectAdministratorByID(administratorId);
 
-            ViewData["administrator_id"] = admiadministrator.administrator_id;
-            ViewData["administrator_name"] = admiadministrator.administrator_name;
-            ViewData["administratort_sex"] = admiadministrator.administratort_sex;
-            ViewData["administrator_contact"] = admiadministrator.administrator_contact;
-            ViewData["administrator_department"] = admiadministrator.administrator_department;
-            ViewData["administrator_id_card"] = admiadministrator.administrator_id_card;
-            ViewData["administrator_other"] = admiadministrator.administrator_other;
-            ViewData["administrator_photo"] = admiadministrator.administrator_photo;
-            ViewData["status"] = admiadministrator.status;
+                ViewData["administrator_id"] = admiadministrator.administrator_id;
+                ViewData["administrator_name"] = admiadministrator.administrator_name;
+                ViewData["administratort_sex"] = admiadministrator.administratort_sex;
+                ViewData["administrator_contact"] = admiadministrator.administrator_contact;
+                ViewData["administrator_department"] = admiadministrator.administrator_department;
+                ViewData["administrator_id_card"] = admiadministrator.administrator_id_card;
+                ViewData["administrator_other"] = admiadministrator.administrator_other;
+                ViewData["administrator_photo"] = admiadministrator.administrator_photo;
+                ViewData["status"] = admiadministrator.status;
 
-            return View();
+                return View();
+            }
+            else
+            {
+                Response.Write("<script>alert('您没有权限对该信息进行修改操作！');</script>");
+                return View("AlterAdminInfo");
+            }
         }
+
         public ActionResult SubmitUpdateAdminInfo()
         {
             string adminID = Request["administrator_id"];
@@ -341,10 +383,28 @@ namespace hubu.sgms.WebApp.Controllers
         // 删除管理员
         public ActionResult DeleteAdmin(string administratorId)
         {
-            string result = roleInfoService.DeleteAdmin(administratorId);
-            return View("AlterAdminInfo");
+            Login login = (Login)Session["loginInfo"];
+            if (login == null)
+            {
+                //未登录
+                //跳转到登录页面
+                Session["prePage"] = "/Admin/Index";//将当前页面地址放入session，登录后返回到该页面
+                return RedirectToAction("Index", "Login");
+            }
+            if (login.username == "123456")
+            {
+                string result = roleInfoService.DeleteAdmin(administratorId);
+                return View("AlterAdminInfo");
+            }
+            else
+            {
+                Response.Write("<script>alert('您没有权限对该信息进行删除操作！');</script>");
+                return View("AlterAdminInfo");
+            }
+            
         }
         #endregion
+
 
         #region 增删查改-教师
         // 添加教师信息
@@ -352,8 +412,19 @@ namespace hubu.sgms.WebApp.Controllers
         {
             return View();
         }
+
+
         public ActionResult SubmitAddTeacherInfo()
         {
+            Login login = (Login)Session["loginInfo"];
+            if (login == null)
+            {
+                //未登录
+                //跳转到登录页面
+                Session["prePage"] = "/Admin/Index";//将当前页面地址放入session，登录后返回到该页面
+                return RedirectToAction("Index", "Login");
+            }
+
             string teacherID = CreateID();
             string teacherName = Request["teacherName"];
             string teacherSex = Request["teacherSex"];
@@ -373,9 +444,31 @@ namespace hubu.sgms.WebApp.Controllers
             int teacherAge = Convert.ToInt32(TeacherAge);
             int teacherStatus = Convert.ToInt32(TeacherStatus);
 
-            string result = roleInfoService.AddTeacherInfo(teacherID, teacherName, teacherSex, teacherIDCard, teacherAge, teacherDepartment, teacherTitle, teacherNative, teacherBirthplace, teacherPoliticsstatus, teacherTeachingtime, teacherContact, teacherOther, teacherStatus);
 
-            return View("AdminAlterTeacherInfo");
+            Administrator admin = roleInfoService.SelectAdministratorByID(login.username);
+            string departement = admin.administrator_department;
+            if (login.username == "123456")
+            {
+                string result = roleInfoService.AddTeacherInfo(teacherID, teacherName, teacherSex, teacherIDCard, teacherAge, teacherDepartment, teacherTitle, teacherNative, teacherBirthplace, teacherPoliticsstatus, teacherTeachingtime, teacherContact, teacherOther, teacherStatus);
+                Response.Write("<script>alert('添加完成！');</script>");
+                return View("AddTeacherInfo");
+            }
+            else
+            {
+                if (departement.Equals(teacherDepartment))
+                {
+                    string result = roleInfoService.AddTeacherInfo(teacherID, teacherName, teacherSex, teacherIDCard, teacherAge, teacherDepartment, teacherTitle, teacherNative, teacherBirthplace, teacherPoliticsstatus, teacherTeachingtime, teacherContact, teacherOther, teacherStatus);
+                    Response.Write("<script>alert('添加完成！');</script>");
+                    return View("AddTeacherInfo");
+                }
+                else
+                {
+                    Response.Write("<script>alert('您没有权限对其他学院信息进行更改操作！');</script>");
+                    return View("AddTeacherInfo");
+                }
+
+            }
+          
         }
 
         // 管理员修改教师信息
@@ -384,7 +477,7 @@ namespace hubu.sgms.WebApp.Controllers
             string teacherName = Request["teacherName"];
             string teacherDepartment = Request["teacherDepartment"];
             int size = 10;//Convert.ToInt32(Request["size"]);
-            
+
             if (teacherName == null && teacherDepartment == null)   //刚加载页面时不显示信息
             {
                 return View();
@@ -409,14 +502,27 @@ namespace hubu.sgms.WebApp.Controllers
             int page = Convert.ToInt32(Request["page"]);
             ViewData["page"] = page;
 
-            List<Teacher> teacherList = roleInfoService.SelectAllTeacherInfo(teacherName, teacherDepartment, 2, 10);
+            List<Teacher> teacherList = roleInfoService.SelectAllTeacherInfo(teacherName, teacherDepartment, page, size);
             ViewData["teacherList"] = teacherList;
             return View();
         }
+
+
         public ActionResult AdminUpdateTeacherInfo(string teacherID)
         {
-            Teacher teacher = roleInfoService.SelectTeacherByID(teacherID);
+            Login login = (Login)Session["loginInfo"];
+            if (login == null)
+            {
+                //未登录
+                //跳转到登录页面
+                Session["prePage"] = "/Admin/Index";//将当前页面地址放入session，登录后返回到该页面
+                return RedirectToAction("Index", "Login");
+            }
+            Administrator admin = roleInfoService.SelectAdministratorByID(login.username);
+            string departement = admin.administrator_department;
 
+            Teacher teacher = roleInfoService.SelectTeacherByID(teacherID);
+            string teaacherdepartement = teacher.teacher_department;
             ViewData["teacher_id"] = teacher.teacher_id;
             ViewData["teacher_name"] = teacher.teacher_name;
             ViewData["teachert_sex"] = teacher.teachert_sex;
@@ -433,8 +539,26 @@ namespace hubu.sgms.WebApp.Controllers
             ViewData["teacher_other"] = teacher.teacher_other;
             ViewData["status"] = teacher.status;
 
-            return View();
+            if (login.username == "123456")
+            {
+                return View();
+            }
+            else
+            {
+                if (departement.Equals(teaacherdepartement))
+                {
+                    return View();
+                }
+                else
+                {
+                    Response.Write("<script>alert('您没有权限对其他学院信息进行更改操作！');</script>");
+                    return View("AdminAlterTeacherInfo");
+                }
+
+            }
         }
+
+
         public ActionResult SubmitAdminUpdateTeacherInfo()
         {
             string teacherID = Request["teacherID"];
@@ -488,8 +612,42 @@ namespace hubu.sgms.WebApp.Controllers
         // 管理员删除教师
         public ActionResult AdminDeleteTeacher(string teacherID)
         {
-            string result = roleInfoService.AdminDeleteTeacher(teacherID);
-            return View("AdminAlterTeacherInfo");
+            Login login = (Login)Session["loginInfo"];
+            if (login == null)
+            {
+                //未登录
+                //跳转到登录页面
+                Session["prePage"] = "/Admin/Index";//将当前页面地址放入session，登录后返回到该页面
+                return RedirectToAction("Index", "Login");
+            }
+            Administrator admin = roleInfoService.SelectAdministratorByID(login.username);
+            string departement = admin.administrator_department;
+
+            Teacher teacher = roleInfoService.SelectTeacherByID(teacherID);
+            string teaacherdepartement = teacher.teacher_department;
+
+            if (login.username == "123456")
+            {
+                string result = roleInfoService.AdminDeleteTeacher(teacherID);
+                Response.Write("<script>alert('删除成功！');</script>");
+                return View("AdminAlterTeacherInfo");
+            }
+            else
+            {
+                if (departement.Equals(teaacherdepartement))
+                {
+                    string result = roleInfoService.AdminDeleteTeacher(teacherID);
+                    Response.Write("<script>alert('删除成功！');</script>");
+                    return View("AdminAlterTeacherInfo");
+                }
+                else
+                {
+                    Response.Write("<script>alert('您没有权限对其他学院信息进行更改操作！');</script>");
+                    return View("AdminAlterTeacherInfo");
+                }
+
+            }
+           
         }
         #endregion
 
@@ -499,8 +657,18 @@ namespace hubu.sgms.WebApp.Controllers
         {
             return View();
         }
+
         public ActionResult SubmitAddStudentInfo()
         {
+            Login login = (Login)Session["loginInfo"];
+            if (login == null)
+            {
+                //未登录
+                //跳转到登录页面
+                Session["prePage"] = "/Admin/Index";//将当前页面地址放入session，登录后返回到该页面
+                return RedirectToAction("Index", "Login");
+            }
+
             string studentID = CreateID();
             string studentName = Request["studentName"];
             string studentSex = Request["studentSex"];
@@ -526,9 +694,30 @@ namespace hubu.sgms.WebApp.Controllers
             int studentAge = Convert.ToInt32(StudentAge);
             int studentStatus = Convert.ToInt32(StudentStatus);
 
-            string result = roleInfoService.AddStudentInfo(studentID, studentName, studentSex, studentIDCard, studentAge, studentDepartment, studentMajor, studentGrade, studentType, studentAddress, studentNative, studentBirthplace, studentPoliticsstatus, studentContact, studentFamily, studentAward, studentOther, studentStatus, studentClass);
+            Administrator admin = roleInfoService.SelectAdministratorByID(login.username);
+            string departement = admin.administrator_photo;   //这里有问题
+            if (login.username == "123456")
+            {
+                string result = roleInfoService.AddStudentInfo(studentID, studentName, studentSex, studentIDCard, studentAge, studentDepartment, studentMajor, studentGrade, studentType, studentAddress, studentNative, studentBirthplace, studentPoliticsstatus, studentContact, studentFamily, studentAward, studentOther, studentStatus, studentClass);
 
-            return View("AdminAlterStudentInfo");
+                Response.Write("<script>alert('添加完成！');</script>");
+                return View("AddStudentInfo");
+            }
+            else
+            {
+                if (departement.Equals(studentDepartment))
+                {
+                    string result = roleInfoService.AddStudentInfo(studentID, studentName, studentSex, studentIDCard, studentAge, studentDepartment, studentMajor, studentGrade, studentType, studentAddress, studentNative, studentBirthplace, studentPoliticsstatus, studentContact, studentFamily, studentAward, studentOther, studentStatus, studentClass);
+
+                    Response.Write("<script>alert('添加完成！');</script>");
+                    return View("AddStudentInfo");
+                }
+                else
+                {
+                    Response.Write("<script>alert('您没有权限对其他学院信息进行更改操作！');</script>");
+                    return View("AddStudentInfo");
+                }
+            }
         }
 
         // 管理员修改学生信息
@@ -587,7 +776,19 @@ namespace hubu.sgms.WebApp.Controllers
 
         public ActionResult AdminUpdateStudentInfo(string studentID)
         {
+            Login login = (Login)Session["loginInfo"];
+            if (login == null)
+            {
+                //未登录
+                //跳转到登录页面
+                Session["prePage"] = "/Admin/Index";//将当前页面地址放入session，登录后返回到该页面
+                return RedirectToAction("Index", "Login");
+            }
+            Administrator admin = roleInfoService.SelectAdministratorByID(login.username);
+            string departement = admin.administrator_department;
+
             Student student = roleInfoService.SelectStudent(studentID);
+            string studentdepartement = student.student_photo;
 
             ViewData["student_id"] = student.student_id;
             ViewData["student_name"] = student.student_name;
@@ -608,6 +809,26 @@ namespace hubu.sgms.WebApp.Controllers
             ViewData["student_other"] = student.student_other;
             ViewData["status"] = student.status;
 
+            if (login.username == "123456")
+            {
+                return View();
+            }
+            else
+            {
+                if (departement.Equals(studentdepartement))
+                {
+                    return View();
+                }
+                else
+                {
+                    Response.Write("<script>alert('您没有权限对其他学院信息进行更改操作！');</script>");
+                    return View("AdminAlterStudentInfo");
+                }
+
+            }
+           
+
+         
             return View();
         }
 
@@ -671,9 +892,74 @@ namespace hubu.sgms.WebApp.Controllers
         // 管理员删除学生
         public ActionResult AdminDeleteStudent(string studentID)
         {
-            string result = roleInfoService.AdminDeleteStudent(studentID);
-            return View("AdminAlterStudentInfo");
+            Login login = (Login)Session["loginInfo"];
+            if (login == null)
+            {
+                //未登录
+                //跳转到登录页面
+                Session["prePage"] = "/Admin/Index";//将当前页面地址放入session，登录后返回到该页面
+                return RedirectToAction("Index", "Login");
+            }
+            Administrator admin = roleInfoService.SelectAdministratorByID(login.username);
+            string departement = admin.administrator_department;
+
+            Student student = roleInfoService.SelectStudent(studentID);
+            string studentdepartement = student.student_department;
+
+            if (login.username == "123456")
+            {
+                string result = roleInfoService.AdminDeleteStudent(studentID);
+                Response.Write("<script>alert('删除成功！');</script>");
+                return View("AdminAlterStudentInfo");
+            }
+            else
+            {
+                if (departement.Equals(studentdepartement))
+                {
+                    string result = roleInfoService.AdminDeleteStudent(studentID);
+                    Response.Write("<script>alert('删除成功！');</script>");
+                    return View("AdminAlterStudentInfo");
+                }
+                else
+                {
+                    Response.Write("<script>alert('您没有权限对其他学院信息进行更改操作！');</script>");
+                    return View("AdminAlterStudentInfo");
+                }
+
+            }
+
         }
         #endregion
+
+
+        public ActionResult changeTeacherStatus()
+        {
+            Status status = teacherService.GetAllStatus("t");
+            if (status.global_status == "0")
+            {
+                teacherService.SetAllStatus("1","1");
+                return Json(new { status = "0", msg = "打分系统已开启！" });
+            }
+            else
+            {
+                teacherService.SetAllStatus("1", "0");
+                return Json(new { status = "1", msg = "打分系统已关闭！" });
+            }
+        }
+
+        public ActionResult changeStudentStatus()
+        {
+            Status status = teacherService.GetAllStatus("s");
+            if (status.global_status == "0")
+            {
+                teacherService.SetAllStatus("2", "1");
+                return Json(new { status = "0", msg = "选课系统已开启！" });
+            }
+            else
+            {
+                teacherService.SetAllStatus("2", "0");
+                return Json(new { status = "1", msg = "选课系统已关闭！" });
+            }
+        }
     }
 }

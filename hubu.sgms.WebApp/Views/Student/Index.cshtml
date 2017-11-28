@@ -36,8 +36,8 @@
                     <li class="layui-nav-item">
                         <a href="javascript:;">学生选课</a>
                         <dl class="layui-nav-child">
-                            <dd class="z_item"><a href="javascript:;">公共选修课</a></dd>  <!--需要实现-->
-                            <dd class="z_item"><a href="javascript:;">专业选修课</a></dd>	 <!--需要实现-->
+                            <dd class="z_item"><a href="javascript:checkIt1();">公共选修课</a></dd>  <!--需要实现-->
+                            <dd class="z_item"><a href="javascript:checkIt2();">专业选修课</a></dd>	 <!--需要实现-->
                         </dl>
                     </li>
 
@@ -99,7 +99,7 @@
                 <div class="z_content">
                     <!--公共选修课-->
                     <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class='embed-responsive-item' src="~/Student/ChooseCoursePage?courseTypeName=公共选修课" width="100%" allowtransparency="true" allowfullscreen="true" allowfullscreenInteractive="true" scrolling="no" border="0" frameborder="0"></iframe>
+                    <iframe id="ffff1" class='embed-responsive-item' src="" width="100%" allowtransparency="true" allowfullscreen="true" allowfullscreenInteractive="true" scrolling="no" border="0" frameborder="0"></iframe>
                     </div>
                     
                 </div>
@@ -107,7 +107,7 @@
                 <div class="z_content">
                     <div class="z_container">
                         <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class='embed-responsive-item' src="~/Student/ChooseCoursePage?courseTypeName=专业选修课" width="100%" allowtransparency="true" allowfullscreen="true" allowfullscreenInteractive="true" scrolling="no" border="0" frameborder="0"></iframe>
+                            <iframe  id="ffff2" class='embed-responsive-item' src="" width="100%" allowtransparency="true" allowfullscreen="true" allowfullscreenInteractive="true" scrolling="no" border="0" frameborder="0"></iframe>
                         </div>
                     </div>
                 </div>
@@ -147,6 +147,39 @@
     <script type="text/javascript" src="~/Scripts/dist/js/framework/bootstrap.js"></script>
     <script type="text/javascript" src="~/Scripts/dist/js/language/zh_CN.js"></script>
     <script src="~/Scripts/student.js"></script>
+
+    <script>
+        function checkIt1() {
+            $.ajax({
+                type: "post",
+                url: "/Teacher/CheckStatusStudent",
+                success: function (data) {
+                    if (data.status == "0") {
+                        alert(data.msg);
+                        return;
+                    }
+                    else {
+                        $("#ffff1").attr("src", "/Student/ChooseCoursePage?courseTypeName=公共选修课");
+                    }
+                }
+            });
+        }
+        function checkIt2() {
+            $.ajax({
+                type: "post",
+                url: "/Teacher/CheckStatusStudent",
+                success: function (data) {
+                    if (data.status == "0") {
+                        alert(data.msg);
+                        return;
+                    }
+                    else {
+                        $("#ffff2").attr("src", "/Student/ChooseCoursePage?courseTypeName=专业选修课");
+                    }
+                }
+            });
+        }
+    </script>
 </body>
 </html>
 

@@ -230,6 +230,7 @@ namespace hubu.sgms.WebApp.Controllers
             return RedirectToAction("TeacherCheckScore",new { courseid = courseid });
         }
 
+
         public ActionResult ChangeSelfInfo()
         {
             Login login = (Login)Session["loginInfo"];
@@ -244,10 +245,26 @@ namespace hubu.sgms.WebApp.Controllers
             string username = login.username;
             //string username = "201702";
 
-            Teacher teacher = teacherService.SelTeacherByTeacherId(username);
-            ViewData["teacher"] = teacher;
+            Teacher teacher = roleInfoService.SelectTeacherByID(username);
+
+
+            ViewData["teacher_id"] = teacher.teacher_id;
+            ViewData["teacherName"]  = teacher.teacher_name;
+            ViewData["teacherSex"]  = teacher.teachert_sex;
+            ViewData["teacherIDCard"]  = teacher.teacher_id_card;
+            ViewData["teacherAge"]  = Convert.ToInt32(teacher.teachert_age);
+            ViewData["teacherDepartment"]  = teacher.teacher_department;
+            ViewData["teacherTitle"]  = teacher.teacher_title;
+            ViewData["teacherNative"]  = teacher.teacher_native;
+            ViewData["teacherBirthplace"]  = teacher.teacher_birthplace;
+            ViewData["teacherPoliticsstatus"]  = teacher.teacher_politicsstatus;
+            ViewData["teacherTeachingtime"]  = teacher.teacher_teachingtime;
+            ViewData["teacherContact"]  = teacher.teacher_contact;
+            ViewData["teacherOther"]  = teacher.teacher_other;
+            ViewData["teacherStatus"]  = Convert.ToInt32(teacher.status);
             return View();
         }
+
 
         public ActionResult ChangePassPage()
         {
@@ -273,7 +290,6 @@ namespace hubu.sgms.WebApp.Controllers
         //提交修改后的个人信息
         public ActionResult SubmitUpdateTeacherInfo(string teacherID, string contact, string other)
         {
-
             Teacher teacher = roleInfoService.SelectTeacherByID(teacherID);
 
             string teacherName = teacher.teacher_name;
@@ -289,18 +305,44 @@ namespace hubu.sgms.WebApp.Controllers
             string teacherContact = teacher.teacher_contact;
             string teacherOther = teacher.teacher_other;
             int teacherStatus = Convert.ToInt32(teacher.status);
-            if (contact != "")
+            if (!contact.Equals(teacherContact))
             {
-                teacherContact = teacher.teacher_contact;
+                teacherContact = contact;
             }
-            if (other != "")
+            if (!other.Equals(teacherOther))
             {
-                teacherContact = teacher.teacher_other;
+                teacherOther = other;
             }
 
             string result = roleInfoService.UpdateTeacherInfo(teacherID, teacherName, teacherSex, teacherIDCard, teacherAge, teacherDepartment, teacherTitle, teacherNative, teacherBirthplace, teacherPoliticsstatus, teacherTeachingtime, teacherContact, teacherOther, teacherStatus);
 
-            return Json(new { status = 1, msg = "OK!" });
+            return View("ChangeSelfInfo");
+        }
+
+        public ActionResult CheckStatus()
+        {
+            Status status = teacherService.GetAllStatus("t");
+            if (status.global_status == "0")
+            {
+                return Json(new { status = "0", msg = "系统已经关闭，请联系管理员！" });
+            }
+            else
+            {
+                return Json(new { status = "1", msg = "正常使用" });
+            }
+        }
+
+        public ActionResult CheckStatusStudent()
+        {
+            Status status = teacherService.GetAllStatus("s");
+            if (status.global_status == "0")
+            {
+                return Json(new { status = "0", msg = "系统已经关闭，请联系管理员！" });
+            }
+            else
+            {
+                return Json(new { status = "1", msg = "正常使用" });
+            }
         }
 
     }

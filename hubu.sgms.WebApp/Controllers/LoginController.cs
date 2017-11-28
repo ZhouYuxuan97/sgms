@@ -25,11 +25,11 @@ namespace hubu.sgms.WebApp.Controllers
             //添加相应的验证码代码
 
             //验证系统是否是开启状态 0--关闭 1--开启
-            Status status = teacherService.GetAllStatus();
+            /*Status status = teacherService.GetAllStatus();
             if(status.global_status == "0")
             {
                 return Json(new { status = "3", msg = "系统已经关闭，请联系管理员！" });
-            }
+            }*/
 
             string username = Request["username"];
             string password = Request["password"];
@@ -43,10 +43,33 @@ namespace hubu.sgms.WebApp.Controllers
                 {
                     string prePage = (string)Session["prePage"];//登陆前，访问的页面
                     Session["prePage"] = null;
-                    return Json(new { status = "1", successUrl = prePage });
+                    if (prePage.IndexOf("Student") != -1)
+                    {
+                        if (!loginInfo.role.Equals("student"))
+                        {
+                            return Json(new { status = "0", msg = "身份不合法!" });
+                        }
+                        return Json(new { status = "1", successUrl = prePage });
+                    }
+                    if (prePage.IndexOf("Teacher") != -1)
+                    {
+                        if (!loginInfo.role.Equals("teacher"))
+                        {
+                            return Json(new { status = "0", msg = "身份不合法!" });
+                        }
+                        return Json(new { status = "1", successUrl = prePage });
+                    }
+                    if (prePage.IndexOf("Admin") != -1)
+                    {
+                        if (!loginInfo.role.Equals("admin"))
+                        {
+                            return Json(new { status = "0", msg = "身份不合法!" });
+                        }
+                        return Json(new { status = "1", successUrl = prePage });
+                    }
+                    
                 }
                 //return Content("success:登陆成功！");
-                //TODO  不同角色的处理
                 string successUrl = null;
                 string role = loginInfo.role;
                 switch (role)

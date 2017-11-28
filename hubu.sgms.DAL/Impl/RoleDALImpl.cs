@@ -33,7 +33,7 @@ namespace hubu.sgms.DAL.Impl
             string succeed = "成功添加" + count + "个管理员信息";
             return succeed;
         }
-        
+
         // 修改管理员信息
         public string UpdateAdminInfo(string adminID, string adminName, string adminSex, string adminIDCard, string adminDepartment, string adminContact, string adminOther, int adminStatus)
         {
@@ -55,7 +55,7 @@ namespace hubu.sgms.DAL.Impl
             string succeed = "成功修改" + count + "个管理员信息";
             return succeed;
         }
-        
+
         // 通过 ID 查找对应的管理员信息
         Administrator IRoleInfoDAL.SelectAdministratorByID(string adminID)
         {
@@ -127,7 +127,7 @@ namespace hubu.sgms.DAL.Impl
         }
 
         // 通过条件查找管理员信息
-        public List<Administrator> SelectAllAdminInfo(string adminName, string adminDepartment,int page,int size)
+        public List<Administrator> SelectAllAdminInfo(string adminName, string adminDepartment, int page, int size)
         {
             string sqlNull = "2b婿s1jHh子1hl91";
             string sql = "select * from Administrator";
@@ -228,7 +228,7 @@ namespace hubu.sgms.DAL.Impl
             return succeed;
 
         }
-        
+
         // 修改教师信息
         public string UpdateTeacherInfo(string teacherID, string teacherName, string teacherSex, string teacherIDCard, int teacherAge, string teacherDepartment, string teacherTitle, string teacherNative, string teacherBirthplace, string teacherPoliticsstatus, string teacherTeachingtime, string teacherContact, string teacherOther, int teacherStatus)
         {
@@ -256,7 +256,7 @@ namespace hubu.sgms.DAL.Impl
             string succeed = "成功修改" + count + "个教师信息";
             return succeed;
         }
-        
+
         // 通过 ID 查找对应的教师信息
         Teacher IRoleInfoDAL.SelectTeacherByID(string teacherID)
         {
@@ -331,7 +331,7 @@ namespace hubu.sgms.DAL.Impl
         }
 
         // 通过条件查找教师信息
-        public List<Teacher> SelectAllTeacherInfo(string teacherName, string teacherDepartment,int page, int size)
+        public List<Teacher> SelectAllTeacherInfo(string teacherName, string teacherDepartment, int page, int size)
         {
             string sqlNull = "2b婿s1jHh子1hl91";
             string sql = "select * from Teacher";
@@ -474,7 +474,7 @@ namespace hubu.sgms.DAL.Impl
             string succeed = "成功修改" + count + "个学生信息";
             return succeed;
         }
-        
+
         // 通过 ID 查找对应的学生信息
         Student IRoleInfoDAL.SelectStudent(string studentID)
         {
@@ -576,7 +576,7 @@ namespace hubu.sgms.DAL.Impl
         }
 
         // 通过条件查找学生信息
-        public List<Student> SelectAllStudentInfo(string studentName, string studentDepartment, string studentMajor, string studentClass,int page,int size)
+        public List<Student> SelectAllStudentInfo(string studentName, string studentDepartment, string studentMajor, string studentClass, int page, int size)
         {
             string sqlNull = "2b婿s1jHh子1hl91";
             string sql = "select * from Student";

@@ -1,125 +1,107 @@
 ﻿@{
     Layout = null;
 }
-
 <!DOCTYPE html>
-
 <html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>学生修改个人信息</title>
-    <link href="~/Scripts/bs/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="~/Scripts/layui/css/layui.css">
-    <link href="~/Content/student.css" rel="stylesheet" />
-</head>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>教师修改个人信息</title>
+        <link href="~/Scripts/bs/css/bootstrap.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="~/Scripts/layui/css/layui.css">
+        <link href="~/Content/student.css" rel="stylesheet" />
+    </head>
 <body>
-    @{ var teacher = ViewData["teacher"] as hubu.sgms.Model.Teacher;}
     <!--修改个人信息-->
     <div class="container">
-        <div class="z_content" style="height:800px">
-            <div class="embed-responsive embed-responsive-16by9" style="height:800px">
+        <div class="z_content">
+            <div class="embed-responsive embed-responsive-16by9">
                 <form id="defaultForm" class="form-horizontal" action="javascript:void(0);" style="margin-top: 10px;">
 
-                    <input type="hidden" id="teacherID" class="form-control" name="teacherID" placeholder="姓名" value="@teacher.teacher_id" disabled="disabled" />
+                    <input type="hidden" id="teacherID" class="form-control" name="teacherID" placeholder="@ViewData["teacher_id"]" value="@ViewData["teacher_id"]" disabled="disabled" />
 
                     <div class="form-group">
                         <label class="col-lg-3 control-label">用户名</label>
                         <div class="col-lg-6">
-                            <input disabled="disabled" type="text" class="form-control" id="teacher_name"  placeholder="@teacher.teacher_name" name="teacher_name"  value="@teacher.teacher_name"/>
+                            <input disabled="disabled" type="text" class="form-control" id="teacher_name" placeholder="@ViewData["teacherName"]" name="teacher_name" value="@ViewData["teacherName"]" />
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-3 control-label">职工号</label>
                         <div class="col-lg-6">
-                            <input disabled="disabled" type="text" class="form-control" id="teacher_id_card" name="teacher_id_card"   placeholder="@teacher.teacher_id_card" value="@teacher.teacher_id_card"/>
+                            <input disabled="disabled" type="text" class="form-control" id="teacher_id_card" placeholder="@ViewData["teacherIDCard"]" name="teacher_id_card" value="@ViewData["teacherIDCard"]" />
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-3 control-label">教学年龄</label>
                         <div class="col-lg-6">
-                            <input disabled="disabled" type="text" class="form-control" id="teacher_teachingtime" name="teacher_teachingtime"  placeholder="@teacher.teacher_teachingtime" value="@teacher.teacher_teachingtime" />
+                            <input disabled="disabled" type="text" class="form-control" id="teacher_teachingtime" name="teacher_teachingtime" placeholder="@ViewData["teacherTeachingtime"]" value="@ViewData["teacherTeachingtime"]" />
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-3 control-label">职称</label>
                         <div class="col-lg-6">
-                            <input disabled="disabled" type="text" class="form-control" id="teacher_title" name="teacher_title"   placeholder="@teacher.teacher_title" value="@teacher.teacher_title" />
+                            <input disabled="disabled" type="text" class="form-control" id="teacher_title" name="teacher_title" placeholder="@ViewData["teacherTitle"]" value="@ViewData["teacherTitle"]" />
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-3 control-label">院系</label>
                         <div class="col-lg-6">
-                            <input disabled="disabled" type="text" class="form-control" id="teacher_department" name="teacher_department"  placeholder="@teacher.teacher_department" value="@teacher.teacher_department" />
+                            <input disabled="disabled" type="text" class="form-control" id="teacher_department" name="teacher_department" placeholder="@ViewData["teacherDepartment"]" value="@ViewData["teacherDepartment"]" />
                         </div>
                     </div>
-                    
-                  
 
                     <div class="form-group">
                         <label class="col-lg-3 control-label">政治面貌</label>
                         <div class="col-lg-6">
-                            <input disabled="disabled" type="text" class="form-control" id="teacher_politicsstatus"   placeholder="@teacher.teacher_politicsstatus" name="teacher_politicsstatus"  value="@teacher.teacher_politicsstatus" />
+                            <input disabled="disabled" type="text" class="form-control" id="teacher_politicsstatus" placeholder="@ViewData["teacherPoliticsstatus"]" name="teacher_politicsstatus" value="@ViewData["teacherPoliticsstatus"]" />
                         </div>
                     </div>
-                  
+
                     <div class="form-group">
                         <label class="col-lg-3 control-label">民族</label>
                         <div class="col-lg-6">
-                            <input disabled="disabled"  type="text" class="form-control" id="teacher_native" name="teacher_native" placeholder="@teacher.teacher_native"  value="@teacher.teacher_native" />
+                            <input disabled="disabled" type="text" class="form-control" id="teacher_native" name="teacher_native" placeholder="@ViewData["teacherNative"]" value="@ViewData["teacherNative"]" />
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-3 control-label">联系手机号</label>
                         <div class="col-lg-6">
-                            <input  type="text" class="form-control" name="teacher_contact" id="teacher_contact"   placeholder="@teacher.teacher_contact" value="@teacher.teacher_contact" />
+                            <input type="text" class="form-control" name="teacher_contact" id="teacher_contact" placeholder="@ViewData["teacherContact"]" value="@ViewData["teacherContact"]" />
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" >
                         <label class="col-lg-3 control-label">个人描述</label>
                         <div class="col-lg-6">
-                            <textarea rows="3" class="form-control" name="teacher_other" id="teacher_other"  placeholder="@teacher.teacher_other" value="@teacher.teacher_other"></textarea>
+                            <textarea rows="3" class="form-control" name="teacher_other" id="teacher_other"  placeholder="@ViewData["teacherOther"]" value="@ViewData["teacherOther"]" style="height:170px;"></textarea>
                         </div>
                     </div>
-                    
-                        
+
                 </form>
             </div>
-         </div>
-     </div>
+        </div>
+    </div>
+
     <div style="text-align:center">
-        <button onclick="ww()" class="btn btn-success">&nbsp;&nbsp;提交&nbsp;&nbsp;</button>
+        <button onclick="www()" class="btn btn-success">&nbsp;&nbsp;提交&nbsp;&nbsp;</button>
         <button type="reset" class="btn btn-warning" name="reset" value="重置">&nbsp;&nbsp;重置&nbsp;&nbsp;</button>
     </div>
+    
+    
     <script>
-        function ww() {
+         function www() {
             var Contact = document.getElementById("teacher_contact").value;
             var Other = document.getElementById("teacher_other").value;
-            var id=@teacher.teacher_id;
+            var id=@ViewData["teacher_id"];
 
-            $.ajax({
-                url: "/Teacher/SubmitUpdateTeacherInfo",
-                method: "post",
-                data:{
-                    teacherID:id,
-                    contact:Contact,
-                    other:Other
-                },
-                success: function (data) {
-                    if (data.status == 1) {
-                        alert("修改成功!");
-                    }
-                    else {
-                        alert("修改失败!");
-                    }
-                }
-            });
+            window.location.href = "/Teacher/SubmitUpdateTeacherInfo?teacherID="+id+"&contact="+Contact+"&other="+Other;
         }
-    </script>    
+    </script>
 </body>
 </html>
+

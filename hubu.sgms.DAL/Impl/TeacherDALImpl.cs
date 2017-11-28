@@ -166,6 +166,21 @@ namespace hubu.sgms.DAL.Impl
             return status;
         }
 
+        public Status GetAllStatus2()
+        {
+            string sql = "select * from Status where Id = 2";
+            DataTable dataTable = DBUtils.getDBUtils().getRecords(sql, new SqlParameter[] { });
+            Status status = null;
+            if (dataTable.Rows.Count > 0)
+            {
+                DataRow dataRow = dataTable.Rows[0];
+                status = new Status();
+                status.Id = dataRow["Id"].ToString();
+                status.global_status = dataRow["global_status"].ToString();
+            }
+            return status;
+        }
+
 
         public IList<Teacher> SelTeacherByCollegeId(string CollegeId)
         {
@@ -211,6 +226,13 @@ namespace hubu.sgms.DAL.Impl
             }
 
             return t;
+        }
+
+        public void SetAllStatus(string id, string status)
+        {
+            String sql = "update Status set global_status = @status where id = @id";
+            SqlParameter[] pars = { new SqlParameter("@status", status) , new SqlParameter("@id", id) };
+            DBUtils.getDBUtils().cud(sql, pars);
         }
     }
 }

@@ -40,8 +40,9 @@ namespace hubu.sgms.BLL
         /// <summary>
         /// 获取全局系统状态
         /// </summary>
+        /// <param name="type"></param>
         /// <returns></returns>
-        Status GetAllStatus();
+        Status GetAllStatus(string type);
 
         /// <summary>
         /// 设置系统全局状态
@@ -57,10 +58,19 @@ namespace hubu.sgms.BLL
         Status GetStatus(string courseid);
 
         /// <summary>
+        /// 修改全局状态
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="status"></param>
+        void SetAllStatus(string id, string status);
+
+        /// <summary>
         /// 设置某一课程的打分状态
         /// </summary>
         /// <param name="mystatus"></param>
         /// <param name="courseid"></param>
         void SetStatus(string mystatus, string courseid);
+
+        
     }
 }

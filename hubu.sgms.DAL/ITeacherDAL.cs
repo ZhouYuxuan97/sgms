@@ -43,6 +43,15 @@ namespace hubu.sgms.DAL
         /// <returns></returns>
         Status GetAllStatus();
 
+        Status GetAllStatus2();
+
+        /// <summary>
+        /// 设置全局状态
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="status"></param>
+        void SetAllStatus(string id, string status);
+
         /// <summary>
         /// 设置系统全局状态
         /// </summary>

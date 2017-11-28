@@ -39,7 +39,7 @@ namespace hubu.sgms.BLL.Impl
         }
 
         // 条件查找管理员信息
-        public List<Administrator> SelectAllAdminInfo(string adminName, string adminDepartment,int page,int size)
+        public List<Administrator> SelectAllAdminInfo(string adminName, string adminDepartment, int page, int size)
         {
             return roleDAL.SelectAllAdminInfo(adminName, adminDepartment, page, size);
         }
@@ -78,9 +78,9 @@ namespace hubu.sgms.BLL.Impl
         }
 
         // 通过条件查找教师信息
-        public List<Teacher> SelectAllTeacherInfo(string teacherName, string teacherDepartment,int page, int size)
+        public List<Teacher> SelectAllTeacherInfo(string teacherName, string teacherDepartment, int page, int size)
         {
-            return roleDAL.SelectAllTeacherInfo(teacherName, teacherDepartment,page,size);
+            return roleDAL.SelectAllTeacherInfo(teacherName, teacherDepartment, page, size);
         }
 
         // 通过 ID 删除对应的教师
@@ -115,7 +115,7 @@ namespace hubu.sgms.BLL.Impl
         {
             return roleDAL.SelectCountStudent(studentName, studentDepartment, studentMajor, studentClass);
         }
-        
+
         // 通过条件查找学生信息
         public List<Student> SelectAllStudentInfo(string studentName, string studentDepartment, string studentMajor, string studentClass, int page, int size)
         {

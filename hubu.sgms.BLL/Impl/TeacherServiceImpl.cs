@@ -29,9 +29,16 @@ namespace hubu.sgms.BLL.Impl
             return teacherDAL.InsertStudentGrade(usual_grade, test_grade, total_grade, student_id);
         }
 
-        public Status GetAllStatus()
+        public Status GetAllStatus(string type)
         {
-            return teacherDAL.GetAllStatus();
+            if("t".Equals(type))
+            {
+                return teacherDAL.GetAllStatus();
+            }
+            else
+            {
+                return teacherDAL.GetAllStatus2();
+            }
         }
 
         public void SetAllStatus(string mystatus)
@@ -57,6 +64,11 @@ namespace hubu.sgms.BLL.Impl
         public Teacher SelTeacherByTeacherId(string TeacherId)
         {
             return teacherDAL.SelTeacherByTeacherId(TeacherId);
+        }
+
+        public void SetAllStatus(string id, string status)
+        {
+            teacherDAL.SetAllStatus(id, status);
         }
     }
 }

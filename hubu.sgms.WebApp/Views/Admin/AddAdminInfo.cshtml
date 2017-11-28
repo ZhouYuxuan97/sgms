@@ -22,12 +22,12 @@
     <form id="formid" class="stdform stdform2" action="/Admin/SubmitAddAdminInfo" method="post">
         <p>
             <label>姓名</label>
-            <span class="field"><input type="text" name="adminName" id="adminName" class="longinput" style="width:200px;" /></span>
+            <span class="field"><input type="text" name="adminName" id="adminName" class="longinput" style="width:280px;" /></span>
         </p>
         <p>
             <label>性别</label>
-            <span class="field" style="width:400px;">
-                <select id="adminSex" name="adminSex">
+            <span class="field" style="width:300px;">
+                <select id="adminSex" name="adminSex" style="width:300px;">
                     <option value="" style="display: none;" disabled selected>性别</option>
                     <option value="男">男</option>
                     <option value="女">女</option>
@@ -37,12 +37,12 @@
         </p>
         <p>
             <label>卡号</label>
-            <span class="field"><input type="text" name="adminIDCard" id="adminIDCard" class="longinput" style="width:200px;" /></span>
+            <span class="field"><input type="text" name="adminIDCard" id="adminIDCard" class="longinput" style="width:280px;" /></span>
         </p>
         <p>
             <label>所属院系</label>
             <span class="field" style="width:500px;">
-                <select name="adminDepartment" id="adminDepartment">
+                <select name="adminDepartment" id="adminDepartment" style="width:300px;">
                     <option value="" style="display: none;" disabled selected>所属院系</option>
                     <option value="文学院">文学院</option>
                     <option value="新闻传播学院">新闻传播学院</option>
@@ -73,17 +73,17 @@
 
         <p>
             <label>电话号码</label>
-            <span class="field"><input type="text" name="adminContact" id="adminContact" class="longinput" style="width:200px;" /></span>
+            <span class="field"><input type="text" name="adminContact" id="adminContact" class="longinput" style="width:280px;" /></span>
         </p>
         <p>
             <label>个人描述</label>
-            <span class="field"><input type="text" name="adminOther" id="adminOther" class="longinput" style="width:500px;" /></span>
+            <span class="field"><input type="text" name="adminOther" id="adminOther" class="longinput" style="width:280px;" /></span>
         </p>
         <p>
             <label>状态</label>
             <span class="field" style="width:400px;">
-                <select name="adminStatus" id="adminStatus">
-                    <option value="" style="display: none;" disabled selected>状态</option>
+                <select name="adminStatus" id="adminStatus" style="width:300px;">
+                    <option value="" style="display: none;" disabled selected >状态</option>
                     <option value="1">正常</option>
                     <option value="2">休假</option>
                     <option value="3">退休</option>
@@ -105,10 +105,11 @@
             var adminOther = document.getElementById("adminOther").value;
             var adminStatus = document.getElementById("adminStatus").value;
 
-            if (adminName == '' || adminSex == '' || adminIDCard == '' || adminDepartment == '' || adminContact == '' || adminOther == '' || adminStatus == '') {
+          
+            if (adminName == '' || adminSex == '' || adminIDCard == '' || adminDepartment == '' || adminContact == '') {
                 swal('提交错误', '请检查信息是否完整', 'error');
                 return false;
-            } else {
+            }else {
                 document.getElementById("formid").submit();
             }
         });

@@ -27,7 +27,7 @@ namespace hubu.sgms.DAL
         int SelectCountAdmin(string adminName, string adminDepartment);
 
         // 通过条件查找管理员信息
-        List<Administrator> SelectAllAdminInfo(string adminName, string adminDepartment,int page,int size);
+        List<Administrator> SelectAllAdminInfo(string adminName, string adminDepartment, int page, int size);
 
         // 删除管理员
         string DeleteAdmin(string adminID);

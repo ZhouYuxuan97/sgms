@@ -52,7 +52,7 @@ namespace hubu.sgms.BLL
         int SelectCountTeacher(string teacherName, string teacherDepartment);
 
         // 通过条件查找教师信息
-        List<Teacher> SelectAllTeacherInfo(string teacherName, string teacherDepartment,int page,int size);
+        List<Teacher> SelectAllTeacherInfo(string teacherName, string teacherDepartment, int page, int size);
 
         // 通过 ID 删除对应的教师
         string AdminDeleteTeacher(string teacherID);
