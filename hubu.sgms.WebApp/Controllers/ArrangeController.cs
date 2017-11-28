@@ -22,10 +22,23 @@ namespace hubu.sgms.WebApp.Controllers
         private ITeacherService teacherService = new TeacherServiceImpl();
         private IClassroomService classroomService = new ClassroomServiceImpl();
         private ICourse_TimeService course_timeService = new Course_TimeServiceImpl();
-
+        private IRoleInfoService roleInfoService = new RoleInfoServiceImpl();
 
         public ActionResult CAArrangeCourse()
         {
+            Login login = (Login)Session["loginInfo"];
+            if (login == null)
+            {
+                //未登录
+                //跳转到登录页面
+                Session["prePage"] = "/Admin/Index";//将当前页面地址放入session，登录后返回到该页面
+                return RedirectToAction("Index", "Login");
+            }
+            Administrator admin = roleInfoService.SelectAdministratorByID(login.username);
+            string dep = admin.administrator_photo;
+            string depval = admin.administrator_department;
+            ViewData["dep"] = dep;
+            ViewData["depval"] = depval;
             arrangecourseid = Request.QueryString["id"];
 
             //如果url中有传值进来，说明不是初始的排课页面，需要填充信息
@@ -207,6 +220,7 @@ namespace hubu.sgms.WebApp.Controllers
             }
             return View("CAArrangeCourse");
         }
+
 
         public ActionResult CASelArrangeCourseInfo()
         {

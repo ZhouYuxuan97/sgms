@@ -105,10 +105,11 @@
             var adminOther = document.getElementById("adminOther").value;
             var adminStatus = document.getElementById("adminStatus").value;
 
-            if (adminName == '' || adminSex == '' || adminIDCard == '' || adminDepartment == '' || adminContact == '' || adminOther == '' || adminStatus == '') {
+          
+            if (adminName == '' || adminSex == '' || adminIDCard == '' || adminDepartment == '' || adminContact == '') {
                 swal('提交错误', '请检查信息是否完整', 'error');
                 return false;
-            } else {
+            }else {
                 document.getElementById("formid").submit();
             }
         });
