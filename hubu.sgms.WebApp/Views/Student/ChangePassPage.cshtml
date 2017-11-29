@@ -13,6 +13,8 @@
     <link href="~/Scripts/bs/css/bootstrap.min.css" rel="stylesheet" />
     <script src="~/Scripts/bs/js/jquery.min.js"></script>
     <script src="~/Scripts/bs/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/Course/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="~/Content/admin/sweetalert2.min.css">
     <style>
         small {
             float: left !important;
@@ -151,7 +153,7 @@
                 data: { password: password },
                 success: function (data) {
                     if (data.status == 1) {
-                        alert("修改成功!");
+                        swal("修改成功!", "success");
                     }
                     else {
                         alert("failed!\n"+data.msg);

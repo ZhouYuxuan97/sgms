@@ -259,10 +259,25 @@
         });
 
         function fillcourselist(college, coursetype) {
+            var myDate = new Date();
+
+            var year = myDate.getFullYear().toString();  //获取当前年
+            year = year.substring(2); //取年份后两位
+            var month = myDate.getMonth() + 1;  //获取当前月
+
+            if (month >= 1 && month <= 6) {    //设置成数据库中格式
+                month = "01";
+            }
+            else {
+                month = "02";
+            }
+
+            var courseopentime = year + month;
+
             $.ajax({
                 type: "POST",
                 url: "/Arrange/CAFillCourse",
-                data: "college=" + college + "&&coursetype=" + coursetype,
+                data: "college=" + college + "&&coursetype=" + coursetype + "&&courseopentime=" + courseopentime,
                 success: function (data) {
                     $("#courselist").empty();
                     if (data.length != 0) {

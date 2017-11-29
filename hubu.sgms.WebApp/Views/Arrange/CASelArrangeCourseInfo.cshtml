@@ -117,6 +117,7 @@
             <!--展示管理员信息的表格-->
             <table class="table table-hover table-bordered" id="displaycourseInfo" align="center">
                 <colgroup>
+
                     <col class="con0" style="width: 4%" />
                     <col class="con1" style="width: 2%" />
                     <col class="con0" style="width: 2%" />
@@ -162,7 +163,7 @@
                 $("#totalpage").html("1");
                 var indexlabel = document.getElementById("indexpage");
                 var indexpage = indexlabel.innerText;
-               
+
                 var courseopentime = $("#courseopentimelist").val();
                 var class1 = $("#classlist").val();
                 var college = $("#collegelist").val();
@@ -182,6 +183,20 @@
                     alert("请选定时间！");
                     return false;
                 }
+                var myDate = new Date();
+
+                var year = myDate.getFullYear().toString();  //获取当前年
+                year = year.substring(2); //取年份后两位
+                var month = myDate.getMonth() + 1;  //获取当前月
+
+                if (month >= 1 && month <= 6) {    //设置成数据库中格式
+                    month = "01";
+                }
+                else {
+                    month = "02";
+                }
+
+                var nowtime = year + month;
                 $.ajax({
                     type: "POST",
                     url: "/Arrange/CASelArrangeInfo",
@@ -190,7 +205,8 @@
                         $("#displaycourseInfo tbody").html("");
                         if (data) {
                             $.each(data, function (i, val) {
-                                if (val["item9"] == "公共必修课" || val["item9"] == "公共选修课") { $("#displaycourseInfo").append("<tr><td align=\"center\">" + val["item1"] + "</td><td align=\"center\">" + val["item2"] + "</td><td align=\"center\">" + val["item3"] + "</td><td align=\"center\">" + val["item4"] + "</td><td align=\"center\">" + val["item5"] + "</td><td align=\"center\">" + val["item6"] + "</td><td align=\"center\"> 没有修改此类课程的权限 </td></tr>") }
+                                if (val["item10"] != nowtime) { $("#displaycourseInfo").append("<tr><td align=\"center\">" + val["item1"] + "</td><td align=\"center\">" + val["item2"] + "</td><td align=\"center\">" + val["item3"] + "</td><td align=\"center\">" + val["item4"] + "</td><td align=\"center\">" + val["item5"] + "</td><td align=\"center\">" + val["item6"] + "</td><td align=\"center\"> 过往排课信息不可修改 </td></tr>") }
+                                else if (val["item9"] == "公共必修课" || val["item9"] == "公共选修课") { $("#displaycourseInfo").append("<tr><td align=\"center\">" + val["item1"] + "</td><td align=\"center\">" + val["item2"] + "</td><td align=\"center\">" + val["item3"] + "</td><td align=\"center\">" + val["item4"] + "</td><td align=\"center\">" + val["item5"] + "</td><td align=\"center\">" + val["item6"] + "</td><td align=\"center\"> 没有修改此类课程的权限 </td></tr>") }
                                 else {
                                     $("#displaycourseInfo").append("<tr><td align=\"center\">" + val["item1"] + "</td><td align=\"center\">" + val["item2"] + "</td><td align=\"center\">" + val["item3"] + "</td><td align=\"center\">" + val["item4"] + "</td><td align=\"center\">" + val["item5"] + "</td><td align=\"center\">" + val["item6"] + "</td><td align=\"center\"><a href=\"CAArrangeCourse?id=" + val["item7"] + "\"  class=\"edit\">修改</a> &nbsp; <a href=\"DelArrangeCourse?id=" + val["item7"] + "\"  class=\"Delete\">删除</a>  </td></tr>")
                                 }
@@ -211,7 +227,7 @@
                 data: "class1=" + class1 + "&&courseopentime=" + courseopentime,
                 success: function (data) {
                     $("#totalpage").html(data);
-                   
+
                 }
             });
         };

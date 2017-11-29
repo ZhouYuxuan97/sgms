@@ -22,8 +22,8 @@ namespace hubu.sgms.WebApp.Controllers
         private ITeacherService teacherService = new TeacherServiceImpl();
         private IClassroomService classroomService = new ClassroomServiceImpl();
         private ICourse_TimeService course_timeService = new Course_TimeServiceImpl();
-        private IRoleInfoService roleInfoService = new RoleInfoServiceImpl();
 
+        private IRoleInfoService roleInfoService = new RoleInfoServiceImpl();
         public ActionResult CAArrangeCourse()
         {
             Login login = (Login)Session["loginInfo"];
@@ -39,6 +39,7 @@ namespace hubu.sgms.WebApp.Controllers
             string depval = admin.administrator_department;
             ViewData["dep"] = dep;
             ViewData["depval"] = depval;
+
             arrangecourseid = Request.QueryString["id"];
 
             //如果url中有传值进来，说明不是初始的排课页面，需要填充信息
@@ -139,7 +140,7 @@ namespace hubu.sgms.WebApp.Controllers
                 ViewBag.classList = selectItemListforClass.AsEnumerable();
 
                 //填充courselist
-                IList<Course> c = courseService.SelCourseforArrangeCourse(molist[0].item1, molist[0].item2);
+                IList<Course> c = courseService.SelCourseforArrangeCourse(molist[0].item1, molist[0].item2, molist[0].item18);
 
                 var categoryList = new List<Course>();
 
@@ -220,7 +221,6 @@ namespace hubu.sgms.WebApp.Controllers
             }
             return View("CAArrangeCourse");
         }
-
 
         public ActionResult CASelArrangeCourseInfo()
         {
@@ -376,7 +376,7 @@ namespace hubu.sgms.WebApp.Controllers
                 ViewBag.classList = selectItemListforClass.AsEnumerable();
 
                 //填充courselist
-                IList<Course> c = courseService.SelCourseforArrangeCourse(molist[0].item1, molist[0].item2);
+                IList<Course> c = courseService.SelCourseforArrangeCourse(molist[0].item1, molist[0].item2, molist[0].item18);
 
                 var categoryList = new List<Course>();
 
@@ -531,9 +531,10 @@ namespace hubu.sgms.WebApp.Controllers
             return Json(selectItemListforMajor);
         }
 
-        public ActionResult CAFillCourse(string college, string coursetype)
+        public ActionResult CAFillCourse(string college, string coursetype, string courseopentime)
         {
-            IList<Course> c = courseService.SelCourseforArrangeCourse(coursetype, college);
+
+            IList<Course> c = courseService.SelCourseforArrangeCourse(coursetype, college, courseopentime);
 
             var categoryList = new List<Course>();
 
@@ -797,6 +798,6 @@ namespace hubu.sgms.WebApp.Controllers
             return View("CASelArrangeCourseInfo");
         }
 
-        
+
     }
 }
