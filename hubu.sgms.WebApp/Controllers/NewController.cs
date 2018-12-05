@@ -95,7 +95,7 @@ namespace hubu.sgms.WebApp.Controllers
             newInfo.SubDateTime = DateTime.Now;
             if (NewInfoBll.UpdateNewInfo(newInfo))
             {
-                return View();
+                return View("index");
             }
             else
             {

@@ -33,27 +33,27 @@ namespace hubu.sgms.DAL.Impl
             return count;
         }
 
-        
-        
+
+
         //--------------管理员添加修改课程----------------//
-  
+
         public string AddCourseBaseInfo(string courseID, string courseName, decimal courseCreadit, string courseHour, string courseType, string courseDepartement, string courseClass, string courseTheory, string courseExperiment, string courseOpentime, string coursePrior, int status)
         {
             DateTime dt_new = DateTime.Now;
             DateTime dt_old = new DateTime(2010, 1, 1, 0, 0, 0);
             TimeSpan ts = dt_new.Subtract(dt_old).Duration();
-            string dateDiff = ts.Days.ToString() + ts.Hours.ToString() +ts.Minutes.ToString() + ts.Seconds.ToString();
+            string dateDiff = ts.Days.ToString() + ts.Hours.ToString() + ts.Minutes.ToString() + ts.Seconds.ToString();
             courseID = dateDiff.ToString();
 
-            String courseopentime= courseOpentime;
+            String courseopentime = courseOpentime;
             string[] arr = courseopentime.Split(' ');
             string year = arr[3];
             string month = arr[1];
             string day = arr[2];
-            string end="";
-            int start=0;
-            if (month.Equals("Feb")|| month.Equals("Mar")|| month.Equals("Apr")||
-                month.Equals("May") || month.Equals("Jun") || month.Equals("Jul") || 
+            string end = "";
+            int start = 0;
+            if (month.Equals("Feb") || month.Equals("Mar") || month.Equals("Apr") ||
+                month.Equals("May") || month.Equals("Jun") || month.Equals("Jul") ||
                 month.Equals("Aug") || month.Equals("Sep"))
             {
                 end = "02";
@@ -62,9 +62,9 @@ namespace hubu.sgms.DAL.Impl
             {
                 end = "01";
             }
-            
-           start = Convert.ToInt32(year)%2000;
-           courseOpentime = start.ToString()+end ;
+
+            start = Convert.ToInt32(year) % 2000;
+            courseOpentime = start.ToString() + end;
 
             //添加的id是系统自己生成的，并且保证其唯一性  专业和学院目前不插入
             string sql = "Insert into Course(course_id,course_name,course_credit,course_hour,course_type,course_theory,course_experiment,course_opentime,course_prior,status)values(@courseID, @courseName, @courseCreadit, @courseHour, @courseType,@courseTheory, @courseExperiment, @courseOpentime, @coursePrior, @status)";
@@ -114,9 +114,9 @@ namespace hubu.sgms.DAL.Impl
 
             //目前不更新学院和专业
             string sql = "update Course set course_name=@courseName,course_credit=@courseCreadit,course_hour=@courseHour,course_type=@courseType,course_theory=@courseTheory,course_experiment=@courseExperiment,course_opentime=@courseOpentime,course_prior=@coursePrior,status=@status where course_id=@courseID";
-            
+
             //@courseId, @courseName, @courseCreadit, @courseHour, @courseType, @courseTheory, @courseExperiment, @courseOpentime, @coursePrior, @status
-            SqlParameter[] parameters={
+            SqlParameter[] parameters ={
                 new SqlParameter("@courseID",courseID),
                 new SqlParameter("@courseName",courseName),
                 new SqlParameter("@courseCreadit",courseCreadit),
@@ -139,7 +139,7 @@ namespace hubu.sgms.DAL.Impl
         {
             //目前不更新学院和专业
             string sql = "delete from Course where course_id=@courseId";
-            
+
             SqlParameter[] parameters = {
                 new SqlParameter("@courseID",courseID)
             };
@@ -177,7 +177,7 @@ namespace hubu.sgms.DAL.Impl
                 course.course_opentime = dataRow["course_opentime"].ToString();
                 course.course_prior = dataRow["course_prior"].ToString();
                 //  course.status =Int32.Parse(dataRow["status"].ToString());
-                course.status =1;
+                course.status = 1;
                 course.course_photo = dataRow["course_photo"].ToString();
             }
             return course;
@@ -471,7 +471,7 @@ namespace hubu.sgms.DAL.Impl
             string sql = "select * from Course_choosing cc ,Course c where cc.course_id=c.course_id and cc.student_id='" + stuId + "' and c.course_opentime='" + opentime + "'";
             DataTable dataTable = DBUtils.getDBUtils().getRecords(sql);
             IList<Course_choosing> courses = new List<Course_choosing>();
-            foreach(DataRow row in dataTable.Rows)
+            foreach (DataRow row in dataTable.Rows)
             {
                 Course_choosing course = new Course_choosing();
                 int successCount = BeanUils.SetStringValues(course, row);
@@ -482,7 +482,8 @@ namespace hubu.sgms.DAL.Impl
                     course.test_grade = Convert.ToDecimal(row["test_grade"]);
                     course.course_credit = Convert.ToDecimal(row["course_credit"]);
                     course.total_grade = Convert.ToDecimal(row["total_grade"]);
-                } catch (Exception e)
+                }
+                catch (Exception e)
                 {
 
                 }
@@ -490,6 +491,7 @@ namespace hubu.sgms.DAL.Impl
             }
 
             return courses;
+
         }
 
         /// <summary>
@@ -541,7 +543,7 @@ namespace hubu.sgms.DAL.Impl
             paramList.Add(new SqlParameter("@year01", year01));
             paramList.Add(new SqlParameter("@year02", year02));
 
-            DataTable dataTable = DBUtils.getDBUtils().getRecords(sql,paramList.ToArray());
+            DataTable dataTable = DBUtils.getDBUtils().getRecords(sql, paramList.ToArray());
             IList<Course_choosing> courses = new List<Course_choosing>();
             foreach (DataRow row in dataTable.Rows)
             {
@@ -613,7 +615,7 @@ namespace hubu.sgms.DAL.Impl
             DataTable dataTable = DBUtils.getDBUtils().getRecords(courseTypeSql);
             IList<string> courseTypes = new List<string>();
 
-            foreach(DataRow row in dataTable.Rows)
+            foreach (DataRow row in dataTable.Rows)
             {
                 if (row["course_type"] != null)
                 {
@@ -625,13 +627,14 @@ namespace hubu.sgms.DAL.Impl
         }
 
 
-        public IList<Course> SelCourseforArrangeCourse(string course_type, string college)
+        public IList<Course> SelCourseforArrangeCourse(string course_type, string college, string courseopentime)
         {
-            string sql = "select course_id,course_name from course where college_id=@college and course_type=@course_type";
+            string sql = "select course_id,course_name from course where college_id=@college and course_type=@course_type and course_opentime=@courseopentime";
 
             SqlParameter[] pars = {
                 new SqlParameter("@course_type",course_type),
-                new SqlParameter("@college",college)
+                new SqlParameter("@college",college),
+                new SqlParameter("@courseopentime",courseopentime)
         };
             //查询
             DataTable dataTable = DBUtils.getDBUtils().getRecords(sql, pars);
@@ -658,7 +661,7 @@ namespace hubu.sgms.DAL.Impl
         }
 
 
-        public  CourseType GetCourseType(string name)
+        public CourseType GetCourseType(string name)
         {
             foreach (CourseType courseType in Enum.GetValues(typeof(CourseType)))
             {

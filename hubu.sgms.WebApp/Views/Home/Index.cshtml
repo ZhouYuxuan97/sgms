@@ -11,7 +11,7 @@
     <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/Scripts/public/jcarousellite.js"></script>
     <script type="text/javascript" src="~/Scripts/public/docs.min.js"></script>
-    <title>学生选课系统首页</title>
+    <title>Student Registration System</title>
 </head>
 <style>
     .z_class_detail img {
@@ -33,7 +33,7 @@
                         <form method="get" onsubmit="">
                             <div class="search">
                                 <span class="glyphicon glyphicon-search"></span>
-                                <input type="text" class="search-keyword" placeholder="请输入课程/老师名称" />
+                                <input type="text" class="search-keyword" placeholder="Please enter the course/teacher name" />
                             </div>
                         </form>
                     </div>
@@ -41,11 +41,11 @@
                 <div class="col-md-2" style="width: 146px;">
                     <ul class="top_r">
                         <li>
-                            <a href="#">注册</a>
+                            <!--  <a href="#">注册</a>  
                         </li>
-                        <li><span>|</span></li>
+                        <li><span>|</span></li> -->
                         <li>
-                            <a href='/Login/Index'>登录</a>
+                            <a href='/Login/Index'>LOG IN</a>
                         </li>
                     </ul>
                 </div>
@@ -58,32 +58,32 @@
             <ul>
                 <li>
                     <a href="#">
-                        <center>网站首页</center>
+                        <center>HOME</center>
                     </a>
                 </li>
                 <li>
                     <a href="#course0">
-                        <center>最新课程</center>
+                        <center>LATEST COURSES</center>
                     </a>
                 </li>
                 <li>
                     <a href="#course1">
-                        <center>公共必修课</center>
+                        <center>PUB COMPULSORY COURSES</center>
                     </a>
                 </li>
                 <li>
                     <a href="#course2">
-                        <center>公共选修课</center>
+                        <center>PUB ELECTIVE COURSES</center>
                     </a>
                 </li>
                 <li>
                     <a href="#course3">
-                        <center>专业必修课</center>
+                        <center>PRO COMPULSORY COURSES</center>
                     </a>
                 </li>
                 <li>
                     <a href="#course4">
-                        <center>专业选修课</center>
+                        <center>PRO ELECTIVE COURSES</center>
                     </a>
                 </li>
             </ul>
@@ -97,22 +97,22 @@
             <div class="item active">
                 <img src="~/Content/img/a.jpg" alt="" />
                 <div class="carousel-caption">
-                    <h3>选课网站简介</h3>
-                    <p>该网站主要帮助学生方便快捷的进行选课，专业从事互联网软件开发、技术服务、技术咨询和教育咨询业务，核心是基础课程的学习和实践。致力于中西部地区IT人才造梦工厂，帮助更多有志青年通过学习软件开发技术改变自己的命运，优化互联网市场和环境</p>
+                    <h3>WEBSITE INTRODUCTION</h3>
+                    <p>该网站主要帮助学生方便快捷的进行选课，专业从事互联网软件开发、技术服务、技术咨询和教育咨询业务，核心是基础课程的学习和实践。</p>
                 </div>
             </div>
             <div class="item">
                 <img src="~/Content/img/b.jpg" alt="">
                 <div class="carousel-caption">
-                    <h3>选课网站简介</h3>
-                    <p>该网站主要帮助学生方便快捷的进行选课，专业从事互联网软件开发、技术服务、技术咨询和教育咨询业务，核心是基础课程的学习和实践。致力于中西部地区IT人才造梦工厂，帮助更多有志青年通过学习软件开发技术改变自己的命运，优化互联网市场和环境</p>
+                    <h3>WEBSITE INTRODUCTION</h3>
+                    <p>该网站主要帮助学生方便快捷的进行选课，专业从事互联网软件开发、技术服务、技术咨询和教育咨询业务，核心是基础课程的学习和实践。</p>
                 </div>
             </div>
             <div class="item">
                 <img src="~/Content/img/c.jpg" alt="">
                 <div class="carousel-caption">
-                    <h3>选课网站简介</h3>
-                    <p>该网站主要帮助学生方便快捷的进行选课，专业从事互联网软件开发、技术服务、技术咨询和教育咨询业务，核心是基础课程的学习和实践。致力于中西部地区IT人才造梦工厂，帮助更多有志青年通过学习软件开发技术改变自己的命运，优化互联网市场和环境</p>
+                    <h3>WEBSITE INTRODUCTION</h3>
+                    <p>该网站主要帮助学生方便快捷的进行选课，专业从事互联网软件开发、技术服务、技术咨询和教育咨询业务，核心是基础课程的学习和实践。</p>
                 </div>
             </div>
         </div>
@@ -131,7 +131,7 @@
         <!--左侧新闻动态-->
         <div class="col-md-8 z_detail">
             <div class="panel panel-default">
-                <div class="panel-heading">通知公告</div>
+                <div class="panel-heading">NEWS</div>
                 <div class="panel-body detail">
                     <!--新闻公告图片-->
                     <div class="rollpic cl">
@@ -198,7 +198,7 @@
         <!--动态文字公告-->
         <div class="col-md-4 z_autonews">
             <div class="panel panel-default">
-                <div class="panel-heading">新闻动态</div>
+                <div class="panel-heading">ANNOUNCEMENT</div>
                 <div class="panel-body">
                     <div class="layui-collapse" lay-accordion="">
                         <div class="layui-colla-item">
@@ -206,11 +206,11 @@
                                 <div id="marquee" class="marquee">
                                     <div id="holder" style="font-size: 15px;">
                                         <ul>
-                                            <li><b>[公告一]@ViewData["msg1"]</li>
+                                            <li><b>[ANNOUNCEMENT #1]@ViewData["msg1"]</li>
                                             <br />
-                                            <li><b>[公告二]@ViewData["msg2"]</li>
+                                            <li><b>[ANNOUNCEMENT #2]@ViewData["msg2"]</li>
                                             <br />
-                                            <li><b>[公告三]@ViewData["msg3"]</li>
+                                            <li><b>[ANNOUNCEMENT #3]@ViewData["msg3"]</li>
                                             <br />
                                         </ul>
                                     </div>
@@ -229,7 +229,7 @@
             <!--最新课程-->
             <div class="z_class">
                 <div id="new" class="z_class_nav">
-                    <h4 id="course0">最新课程<sup><img src="~/Content/img/new.gif"></sup><a href='/Course/CourseDisplay'>更多>></a></h4>
+                    <h4 id="course0">LATEST COURSES<sup><img src="~/Content/img/new.gif"></sup><a href='/Course/CourseDisplay'>MORE>></a></h4>
                     <div class="z_class_detail col-md-4">
                         <!--<img src="holder.js/100%x70%">-->
                         <img id="newImg1" src=""/>
@@ -237,10 +237,10 @@
                             <a href="#"></a>
                         </p>
                         <span>
-                            <label id="newLab1_1">课程学分：</label>
+                            <label id="newLab1_1">Course Credits:</label>
                             <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
                             <br />
-                            <label id="newLab2_1">开课学期：</label>
+                            <label id="newLab2_1">Course Semester:</label>
                         </span>
                     </div>
                     <div class="z_class_detail col-md-4">
@@ -249,10 +249,10 @@
                             <a href="#"></a>
                         </p>
                         <span>
-                            <label id="newLab1_2">课程学分：</label>
+                            <label id="newLab1_2">Course Credits:</label>
                             <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
                             <br />
-                            <label id="newLab2_2">开课学期：</label>
+                            <label id="newLab2_2">Course Semester:</label>
                         </span>
                     </div>
                     <div class="z_class_detail col-md-4">
@@ -261,10 +261,10 @@
                             <a href="#"></a>
                         </p>
                         <span>
-                            <label id="newLab1_3">课程学分：</label>
+                            <label id="newLab1_3">Course Credits:</label>
                             <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
                             <br />
-                            <label id="newLab2_3">开课学期：</label>   
+                            <label id="newLab2_3">Course Semester:</label>   
                         </span>
                     </div>
                     <div class="z_class_detail col-md-4">
@@ -273,10 +273,10 @@
                             <a href="#"></a>
                         </p>
                         <span>
-                            <label id="newLab1_4">课程学分：</label>
+                            <label id="newLab1_4">Course Credits:</label>
                             <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
                             <br />
-                            <label id="newLab2_4">开课学期：</label>    
+                            <label id="newLab2_4">Course Semester:</label>    
                         </span>
                     </div>
                     <div class="z_class_detail col-md-4">
@@ -285,10 +285,10 @@
                             <a href="#"></a>
                         </p>
                         <span>
-                            <label id="newLab1_5">课程学分：</label>
+                            <label id="newLab1_5">Course Credits:</label>
                             <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
                             <br />
-                            <label id="newLab2_5">开课学期：</label>    
+                            <label id="newLab2_5">Course Semester:</label>    
                         </span>
                     </div>
                     <div class="z_class_detail col-md-4">
@@ -297,10 +297,10 @@
                             <a href="#"></a>
                         </p>
                         <span>
-                             <label id="newLab1_6">课程学分：</label>
+                             <label id="newLab1_6">Course Credits:</label>
                             <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
                             <br />
-                            <label id="newLab2_6">开课学期：</label>
+                            <label id="newLab2_6">Course Semester:</label>
                         </span>
                     </div>
                 </div>
@@ -308,7 +308,7 @@
             <!--公共必修课-->
             <div class="z_class">
                 <div id="gb" class="z_class_nav">
-                    <h4 id="course1">公共必修课<!--<sup><img src="img/new.gif"></sup>--><a href='/Course/CourseDisplay?courseType=公共必修课'>更多>></a></h4>
+                    <h4 id="course1">PUBLIC COMPULSORY COURSES<!--<sup><img src="img/new.gif"></sup>--><a href='/Course/CourseDisplay?courseType=公共必修课'>MORE>></a></h4>
                     <div class="z_class_detail col-md-4">
                         <!--<img src="holder.js/100%x70%">-->
                         <img id="gbImg1" src="" />
@@ -316,10 +316,10 @@
                             <a href="#"></a>
                         </p>
                         <span>
-                            <label id="gbLab1_1">课程学分：</label>
+                            <label id="gbLab1_1">Course Credits:</label>
                             <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
                             <br />
-                            <label id="gbLab2_1">开课学期：</label>
+                            <label id="gbLab2_1">Course Semester:</label>
                         </span>
                     </div>
                     <div class="z_class_detail col-md-4">
@@ -329,10 +329,10 @@
                             <a href="#"></a>
                         </p>
                         <span>
-                            <label id="gbLab1_2">课程学分：</label>
+                            <label id="gbLab1_2">Course Credits:</label>
                             <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
                             <br />
-                            <label id="gbLab2_2">开课学期：</label>
+                            <label id="gbLab2_2">Course Semester:</label>
                         </span>
                     </div>
                     <div class="z_class_detail col-md-4">
@@ -342,10 +342,10 @@
                             <a href="#"></a>
                         </p>
                         <span>
-                            <label id="gbLab1_3">课程学分：</label>
+                            <label id="gbLab1_3">Course Credits:</label>
                             <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
                             <br />
-                            <label id="gbLab2_3">开课学期：</label>
+                            <label id="gbLab2_3">Course Semester:</label>
                         </span>
                     </div>
                     <div class="z_class_detail col-md-4">
@@ -355,10 +355,10 @@
                             <a href="#"></a>
                         </p>
                         <span>
-                            <label id="gbLab1_4">课程学分：</label>
+                            <label id="gbLab1_4">Course Credits:</label>
                             <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
                             <br />
-                            <label id="gbLab2_4">开课学期：</label>
+                            <label id="gbLab2_4">Course Semester:</label>
                         </span>
                     </div>
                     <div class="z_class_detail col-md-4">
@@ -368,10 +368,10 @@
                             <a href="#"></a>
                         </p>
                         <span>
-                            <label id="gbLab1_5">课程学分：</label>
+                            <label id="gbLab1_5">Course Credits:</label>
                             <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
                             <br />
-                            <label id="gbLab2_5">开课学期：</label>
+                            <label id="gbLab2_5">Course Semester:</label>
                         </span>
                     </div>
                     <div class="z_class_detail col-md-4">
@@ -381,10 +381,10 @@
                             <a href="#"></a>
                         </p>
                         <span>
-                            <label id="gbLab1_6">课程学分：</label>
+                            <label id="gbLab1_6">Course Credits:</label>
                             <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
                             <br />
-                            <label id="gbLab2_6">开课学期：</label>
+                            <label id="gbLab2_6">Course Semester:</label>
                         </span>
                     </div>
                 </div>
@@ -392,7 +392,7 @@
             <!--公共选修课-->
             <div class="z_class">
                 <div id="gx" class="z_class_nav">
-                    <h4 id="course2">公共选修课<!--<sup><img src="img/new.gif"></sup>--><a href='/Course/CourseDisplay?courseType=公共选修课'>更多>></a></h4>
+                    <h4 id="course2">PUBLIC ELECTIVE COURSES<!--<sup><img src="img/new.gif"></sup>--><a href='/Course/CourseDisplay?courseType=公共选修课'>MORE>></a></h4>
                     <div class="z_class_detail col-md-4">
                         <!--<img src="holder.js/100%x70%">-->
                         <img id="gxImg1" src="" />
@@ -400,10 +400,10 @@
                             <a href="#"></a>
                         </p>
                         <span>
-                            <label id="gxLab1_1">课程学分：</label>
+                            <label id="gxLab1_1">Course Credits:</label>
                             <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
                             <br />
-                            <label id="gxLab2_1">开课学期：</label>
+                            <label id="gxLab2_1">Course Semester:</label>
                         </span>
                     </div>
                     <div class="z_class_detail col-md-4">
@@ -413,10 +413,10 @@
                             <a href="#"></a>
                         </p>
                         <span>
-                            <label id="gxLab1_2">课程学分：</label>
+                            <label id="gxLab1_2">Course Credits:</label>
                             <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
                             <br />
-                            <label id="gxLab2_2">开课学期：</label>
+                            <label id="gxLab2_2">Course Semester:</label>
                         </span>
                     </div>
                     <div class="z_class_detail col-md-4">
@@ -426,10 +426,10 @@
                             <a href="#"></a>
                         </p>
                         <span>
-                            <label id="gxLab1_3">课程学分：</label>
+                            <label id="gxLab1_3">Course Credits:</label>
                             <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
                             <br />
-                            <label id="gxLab2_3">开课学期：</label>
+                            <label id="gxLab2_3">Course Semester:</label>
                         </span>
                     </div>
                     <div class="z_class_detail col-md-4">
@@ -439,10 +439,10 @@
                             <a href="#"></a>
                         </p>
                         <span>
-                            <label id="gxLab1_4">课程学分：</label>
+                            <label id="gxLab1_4">Course Credits:</label>
                             <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
                             <br />
-                            <label id="gxLab2_4">开课学期：</label>
+                            <label id="gxLab2_4">Course Semester:</label>
                         </span>
                     </div>
                     <div class="z_class_detail col-md-4">
@@ -452,10 +452,10 @@
                             <a href="#"></a>
                         </p>
                         <span>
-                            <label id="gxLab1_5">课程学分：</label>
+                            <label id="gxLab1_5">Course Credits:</label>
                             <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
                             <br />
-                            <label id="gxLab2_5">开课学期：</label>
+                            <label id="gxLab2_5">Course Semester:</label>
                         </span>
                     </div>
                     <div class="z_class_detail col-md-4">
@@ -465,10 +465,10 @@
                             <a href="#"></a>
                         </p>
                         <span>
-                            <label id="gxLab1_6">课程学分：</label>
+                            <label id="gxLab1_6">Course Credits:</label>
                             <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
                             <br />
-                            <label id="gxLab2_6">开课学期：</label>
+                            <label id="gxLab2_6">Course Semester:</label>
                         </span>
                     </div>
                 </div>
@@ -476,7 +476,7 @@
             <!--专业必修课-->
             <div class="z_class">
                 <div id="zb" class="z_class_nav">
-                    <h4 id="course3">专业必修课<!--<sup><img src="img/new.gif"></sup>--><a href='/Course/CourseDisplay?courseType=专业必修课'>更多>></a></h4>
+                    <h4 id="course3">PROFESSIONAL COMPULSORY COURSES<!--<sup><img src="img/new.gif"></sup>--><a href='/Course/CourseDisplay?courseType=专业必修课'>MORE>></a></h4>
                     <div class="z_class_detail col-md-4">
                         <!--<img src="holder.js/100%x70%">-->
                         <img id="zbImg1" src="" />
@@ -484,10 +484,10 @@
                             <a href="#"></a>
                         </p>
                         <span>
-                            <label id="zbLab1_1">课程学分：</label>
+                            <label id="zbLab1_1">Course Credits:</label>
                             <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
                             <br />
-                            <label id="zbLab2_1">开课学期：</label>
+                            <label id="zbLab2_1">Course Semester:</label>
                         </span>
                     </div>
                     <div class="z_class_detail col-md-4">
@@ -497,10 +497,10 @@
                             <a href="#"></a>
                         </p>
                         <span>
-                            <label id="zbLab1_2">课程学分：</label>
+                            <label id="zbLab1_2">Course Credits:</label>
                             <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
                             <br />
-                            <label id="zbLab2_2">开课学期：</label>
+                            <label id="zbLab2_2">Course Semester:</label>
                         </span>
                     </div>
                     <div class="z_class_detail col-md-4">
@@ -510,10 +510,10 @@
                             <a href="#"></a>
                         </p>
                         <span>
-                            <label id="zbLab1_3">课程学分：</label>
+                            <label id="zbLab1_3">Course Credits:</label>
                             <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
                             <br />
-                            <label id="zbLab2_3">开课学期：</label>
+                            <label id="zbLab2_3">Course Semester:</label>
                         </span>
                     </div>
                     <div class="z_class_detail col-md-4">
@@ -523,10 +523,10 @@
                             <a href="#"></a>
                         </p>
                         <span>
-                            <label id="zbLab1_4">课程学分：</label>
+                            <label id="zbLab1_4">Course Credits:</label>
                             <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
                             <br />
-                            <label id="zbLab2_4">开课学期：</label>
+                            <label id="zbLab2_4">Course Semester:</label>
                         </span>
                     </div>
                     <div class="z_class_detail col-md-4">
@@ -536,10 +536,10 @@
                             <a href="#"></a>
                         </p>
                         <span>
-                            <label id="zbLab1_5">课程学分：</label>
+                            <label id="zbLab1_5">Course Credits:</label>
                             <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
                             <br />
-                            <label id="zbLab2_5">开课学期：</label>
+                            <label id="zbLab2_5">Course Semester:</label>
                         </span>
                     </div>
                     <div class="z_class_detail col-md-4">
@@ -549,10 +549,10 @@
                             <a href="#"></a>
                         </p>
                         <span>
-                            <label id="zbLab1_6">课程学分：</label>
+                            <label id="zbLab1_6">Course Credits:</label>
                             <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
                             <br />
-                            <label id="zbLab2_6">开课学期：</label>
+                            <label id="zbLab2_6">Course Semester:</label>
                         </span>
                     </div>
                 </div>
@@ -560,7 +560,7 @@
             <!--专业选修-->
             <div class="z_class">
                 <div id="zx" class="z_class_nav">
-                    <h4 id="course4">专业选修课<!--<sup><img src="img/new.gif"></sup>--><a href='/Course/CourseDisplay?courseType=专业选修课'>更多>></a></h4>
+                    <h4 id="course4">PROFESSIONAL ELECTIVE COURSES<!--<sup><img src="img/new.gif"></sup>--><a href='/Course/CourseDisplay?courseType=专业选修课'>MORE>></a></h4>
                     <div class="z_class_detail col-md-4">
                         <!--<img src="holder.js/100%x70%">-->
                         <img id="zxImg1" src="" />
@@ -568,10 +568,10 @@
                             <a href="#"></a>
                         </p>
                         <span>
-                            <label id="zxLab1_1">课程学分：</label>
+                            <label id="zxLab1_1">Course Credits:</label>
                             <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
                             <br />
-                            <label id="zxLab2_1">开课学期：</label>
+                            <label id="zxLab2_1">Course Semester:</label>
                         </span>
                     </div>
                     <div class="z_class_detail col-md-4">
@@ -581,10 +581,10 @@
                             <a href="#"></a>
                         </p>
                         <span>
-                            <label id="zxLab1_2">课程学分：</label>
+                            <label id="zxLab1_2">Course Credits:</label>
                             <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
                             <br />
-                            <label id="zxLab2_2">开课学期：</label>
+                            <label id="zxLab2_2">Course Semester:</label>
                         </span>
                     </div>
                     <div class="z_class_detail col-md-4">
@@ -594,10 +594,10 @@
                             <a href="#"></a>
                         </p>
                         <span>
-                            <label id="zxLab1_3">课程学分：</label>
+                            <label id="zxLab1_3">Course Credits:</label>
                             <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
                             <br />
-                            <label id="zxLab2_3">开课学期：</label>
+                            <label id="zxLab2_3">Course Semester:</label>
                         </span>
                     </div>
                     <div class="z_class_detail col-md-4">
@@ -607,10 +607,10 @@
                             <a href="#"></a>
                         </p>
                         <span>
-                            <label id="zxLab1_4">课程学分：</label>
+                            <label id="zxLab1_4">Course Credits:</label>
                             <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
                             <br />
-                            <label id="zxLab2_4">开课学期：</label>
+                            <label id="zxLab2_4">Course Semester:</label>
                         </span>
                     </div>
                     <div class="z_class_detail col-md-4">
@@ -620,10 +620,10 @@
                             <a href="#"></a>
                         </p>
                         <span>
-                            <label id="zxLab1_5">课程学分：</label>
+                            <label id="zxLab1_5">Course Credits:</label>
                             <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
                             <br />
-                            <label id="zxLab2_5">开课学期：</label>
+                            <label id="zxLab2_5">Course Semester:</label>
                         </span>
                     </div>
                     <div class="z_class_detail col-md-4">
@@ -633,10 +633,10 @@
                             <a href="#"></a>
                         </p>
                         <span>
-                            <label id="zxLab1_6">课程学分：</label>
+                            <label id="zxLab1_6">Course Credits:</label>
                             <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
                             <br />
-                            <label id="zxLab2_6">开课学期：</label>
+                            <label id="zxLab2_6">Course Semester:</label>
                         </span>
                     </div>
                 </div>
@@ -646,7 +646,7 @@
     <!--回到顶部-->
     <div class="container">
         <div class="tooltip-demo">
-            <button type="button" onclick="window.location.href='/Home/Index'" class="btn btn-default pull-right" data-toggle="tooltip" data-placement="left" title="" data-original-title="回到顶部">
+            <button type="button" onclick="window.location.href='/Home/Index'" class="btn btn-default pull-right" data-toggle="tooltip" data-placement="left" title="" data-original-title="Back to Top">
                 <span class="glyphicon glyphicon-arrow-up"></span>
             </button>
         </div>
@@ -658,22 +658,22 @@
             <div class="buttom_1" align="center">
                 <ul>
                     <li>
-                        <a href="#">友情链接</a>
+                        <a href="#">Links</a>
                     </li>
                     <li><span>|</span></li>
                     <li>
-                        <a href="#">游客留言</a>
+                        <a href="#">Visitor Messages</a>
                     </li>
                     <li><span>|</span></li>
                     <li>
-                        <a href="#">网站服务</a>
+                        <a href="#">Website Service</a>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="container">
             <div class="buttom_2" align="center">
-                版权所有2017湖北大学 联系电话：88663890 电子邮件：jwc@hubu.edu.cn 鄂ICP备05003305 邮编：地址：湖北省武汉市武昌区友谊大道368号
+                All Rights Reserved 2018 HuBei University TEL:88663890 E-mail:jwc@hubu.edu.cn  Mail Address:No.368, Youyi Avenue, Wuchang District, Wuhan, Hubei Province
             </div>
         </div>
     </div>
@@ -697,82 +697,82 @@
                         //最新课程
                         var newList = data.newCourseList;
                         insert(newList, "newImg", "new");
-                        $("#newLab1_1").html("课程学分：" + newList[0].course_credit);
-                        $("#newLab2_1").html("开课学期：" + newList[0].course_opentime);
-                        $("#newLab1_2").html("课程学分：" + newList[1].course_credit);
-                        $("#newLab2_2").html("开课学期：" + newList[1].course_opentime);
-                        $("#newLab1_3").html("课程学分：" + newList[2].course_credit);
-                        $("#newLab2_3").html("开课学期：" + newList[2].course_opentime);
-                        $("#newLab1_4").html("课程学分：" + newList[3].course_credit);
-                        $("#newLab2_4").html("开课学期：" + newList[3].course_opentime);
-                        $("#newLab1_5").html("课程学分：" + newList[4].course_credit);
-                        $("#newLab2_5").html("开课学期：" + newList[4].course_opentime);
-                        $("#newLab1_6").html("课程学分：" + newList[5].course_credit);
-                        $("#newLab2_6").html("开课学期：" + newList[5].course_opentime);
+                        $("#newLab1_1").html("Course Credits:" + newList[0].course_credit);
+                        $("#newLab2_1").html("Course Semester:" + newList[0].course_opentime);
+                        $("#newLab1_2").html("Course Credits:" + newList[1].course_credit);
+                        $("#newLab2_2").html("Course Semester:" + newList[1].course_opentime);
+                        $("#newLab1_3").html("Course Credits:" + newList[2].course_credit);
+                        $("#newLab2_3").html("Course Semester:" + newList[2].course_opentime);
+                        $("#newLab1_4").html("Course Credits:" + newList[3].course_credit);
+                        $("#newLab2_4").html("Course Semester:" + newList[3].course_opentime);
+                        $("#newLab1_5").html("Course Credits:" + newList[4].course_credit);
+                        $("#newLab2_5").html("Course Semester:" + newList[4].course_opentime);
+                        $("#newLab1_6").html("Course Credits:" + newList[5].course_credit);
+                        $("#newLab2_6").html("Course Semester:" + newList[5].course_opentime);
 
                         //公选课程
                         var gxList = data.gxCourseList;
                         insert(gxList, "gxImg", "gx");
-                        $("#gxLab1_1").html("课程学分：" + gxList[0].course_credit);
-                        $("#gxLab2_1").html("开课学期：" + gxList[0].course_opentime);
-                        $("#gxLab1_2").html("课程学分：" + gxList[1].course_credit);
-                        $("#gxLab2_2").html("开课学期：" + gxList[1].course_opentime);
-                        $("#gxLab1_3").html("课程学分：" + gxList[2].course_credit);
-                        $("#gxLab2_3").html("开课学期：" + gxList[2].course_opentime);
-                        $("#gxLab1_4").html("课程学分：" + gxList[3].course_credit);
-                        $("#gxLab2_4").html("开课学期：" + gxList[3].course_opentime);
-                        $("#gxLab1_5").html("课程学分：" + gxList[4].course_credit);
-                        $("#gxLab2_5").html("开课学期：" + gxList[4].course_opentime);
-                        $("#gxLab1_6").html("课程学分：" + gxList[5].course_credit);
-                        $("#gxLab2_6").html("开课学期：" + gxList[5].course_opentime);
+                        $("#gxLab1_1").html("Course Credits:" + gxList[0].course_credit);
+                        $("#gxLab2_1").html("Course Semester:" + gxList[0].course_opentime);
+                        $("#gxLab1_2").html("Course Credits:" + gxList[1].course_credit);
+                        $("#gxLab2_2").html("Course Semester:" + gxList[1].course_opentime);
+                        $("#gxLab1_3").html("Course Credits:" + gxList[2].course_credit);
+                        $("#gxLab2_3").html("Course Semester:" + gxList[2].course_opentime);
+                        $("#gxLab1_4").html("Course Credits:" + gxList[3].course_credit);
+                        $("#gxLab2_4").html("Course Semester:" + gxList[3].course_opentime);
+                        $("#gxLab1_5").html("Course Credits:" + gxList[4].course_credit);
+                        $("#gxLab2_5").html("Course Semester:" + gxList[4].course_opentime);
+                        $("#gxLab1_6").html("Course Credits:" + gxList[5].course_credit);
+                        $("#gxLab2_6").html("Course Semester:" + gxList[5].course_opentime);
 
                         //公共必修课
                         var gbList = data.gbCourseList;
                         insert(gbList, "gbImg", "gb");
-                        $("#gbLab1_1").html("课程学分：" + gbList[0].course_credit);
-                        $("#gbLab2_1").html("开课学期：" + gbList[0].course_opentime);
-                        $("#gbLab1_2").html("课程学分：" + gbList[1].course_credit);
-                        $("#gbLab2_2").html("开课学期：" + gbList[1].course_opentime);
-                        $("#gbLab1_3").html("课程学分：" + gbList[2].course_credit);
-                        $("#gbLab2_3").html("开课学期：" + gbList[2].course_opentime);
-                        $("#gbLab1_4").html("课程学分：" + gbList[3].course_credit);
-                        $("#gbLab2_4").html("开课学期：" + gbList[3].course_opentime);
-                        $("#gbLab1_5").html("课程学分：" + gbList[4].course_credit);
-                        $("#gbLab2_5").html("开课学期：" + gbList[4].course_opentime);
-                        $("#gbLab1_6").html("课程学分：" + gbList[5].course_credit);
-                        $("#gbLab2_6").html("开课学期：" + gbList[5].course_opentime);
+                        $("#gbLab1_1").html("Course Credits:" + gbList[0].course_credit);
+                        $("#gbLab2_1").html("Course Semester:" + gbList[0].course_opentime);
+                        $("#gbLab1_2").html("Course Credits:" + gbList[1].course_credit);
+                        $("#gbLab2_2").html("Course Semester:" + gbList[1].course_opentime);
+                        $("#gbLab1_3").html("Course Credits:" + gbList[2].course_credit);
+                        $("#gbLab2_3").html("Course Semester:" + gbList[2].course_opentime);
+                        $("#gbLab1_4").html("Course Credits:" + gbList[3].course_credit);
+                        $("#gbLab2_4").html("Course Semester:" + gbList[3].course_opentime);
+                        $("#gbLab1_5").html("Course Credits:" + gbList[4].course_credit);
+                        $("#gbLab2_5").html("Course Semester:" + gbList[4].course_opentime);
+                        $("#gbLab1_6").html("Course Credits:" + gbList[5].course_credit);
+                        $("#gbLab2_6").html("Course Semester:" + gbList[5].course_opentime);
 
                         //专选课程
                         var zxList = data.zxCourseList;
                         insert(zxList, "zxImg", "zx");
-                        $("#zxLab1_1").html("课程学分：" + zxList[0].course_credit);
-                        $("#zxLab2_1").html("开课学期：" + zxList[0].course_opentime);
-                        $("#zxLab1_2").html("课程学分：" + zxList[1].course_credit);
-                        $("#zxLab2_2").html("开课学期：" + zxList[1].course_opentime);
-                        $("#zxLab1_3").html("课程学分：" + zxList[2].course_credit);
-                        $("#zxLab2_3").html("开课学期：" + zxList[2].course_opentime);
-                        $("#zxLab1_4").html("课程学分：" + zxList[3].course_credit);
-                        $("#zxLab2_4").html("开课学期：" + zxList[3].course_opentime);
-                        $("#zxLab1_5").html("课程学分：" + zxList[4].course_credit);
-                        $("#zxLab2_5").html("开课学期：" + zxList[4].course_opentime);
-                        $("#zxLab1_6").html("课程学分：" + zxList[5].course_credit);
-                        $("#zxLab2_6").html("开课学期：" + zxList[5].course_opentime);
+                        $("#zxLab1_1").html("Course Credits:" + zxList[0].course_credit);
+                        $("#zxLab2_1").html("Course Semester:" + zxList[0].course_opentime);
+                        $("#zxLab1_2").html("Course Credits:" + zxList[1].course_credit);
+                        $("#zxLab2_2").html("Course Semester:" + zxList[1].course_opentime);
+                        $("#zxLab1_3").html("Course Credits:" + zxList[2].course_credit);
+                        $("#zxLab2_3").html("Course Semester:" + zxList[2].course_opentime);
+                        $("#zxLab1_4").html("Course Credits:" + zxList[3].course_credit);
+                        $("#zxLab2_4").html("Course Semester:" + zxList[3].course_opentime);
+                        $("#zxLab1_5").html("Course Credits:" + zxList[4].course_credit);
+                        $("#zxLab2_5").html("Course Semester:" + zxList[4].course_opentime);
+                        $("#zxLab1_6").html("Course Credits:" + zxList[5].course_credit);
+                        $("#zxLab2_6").html("Course Semester:" + zxList[5].course_opentime);
 
                         //专业必修课
                         var zbList = data.zbCourseList;
                         insert(zbList, "zbImg", "zb");             
-                        $("#zbLab1_1").html("课程学分：" + zbList[0].course_credit);
-                        $("#zbLab2_1").html("开课学期：" + zbList[0].course_opentime);
-                        $("#zbLab1_2").html("课程学分：" + zbList[1].course_credit);
-                        $("#zbLab2_2").html("开课学期：" + zbList[1].course_opentime);
-                        $("#zbLab1_3").html("课程学分：" + zbList[2].course_credit);
-                        $("#zbLab2_3").html("开课学期：" + zbList[2].course_opentime);
-                        $("#zbLab1_4").html("课程学分：" + zbList[3].course_credit);
-                        $("#zbLab2_4").html("开课学期：" + zbList[3].course_opentime);
-                        $("#zbLab1_5").html("课程学分：" + zbList[4].course_credit);
-                        $("#zbLab2_5").html("开课学期：" + zbList[4].course_opentime);
-                        $("#zbLab1_6").html("课程学分：" + zbList[5].course_credit);
-                        $("#zbLab2_6").html("开课学期：" + zbList[5].course_opentime);
+                        $("#zbLab1_1").html("Course Credits:" + zbList[0].course_credit);
+                        $("#zbLab2_1").html("Course Semester:" + zbList[0].course_opentime);
+                        $("#zbLab1_2").html("Course Credits:" + zbList[1].course_credit);
+                        $("#zbLab2_2").html("Course Semester:" + zbList[1].course_opentime);
+                        $("#zbLab1_3").html("Course Credits:" + zbList[2].course_credit);
+                        $("#zbLab2_3").html("Course Semester:" + zbList[2].course_opentime);
+                        $("#zbLab1_4").html("Course Credits:" + zbList[3].course_credit);
+                        $("#zbLab2_4").html("Course Semester:" + zbList[3].course_opentime);
+                        $("#zbLab1_5").html("Course Credits:" + zbList[4].course_credit);
+                        $("#zbLab2_5").html("Course Semester:" + zbList[4].course_opentime);
+                        $("#zbLab1_6").html("Course Credits:" + zbList[5].course_credit);
+                        $("#zbLab2_6").html("Course Semester:" + zbList[5].course_opentime);
                     }
                     else {
                         alert("网络出错啦！！");

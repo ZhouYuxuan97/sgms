@@ -140,7 +140,7 @@ namespace hubu.sgms.DAL.Impl
         public void SetStatus(string mystatus,string courseid)
         {
             String sql = "insert into Status(Id,courseid, status) values(@myid,@courseid,@mystatus)";
-            SqlParameter[] pars = { new SqlParameter("@myid",Guid.NewGuid()) ,new SqlParameter("@courseid", courseid), new SqlParameter("@mystatus", mystatus) };
+            SqlParameter[] pars = { new SqlParameter("@myid",new Random().Next(50)) ,new SqlParameter("@courseid", courseid), new SqlParameter("@mystatus", mystatus) };
             DBUtils.getDBUtils().cud(sql, pars);
         }
 

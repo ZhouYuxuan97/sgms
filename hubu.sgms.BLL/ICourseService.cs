@@ -71,9 +71,9 @@ namespace hubu.sgms.BLL
         // 添加课程信息数据
         string AddCourseBaseInfo(string courseID, string courseName, decimal courseCreadit, string courseHour, string courseType, string courseDepartement, string courseClass, string courseTheory,
                                    string courseExperiment, string courseOpentime, string coursePrior, int status);
-        
+
         // 修改课程信息数据
-        string UpdateCourseBaseInfo(string courseID,string courseName, decimal courseCreadit, string courseHour, string courseType, string courseDepartement, string courseClass,string courseTheory,
+        string UpdateCourseBaseInfo(string courseID, string courseName, decimal courseCreadit, string courseHour, string courseType, string courseDepartement, string courseClass, string courseTheory,
                                     string courseExperiment, string courseOpentime, string coursePrior, int status);
 
         // 删除课程信息数据
@@ -143,7 +143,7 @@ namespace hubu.sgms.BLL
 
         IList<College> SelCollegeforArrangeCourse();
 
-        IList<Course> SelCourseforArrangeCourse(string course_type, string college);
+        IList<Course> SelCourseforArrangeCourse(string course_type, string college, string courseopentime);
 
     }
 }

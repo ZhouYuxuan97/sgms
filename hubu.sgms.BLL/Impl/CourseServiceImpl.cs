@@ -58,15 +58,15 @@ namespace hubu.sgms.BLL.Impl
         // 添加课程信息数据
         public string AddCourseBaseInfo(string courseId, string courseName, decimal courseCreadit, string courseHour, string courseType, string courseDepartement, string courseClass, string courseTheory, string courseExperiment, string courseOpentime, string coursePrior, int status)
         {
-            return courseDAL.AddCourseBaseInfo(courseId, courseName, courseCreadit, courseHour, courseType, courseDepartement, courseClass,courseTheory, courseExperiment, courseOpentime, coursePrior, status);
+            return courseDAL.AddCourseBaseInfo(courseId, courseName, courseCreadit, courseHour, courseType, courseDepartement, courseClass, courseTheory, courseExperiment, courseOpentime, coursePrior, status);
         }
 
 
 
         // 修改课程信息数据
-        public string UpdateCourseBaseInfo(string courseID,string courseName, decimal courseCreadit, string courseHour, string courseType,string courseDepartement, string courseClass,string courseTheory, string courseExperiment, string courseOpentime, string coursePrior, int status)
+        public string UpdateCourseBaseInfo(string courseID, string courseName, decimal courseCreadit, string courseHour, string courseType, string courseDepartement, string courseClass, string courseTheory, string courseExperiment, string courseOpentime, string coursePrior, int status)
         {
-            return courseDAL.UpdateCourseBaseInfo(courseID,courseName, courseCreadit, courseHour, courseType, courseDepartement, courseClass, courseTheory, courseExperiment, courseOpentime, coursePrior, status);
+            return courseDAL.UpdateCourseBaseInfo(courseID, courseName, courseCreadit, courseHour, courseType, courseDepartement, courseClass, courseTheory, courseExperiment, courseOpentime, coursePrior, status);
         }
 
 
@@ -117,7 +117,7 @@ namespace hubu.sgms.BLL.Impl
         {
             Student student = studengDAL.SelectStudentById(stuId);
             Teacher_course teacher_Course = teacherCourseDAL.SelectById(teacherCourseId);
-            if(student==null || teacher_Course == null)
+            if (student == null || teacher_Course == null)
             {
                 return false;
             }
@@ -140,7 +140,7 @@ namespace hubu.sgms.BLL.Impl
         {
             IList<string> courseTypes = courseDAL.SelectCourseTypes();
             IList<Course> courses = new List<Course>();
-            foreach(string courseType in courseTypes)
+            foreach (string courseType in courseTypes)
             {
                 Course course = new Course();
                 course.course_type = courseType;
@@ -164,9 +164,9 @@ namespace hubu.sgms.BLL.Impl
             return collegeDAL.SelCollegeforArrangeCourse();
         }
 
-        public IList<Course> SelCourseforArrangeCourse(string course_type, string college)
+        public IList<Course> SelCourseforArrangeCourse(string course_type, string college, string courseopentime)
         {
-            return courseDAL.SelCourseforArrangeCourse(course_type, college);
+            return courseDAL.SelCourseforArrangeCourse(course_type, college, courseopentime);
         }
     }
 }

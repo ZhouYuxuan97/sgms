@@ -398,6 +398,8 @@
     <Content Include="Scripts\bs\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\switch\scss\style.scss" />
     <None Include="Properties\PublishProfiles\ASP.NET第六组.pubxml" />
+    <None Include="Properties\PublishProfiles\Ds.pubxml" />
+    <None Include="Properties\PublishProfiles\s.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap3.3.7.min.js" />
     <Content Include="Scripts\bs\css\bootstrap-theme.css" />
@@ -872,6 +874,8 @@
     <Content Include="Views\Course\HomeCourseDetail.cshtml" />
     <Content Include="Views\Teacher\SubmitUpdateTeacherInfo.cshtml" />
     <Content Include="Views\Admin\ChangeStatus.cshtml" />
+    <Content Include="Views\News\AddNewInfo.cshtml" />
+    <Content Include="Views\News\UpdateNewInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

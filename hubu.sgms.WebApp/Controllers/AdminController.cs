@@ -271,12 +271,27 @@ namespace hubu.sgms.WebApp.Controllers
             return View("AlterAdminInfo");
         }
 
+     
         // 管理员修改个人信息界面
         public ActionResult AlterAdminInfo()
         {
             string sqlNull = "2b婿s1jHh子1hl91";  // 赋值，防止sql报错
             string adminDepartment = Request["adminDepartment"];
+            ViewData["adminDepartment"] = adminDepartment;
+            string adminDep = Request["adminDepartmentSave"];   //点击上一页下一页全局刷新时，保存选项值
+            if ((adminDepartment == null || adminDepartment == sqlNull) && adminDep != "")
+            {
+                adminDepartment = adminDep;
+                ViewData["adminDepartment"] = adminDepartment;
+            }
             string adminName = Request["adminName"];
+            ViewData["adminName"] = adminName;
+            string adminNa = Request["adminNameSave"];  //点击上一页下一页全局刷新时，保存选项值
+            if ((adminName == null || adminName == "") && adminNa != "")
+            {
+                adminName = adminNa;
+                ViewData["adminName"] = adminName;
+            }
             int size = Convert.ToInt32(Request["size"]);
 
             if (adminName == null && adminDepartment == null)   //一开始加载不显示
@@ -306,6 +321,7 @@ namespace hubu.sgms.WebApp.Controllers
             ViewData["adminList"] = administratorList;
             return View();
         }
+
         public ActionResult UpdateAdminInfo(string administratorId)
         {
             Login login = (Login)Session["loginInfo"];
@@ -354,7 +370,7 @@ namespace hubu.sgms.WebApp.Controllers
 
             string result = roleInfoService.UpdateAdminInfo(adminID, adminName, adminSex, adminIDCard, adminDepartment, adminContact, adminOther, adminStatus);
             //return View("AlterAdminInfo");
-            return View();
+            return View("SubmitAddCourseInfo");
         }
 
         // 查看管理员详细信息
@@ -466,12 +482,28 @@ namespace hubu.sgms.WebApp.Controllers
           
         }
 
-        // 管理员修改教师信息
+       // 管理员修改教师信息
         public ActionResult AdminAlterTeacherInfo()
         {
-            string teacherName = Request["teacherName"];
+            string sqlNull = "2b婿s1jHh子1hl91";
             string teacherDepartment = Request["teacherDepartment"];
-            int size = 10;//Convert.ToInt32(Request["size"]);
+            ViewData["teacherDepartment"] = teacherDepartment;
+            string teacherDep = Request["teacherDepartmentSave"];   //点击上一页下一页全局刷新时，保存选项值
+            if ((teacherDepartment == null || teacherDepartment == sqlNull) && teacherDep != "")
+            {
+                teacherDepartment = teacherDep;
+                ViewData["teacherDepartment"] = teacherDepartment;
+            }
+            string teacherName = Request["teacherName"];
+            ViewData["teacherName"] = teacherName;
+            string teacherNa = Request["teacherNameSave"];      //点击上一页下一页全局刷新时，保存选项值
+            if ((teacherName == null || teacherName == "") && teacherNa != "")
+            {
+                teacherName = teacherNa;
+                ViewData["teacherName"] = teacherName;
+            }
+
+            int size = Convert.ToInt32(Request["size"]);
 
             if (teacherName == null && teacherDepartment == null)   //刚加载页面时不显示信息
             {
@@ -479,16 +511,16 @@ namespace hubu.sgms.WebApp.Controllers
             }
             if (teacherName == "" && teacherDepartment != null)  //查询某学院教师
             {
-                teacherName = "2b婿s1jHh子1hl91";         //赋值，防止sql报错
+                teacherName = sqlNull;         //赋值，防止sql报错
             }
             if (teacherName != null && teacherName != "" && teacherDepartment == null)  //查询姓名教师
             {
-                teacherDepartment = "2b婿s1jHh子1hl91";         //赋值，防止sql报错
+                teacherDepartment = sqlNull;         //赋值，防止sql报错
             }
             if (teacherName == "" && teacherDepartment == null)    //即在页面没输入姓名和学院时，点击查询时查询所有信息
             {
-                teacherDepartment = "2b婿s1jHh子1hl91";   //赋值，防止sql报错
-                teacherName = "2b婿s1jHh子1hl91";         //赋值，防止sql报错
+                teacherDepartment = sqlNull;   //赋值，防止sql报错
+                teacherName = sqlNull;         //赋值，防止sql报错
             }
 
             int count = roleInfoService.SelectCountTeacher(teacherName, teacherDepartment);
@@ -501,7 +533,6 @@ namespace hubu.sgms.WebApp.Controllers
             ViewData["teacherList"] = teacherList;
             return View();
         }
-
 
         public ActionResult AdminUpdateTeacherInfo(string teacherID)
         {
@@ -719,11 +750,40 @@ namespace hubu.sgms.WebApp.Controllers
         public ActionResult AdminAlterStudentInfo()
         {
             string sqlNull = "2b婿s1jHh子1hl91";  //防止参数为空，使sql报错
-            string studentName = Request["studentName"];
             string studentDepartment = Request["studentDepartment"];
+            ViewData["studentDepartment"] = studentDepartment;
+            string studentDep = Request["studentDepartmentSave"];   //点击上一页下一页全局刷新时，保存选项值
+            if ((studentDepartment == null || studentDepartment == sqlNull) && studentDep != "")
+            {
+                studentDepartment = studentDep;
+                ViewData["studentDepartment"] = studentDepartment;
+            }
             string studentMajor = Request["majorlist"];
+            ViewData["majorlist"] = studentMajor;
+            string studentMa = Request["majorlistSave"];   //点击上一页下一页全局刷新时，保存选项值
+            if ((studentMajor == null || studentMajor == "") && studentMa != "")
+            {
+                studentMajor = studentMa;
+                ViewData["majorlist"] = studentMajor;
+            }
             string studentClass = Request["classlist"];
-            int size = 10;//Convert.ToInt32(Request["size"]);
+            ViewData["classlist"] = studentMajor;
+            string studentCl = Request["classlistSave"];   //点击上一页下一页全局刷新时，保存选项值
+            if ((studentClass == null || studentClass == "") && studentCl != "")
+            {
+                studentClass = studentCl;
+                ViewData["classlist"] = studentClass;
+            }
+            string studentName = Request["studentName"];
+            ViewData["studentName"] = studentName;
+            string studentNa = Request["studentNameSave"];   //点击上一页下一页全局刷新时，保存选项值
+            if ((studentName == null || studentName == "") && studentNa != "")
+            {
+                studentName = studentNa;
+                ViewData["studentName"] = studentName;
+            }
+
+            int size = Convert.ToInt32(Request["size"]);
 
             if (studentDepartment == null && studentName == null)    //刚加载页面时不显示信息
             {
@@ -783,7 +843,7 @@ namespace hubu.sgms.WebApp.Controllers
             string departement = admin.administrator_department;
 
             Student student = roleInfoService.SelectStudent(studentID);
-            string studentdepartement = student.student_photo;
+            string studentdepartement = student.student_department;
 
             ViewData["student_id"] = student.student_id;
             ViewData["student_name"] = student.student_name;

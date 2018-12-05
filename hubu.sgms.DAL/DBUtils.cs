@@ -98,7 +98,15 @@ namespace hubu.sgms.DAL
         //分页查询 
         public DataTable getRecordsWithPage(string sql, SqlParameter[] param, int pageSize, int page) 
         {
-            conn.Open();
+            try
+            {
+                conn.Open();
+            }
+            catch
+            {
+
+            }
+           
             SqlCommand comm = new SqlCommand(sql, conn);
             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(comm);
             if (param.Length > 0)

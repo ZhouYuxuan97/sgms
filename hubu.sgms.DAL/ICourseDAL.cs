@@ -15,9 +15,9 @@ namespace hubu.sgms.DAL
     public interface ICourseDAL
     {
         CourseType GetCourseType(string name);
-       
 
-        IList<Course> SelCourseforArrangeCourse(string course_type, string college);
+
+        IList<Course> SelCourseforArrangeCourse(string course_type, string college, string courseopentime);
 
         #region 分页查询相应类别的基本课程信息
         /// <summary>
@@ -89,7 +89,7 @@ namespace hubu.sgms.DAL
         /// <param name="coursePrior">先行课程</param>
         /// <param name="status">课程状态</param>
         /// <returns></returns>
-        string AddCourseBaseInfo(string courseID,string courseName, decimal courseCreadit, string courseHour, string courseType, string courseTheory,
+        string AddCourseBaseInfo(string courseID, string courseName, decimal courseCreadit, string courseHour, string courseType, string courseTheory,
                                   string courseDepartement, string courseClass, string courseExperiment, string courseOpentime, string coursePrior, int status);
 
         #endregion
@@ -169,15 +169,15 @@ namespace hubu.sgms.DAL
         /// <param name="stuId"></param>
         /// <param name="year">年度</param>
         /// <returns>封装成绩字段和课程名，不查询其他信息</returns>
-        IList<Course_choosing> SelectGrade(string stuId,int year);
+        IList<Course_choosing> SelectGrade(string stuId, int year);
 
         /// <summary>
         /// 获取课程类型列表
         /// </summary>
         /// <returns></returns>
         IList<String> SelectCourseTypes();
-        
-        
+
+
     }
 
     public enum CourseType
@@ -248,7 +248,7 @@ namespace hubu.sgms.DAL
             foreach (CourseType courseType in Enum.GetValues(typeof(CourseType)))
             {
                 string courseTypeName = GetInfo(courseType);
-                courses.Add(new { courseTypeName=courseTypeName,courseTypeId=(int)courseType});
+                courses.Add(new { courseTypeName = courseTypeName, courseTypeId = (int)courseType });
             }
 
             return courses;
